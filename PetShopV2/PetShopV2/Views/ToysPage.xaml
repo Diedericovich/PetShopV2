@@ -1,12 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:PetShopV2.ViewModels"
              x:Class="PetShopV2.Views.ToysPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+
+    <ContentPage.BindingContext>        <local:ToysViewModel/>    </ContentPage.BindingContext>    <RefreshView>        <StackLayout>            <CollectionView ItemsSource="{Binding Products}">                <CollectionView.ItemTemplate>                    <DataTemplate>                        <Label Text="{Binding Name}"/>                    </DataTemplate>                </CollectionView.ItemTemplate>            </CollectionView>        </StackLayout>    </RefreshView>
+
+
 </ContentPage>
