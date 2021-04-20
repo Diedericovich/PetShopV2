@@ -15,7 +15,7 @@ namespace PetShopV2.Models
         public DateTime DateOfCreation { get; set; }
         public DateTime LastEdited { get; set; }
         public AnimalType Animal { get; set; }
-        public string ItemBrand { get; set; }
+        public string ProductBrand { get; set; }
 
         public Product()
         {

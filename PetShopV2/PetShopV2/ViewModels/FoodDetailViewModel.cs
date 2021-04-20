@@ -14,6 +14,9 @@ namespace PetShopV2.ViewModels
         private bool inStock;
         private string itemBrand;
 
+        private double foodWeight;
+        private bool isGrainFree;
+
         public int ID { get; set; }
 
         public string Name
@@ -40,10 +43,22 @@ namespace PetShopV2.ViewModels
             set => SetProperty(ref inStock, value);
         }
 
-        public string ItemBrand
+        public string ProductBrand
         {
             get => itemBrand;
             set => SetProperty(ref itemBrand, value);
+        }
+
+        public double FoodWeight
+        {
+            get => foodWeight;
+            set => SetProperty(ref foodWeight, value);
+        }
+
+        public double IsGrainFree
+        {
+            get => isGrainFree;
+            set => SetProperty(ref isGrainFree, value);
         }
 
         public int ProductID
@@ -67,6 +82,11 @@ namespace PetShopV2.ViewModels
                 ID = product.ID;
                 Name = product.Name;
                 Description = product.Description;
+                Price = product.Price;
+                InStock = product.InStock;
+                ProductBrand = product.ProductBrand;
+                FoodWeight = product.FoodWeight;
+                IsGrainFree = product.IsGrainFree;
             }
             catch (Exception)
             {
