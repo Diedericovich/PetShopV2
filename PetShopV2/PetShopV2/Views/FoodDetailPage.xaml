@@ -4,8 +4,7 @@
              x:Class="PetShopV2.Views.FoodDetailPage"
              xmlns:local="clr-namespace:PetShopV2.ViewModels"
              xmlns:model="clr-namespace:PetShopV2.Models"
-             Title="{Binding Title}"
-             x:Class="PetShopV2.Views.FoodDetailPage">
+             Title="{Binding Title}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add to cart" Command="{Binding AddProductCommand}" />
