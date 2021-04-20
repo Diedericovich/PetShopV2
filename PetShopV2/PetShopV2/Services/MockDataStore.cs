@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace PetShopV2.Services
 {
-    public class MockDataStore : IDataStore<Item>
+
+    // niet nodig voor onze app = AFBLIJVEN
+    public class MockDataStore 
     {
         readonly List<Item> items;
 

@@ -4,7 +4,27 @@
              xmlns:local="clr-namespace:PetShopV2.ViewModels"
              x:Class="PetShopV2.Views.FoodPage">
 
-    <ContentPage.BindingContext>        <local:FoodViewModel/>    </ContentPage.BindingContext>    <RefreshView>        <StackLayout>            <CollectionView ItemsSource="{Binding Products}">                <CollectionView.ItemTemplate>                    <DataTemplate>                        <Label Text="{Binding Name}"/>                    </DataTemplate>                </CollectionView.ItemTemplate>            </CollectionView>        </StackLayout>    </RefreshView>
+    <ContentPage.BindingContext>
+        <local:FoodViewModel/>
+    </ContentPage.BindingContext>
+
+    <RefreshView>
+        <StackLayout>
+            <CollectionView ItemsSource="{Binding Products}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding Name}"/>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+
+            </CollectionView>
+
+        </StackLayout>
+
+
+    </RefreshView>
 
 
 
