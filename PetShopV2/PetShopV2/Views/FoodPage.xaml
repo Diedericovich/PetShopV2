@@ -14,7 +14,7 @@
         <CollectionView x:Name="FoodListView"
                 ItemsSource="{Binding Products}"
                 SelectionMode="Single">
-           
+
             <CollectionView.ItemTemplate>
                 <DataTemplate >
                     <StackLayout Padding="10"  x:DataType="model:Product"  >
