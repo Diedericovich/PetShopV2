@@ -1,5 +1,4 @@
-﻿using PetShop.Models;
-using PetShopV2.Models;
+﻿using PetShopV2.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,7 +29,7 @@ namespace PetShopV2.ViewModels
             AddProductCommand = new Command(OnAddProduct);
         }
 
-        async Task ExecuteLoadProductsCommand()
+        private async Task ExecuteLoadProductsCommand()
         {
             IsBusy = true;
 
@@ -74,21 +73,19 @@ namespace PetShopV2.ViewModels
 
         private async void OnAddProduct(object obj)
         {
-          //  await Shell.Current.GoToAsync(nameof(NewFoodPage));
+            //  await Shell.Current.GoToAsync(nameof(NewFoodPage));
         }
-
-
 
         //deze methode gbruiken om door te klikken naar de detailview van het product
         // "FoodDetailPage" nog vervangen
 
-        async void OnProductSelected(Product product)
+        private async void OnProductSelected(Product product)
         {
             //if (product == null)
             //    return;
 
             //// This will push the ItemDetailPage onto the navigation stack
-           // await Shell.Current.GoToAsync($"{nameof(FoodDetailPage)}?{nameof(FoodDetailViewModel.ProductID)}={product.ID}");
+            // await Shell.Current.GoToAsync($"{nameof(FoodDetailPage)}?{nameof(FoodDetailViewModel.ProductID)}={product.ID}");
         }
     }
 }
