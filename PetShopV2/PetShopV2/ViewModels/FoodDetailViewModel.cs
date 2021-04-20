@@ -49,7 +49,6 @@ namespace PetShopV2.ViewModels
                 ID = product.ID;
                 Name = product.Name;
                 Description = product.Description;
-
             }
             catch (Exception)
             {

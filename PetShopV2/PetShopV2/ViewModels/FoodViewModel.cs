@@ -1,10 +1,8 @@
 ﻿using PetShopV2.Models;
 using PetShopV2.Views;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -44,9 +42,8 @@ namespace PetShopV2.ViewModels
 
                     if (product is Food)
                     {
-                        Products.Add(product); 
+                        Products.Add(product);
                     }
-
                 }
             }
             catch (Exception ex)

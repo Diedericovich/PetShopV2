@@ -1,7 +1,4 @@
-﻿using PetShopV2.ViewModels;
-using PetShopV2.Views;
-using System;
-using System.Collections.Generic;
+﻿using PetShopV2.Views;
 using Xamarin.Forms;
 
 namespace PetShopV2
@@ -15,8 +12,6 @@ namespace PetShopV2
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
             Routing.RegisterRoute(nameof(FoodDetailPage), typeof(FoodDetailPage));
             Routing.RegisterRoute(nameof(ToysDetailPage), typeof(ToysDetailPage));
-
         }
-
     }
 }

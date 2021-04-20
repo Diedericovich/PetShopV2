@@ -1,16 +1,14 @@
 ﻿using PetShopV2.Models;
 using PetShopV2.Views;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace PetShopV2.ViewModels
 {
-    class ToysViewModel : BaseViewModel
+    internal class ToysViewModel : BaseViewModel
     {
         private Product _selectedProduct;
 
@@ -30,7 +28,7 @@ namespace PetShopV2.ViewModels
             AddProductCommand = new Command(OnAddProduct);
         }
 
-        async Task ExecuteLoadProductsCommand()
+        private async Task ExecuteLoadProductsCommand()
         {
             IsBusy = true;
 
@@ -43,9 +41,8 @@ namespace PetShopV2.ViewModels
                     //Products.Add(product);
                     if (product is Toys)
                     {
-                        Products.Add(product); 
+                        Products.Add(product);
                     }
-
                 }
             }
             catch (Exception ex)
@@ -82,12 +79,10 @@ namespace PetShopV2.ViewModels
             //  await Shell.Current.GoToAsync(nameof(NewFoodPage));
         }
 
-
-
         //deze methode gbruiken om door te klikken naar de detailview van het product
         // "FoodDetailPage" nog vervangen
 
-        async void OnProductSelected(Product product)
+        private async void OnProductSelected(Product product)
         {
             if (product == null)
                 return;
