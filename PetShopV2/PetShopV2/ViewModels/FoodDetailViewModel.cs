@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PetShopV2.Models;
+using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Xamarin.Forms;
 
@@ -7,6 +9,8 @@ namespace PetShopV2.ViewModels
     [QueryProperty(nameof(ProductID), nameof(ProductID))]
     public class FoodDetailViewModel : BaseViewModel
     {
+        public ObservableCollection<Product> SelectedProduct { get; }
+
         private int productID;
         private string name;
         private string description;

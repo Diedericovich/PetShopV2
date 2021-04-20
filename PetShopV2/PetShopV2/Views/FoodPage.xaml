@@ -10,21 +10,18 @@
         <local:FoodViewModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add to cart" Command="{Binding AddProductCommand}" />
-    </ContentPage.ToolbarItems>
-
     <RefreshView x:DataType="local:FoodViewModel" Command="{Binding LoadProductsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView x:Name="ProductListView"
-
+        <CollectionView x:Name="FoodListView"
                 ItemsSource="{Binding Products}"
-                SelectionMode="None">
+                SelectionMode="Single">
+           
             <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Padding="10" x:DataType="model:Food">
+                <DataTemplate >
+                    <StackLayout Padding="10"  x:DataType="model:Product"  >
+                        
                         <Image Source="{Binding Image}"
                                HeightRequest="100"
-                               HorizontalOptions="Start" />
+                               HorizontalOptions="Start"/>
                         <Label Text="{Binding Name}"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemTextStyle}"
