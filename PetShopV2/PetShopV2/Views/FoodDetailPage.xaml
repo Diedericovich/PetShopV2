@@ -1,20 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PetShopV2.Views.FoodDetailPage"
              xmlns:local="clr-namespace:PetShopV2.ViewModels"
              xmlns:model="clr-namespace:PetShopV2.Models"
              Title="{Binding Title}"
-             x:Class="PetShopV2.Views.FoodPage">
-
-    <ContentPage.BindingContext>
-        <local:FoodViewModel />
-    </ContentPage.BindingContext>
+             x:Class="PetShopV2.Views.FoodDetailPage">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add to cart" Command="{Binding AddProductCommand}" />
     </ContentPage.ToolbarItems>
 
-    <RefreshView x:DataType="local:FoodViewModel" Command="{Binding LoadProductsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+    <RefreshView x:DataType="local:FoodDetailViewModel" Command="{Binding LoadProductsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <CollectionView x:Name="ProductListView"
 
                 ItemsSource="{Binding Products}"

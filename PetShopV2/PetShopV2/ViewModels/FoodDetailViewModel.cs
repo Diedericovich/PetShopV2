@@ -10,6 +10,10 @@ namespace PetShopV2.ViewModels
         private int productID;
         private string name;
         private string description;
+        private double price;
+        private bool inStock;
+        private string itemBrand;
+
         public int ID { get; set; }
 
         public string Name
@@ -22,6 +26,24 @@ namespace PetShopV2.ViewModels
         {
             get => description;
             set => SetProperty(ref description, value);
+        }
+
+        public double Price
+        {
+            get => price;
+            set => SetProperty(ref price, value);
+        }
+
+        public bool InStock
+        {
+            get => inStock;
+            set => SetProperty(ref inStock, value);
+        }
+
+        public string ItemBrand
+        {
+            get => itemBrand;
+            set => SetProperty(ref itemBrand, value);
         }
 
         public int ProductID

@@ -1,4 +1,5 @@
 ﻿using PetShopV2.Models;
+using PetShopV2.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -81,11 +82,11 @@ namespace PetShopV2.ViewModels
 
         private async void OnProductSelected(Product product)
         {
-            //if (product == null)
-            //    return;
+            if (product == null)
+                return;
 
-            //// This will push the ItemDetailPage onto the navigation stack
-            // await Shell.Current.GoToAsync($"{nameof(FoodDetailPage)}?{nameof(FoodDetailViewModel.ProductID)}={product.ID}");
+            // This will push the ItemDetailPage onto the navigation stack
+            await Shell.Current.GoToAsync($"{nameof(FoodDetailPage)}?{nameof(FoodDetailViewModel.ProductID)}={product.ID}");
         }
     }
 }
