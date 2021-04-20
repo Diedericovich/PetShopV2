@@ -66,9 +66,35 @@ namespace PetShopV2.Services
                             FoodWeight = 5,
                             IsGrainFree = true,
                         },
-                        new Toys
+                         new Food
                         {
                             ID = 2,
+                            Name = "Veal Dry Food",
+                            Description = "Contains Veal",
+                            Image = "Food.jpg",
+                            Price = 9.50,
+                            InStock = true,
+                            Animal = AnimalType.Dog,
+                            ItemBrand = "Purina",
+                            FoodWeight = 7,
+                            IsGrainFree = true,
+                        },
+                          new Food
+                        {
+                            ID = 3,
+                            Name = "Duck Dry Food",
+                            Description = "Contains Duck",
+                            Image = "Food.jpg",
+                            Price = 6.50,
+                            InStock = true,
+                            Animal = AnimalType.Cat,
+                            ItemBrand = "Royal Canin",
+                            FoodWeight = 7,
+                            IsGrainFree = true,
+                        },
+                        new Toys
+                        {
+                            ID = 4,
                             Name = "Dog Ball",
                             Description = "a colourful rubber ball which makes lot of sound and noise",
                             Image = "Toys.jpg",
