@@ -1,4 +1,5 @@
 ﻿using PetShopV2.Models;
+using PetShopV2.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,7 +40,12 @@ namespace PetShopV2.ViewModels
                 var products = await DataStore.GetAllProductsAsync(true);
                 foreach (var product in products)
                 {
-                    Products.Add(product);
+                    //Products.Add(product);
+                    if (product is Toys)
+                    {
+                        Products.Add(product); 
+                    }
+
                 }
             }
             catch (Exception ex)
@@ -83,11 +89,11 @@ namespace PetShopV2.ViewModels
 
         async void OnProductSelected(Product product)
         {
-            //if (product == null)
-            //    return;
+            if (product == null)
+                return;
 
-            //// This will push the ItemDetailPage onto the navigation stack
-            // await Shell.Current.GoToAsync($"{nameof(FoodDetailPage)}?{nameof(FoodDetailViewModel.ProductID)}={product.ID}");
+            // This will push the ItemDetailPage onto the navigation stack
+            await Shell.Current.GoToAsync($"{nameof(ToysDetailPage)}?{nameof(FoodDetailViewModel.ProductID)}={product.ID}");
         }
     }
 }

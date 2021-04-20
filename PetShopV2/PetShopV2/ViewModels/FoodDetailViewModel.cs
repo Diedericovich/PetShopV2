@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PetShopV2.Models;
+using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Xamarin.Forms;
 
@@ -7,12 +9,14 @@ namespace PetShopV2.ViewModels
     [QueryProperty(nameof(ProductID), nameof(ProductID))]
     public class FoodDetailViewModel : BaseViewModel
     {
+        public ObservableCollection<Product> SelectedProduct { get; }
+
         private int productID;
         private string name;
         private string description;
-        private double price;
-        private bool inStock;
-        private string itemBrand;
+        //private double price;
+        //private bool inStock;
+        //private string itemBrand;
 
         //private double foodWeight;
         //private bool isGrainFree;
@@ -31,23 +35,23 @@ namespace PetShopV2.ViewModels
             set => SetProperty(ref description, value);
         }
 
-        public double Price
-        {
-            get => price;
-            set => SetProperty(ref price, value);
-        }
+        //public double Price
+        //{
+        //    get => price;
+        //    set => SetProperty(ref price, value);
+        //}
 
-        public bool InStock
-        {
-            get => inStock;
-            set => SetProperty(ref inStock, value);
-        }
+        //public bool InStock
+        //{
+        //    get => inStock;
+        //    set => SetProperty(ref inStock, value);
+        //}
 
-        public string ProductBrand
-        {
-            get => itemBrand;
-            set => SetProperty(ref itemBrand, value);
-        }
+        //public string ProductBrand
+        //{
+        //    get => itemBrand;
+        //    set => SetProperty(ref itemBrand, value);
+        //}
 
         //public double FoodWeight
         //{
@@ -82,11 +86,13 @@ namespace PetShopV2.ViewModels
                 ID = product.ID;
                 Name = product.Name;
                 Description = product.Description;
-                Price = product.Price;
-                InStock = product.InStock;
-                ProductBrand = product.ProductBrand;
+
+                //Price = product.Price;
+                //InStock = product.InStock;
+                //ProductBrand = product.ProductBrand;
                 //FoodWeight = food.FoodWeight;
                 //IsGrainFree = food.IsGrainFree;
+
             }
             catch (Exception)
             {

@@ -40,7 +40,13 @@ namespace PetShopV2.ViewModels
                 var products = await DataStore.GetAllProductsAsync(true);
                 foreach (var product in products)
                 {
-                    Products.Add(product);
+                    //Products.Add(product);
+
+                    if (product is Food)
+                    {
+                        Products.Add(product); 
+                    }
+
                 }
             }
             catch (Exception ex)
