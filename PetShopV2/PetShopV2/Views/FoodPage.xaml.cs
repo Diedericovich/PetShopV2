@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetShopV2.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,19 @@ namespace PetShopV2.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FoodPage : ContentPage
     {
+        FoodViewModel _foodViewModel;
+
         public FoodPage()
         {
             InitializeComponent();
+
+            BindingContext = _foodViewModel = new FoodViewModel();
+
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _foodViewModel.OnAppearing();
         }
     }
 }

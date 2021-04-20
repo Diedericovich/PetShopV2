@@ -13,6 +13,6 @@ namespace PetShopV2.Services
 
         Task<T> GetProductAsync(int id);
 
-        Task<IEnumerable<T>> GetProductsAsync(bool forceRefresh = false);
+        Task<IEnumerable<T>> GetAllProductsAsync(bool forceRefresh = false);
     }
 }

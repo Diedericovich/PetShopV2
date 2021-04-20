@@ -21,7 +21,7 @@ namespace PetShopV2.ViewModels
 
         public FoodViewModel()
         {
-            Title = "Products";
+            Title = "Food";
             Products = new ObservableCollection<Product>();
             LoadProductsCommand = new Command(async () => await ExecuteLoadProductsCommand());
 
@@ -37,7 +37,7 @@ namespace PetShopV2.ViewModels
             try
             {
                 Products.Clear();
-                var products = await DataStore.GetProductsAsync(true);
+                var products = await DataStore.GetAllProductsAsync(true);
                 foreach (var product in products)
                 {
                     Products.Add(product);
