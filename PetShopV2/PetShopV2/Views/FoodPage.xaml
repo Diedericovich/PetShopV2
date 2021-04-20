@@ -37,7 +37,7 @@
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemTextStyle}"
                             FontSize="16" />
-                        <Label Text="{Binding ItemBrand}"
+                        <Label Text="{Binding ProductBrand}"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
