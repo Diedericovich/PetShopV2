@@ -1,7 +1,4 @@
 ﻿using PetShopV2.Views;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace PetShopV2.ViewModels
