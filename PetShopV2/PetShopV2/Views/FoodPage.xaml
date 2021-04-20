@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:PetShopV2.ViewModels"
              xmlns:model="clr-namespace:PetShopV2.Models"
+             xmlns:local="clr-namespace:PetShopV2.ViewModels"
              Title="{Binding Title}"
              x:Class="PetShopV2.Views.FoodPage">
 
@@ -16,12 +16,12 @@
                 SelectionMode="Single">
 
             <CollectionView.ItemTemplate>
-                <DataTemplate >
-                    <StackLayout Padding="10"  x:DataType="model:Product"  >
-                        
+                <DataTemplate>
+                    <StackLayout Padding="10"  x:DataType="model:Product">
+
                         <Image Source="{Binding Image}"
                                HeightRequest="100"
-                               HorizontalOptions="Start"/>
+                               HorizontalOptions="Start" />
                         <Label Text="{Binding Name}"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemTextStyle}"

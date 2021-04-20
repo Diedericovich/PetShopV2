@@ -1,13 +1,6 @@
-﻿using PetShopV2.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
-using Xamarin.Forms;
-
-namespace PetShopV2.ViewModels
+﻿namespace PetShopV2.ViewModels
 {
-    public class NewItemViewModel 
+    public class NewItemViewModel
     {
         //private string text;
         //private string description;

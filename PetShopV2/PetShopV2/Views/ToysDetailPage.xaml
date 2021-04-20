@@ -6,5 +6,4 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add to cart" Command="{Binding AddProductCommand}" />
     </ContentPage.ToolbarItems>
-
 </ContentPage>

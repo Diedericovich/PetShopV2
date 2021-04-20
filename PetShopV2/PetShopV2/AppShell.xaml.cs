@@ -1,7 +1,4 @@
-﻿using PetShopV2.ViewModels;
-using PetShopV2.Views;
-using System;
-using System.Collections.Generic;
+﻿using PetShopV2.Views;
 using Xamarin.Forms;
 
 namespace PetShopV2
