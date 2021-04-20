@@ -1,29 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:local="clr-namespace:PetShopV2.ViewModels"
+             xmlns:local="clr-namespace:PetShopV2.ViewModels" 
+             xmlns:model="clr-namespace:PetShopV2.Models"
+             Title="{Binding Title}"
              x:Class="PetShopV2.Views.ToysPage">
 
     <ContentPage.BindingContext>
         <local:ToysViewModel/>
     </ContentPage.BindingContext>
 
-    <RefreshView>
-        <StackLayout>
-            <CollectionView ItemsSource="{Binding Products}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Label Text="{Binding Name}"/>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add to cart" Command="{Binding AddProductCommand}" />
+    </ContentPage.ToolbarItems>
 
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-
-
-            </CollectionView>
-
-        </StackLayout>
-
-
+    <RefreshView x:DataType="local:ToysViewModel" Command="{Binding LoadProductsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView x:Name="ProductListView"
+                
+                ItemsSource="{Binding Products}"
+                SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10" x:DataType="model:Product">
+                        <Label Text="{Binding Name}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+                        <Label Text="{Binding Description}" 
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="13" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ToysViewModel}}, Path=ProductTapped}"		
+                                CommandParameter="{Binding .}">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </RefreshView>
 
 
