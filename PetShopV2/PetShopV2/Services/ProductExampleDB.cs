@@ -11,11 +11,11 @@ namespace PetShopV2.Services
     public class ProductExampleDB : IDataStore<Product>
     {
 
-        private List<Product> items;
+        private List<Product> products;
 
         public ProductExampleDB()
         {
-            if (items == null)
+            if (products == null)
             {
                 AddDummyData();
             }
@@ -33,17 +33,17 @@ namespace PetShopV2.Services
 
         public List<Product> GetAllProducts()
         {
-            return items;
+            return products;
         }
 
-        public Task<Product> GetProductAsync(int id)
+        public async Task<Product> GetProductAsync(int id)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(products.FirstOrDefault(s => s.ID == id));
         }
 
-        public Task<IEnumerable<Product>> GetProductsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<Product>> GetAllProductsAsync(bool forceRefresh = false)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(products);
         }
 
         public Task<bool> UpdateProductAsync(Product product)
@@ -53,7 +53,7 @@ namespace PetShopV2.Services
 
         private void AddDummyData()
         {
-            items = new List<Product>
+            products = new List<Product>
                 {
                         new Food
                         {
