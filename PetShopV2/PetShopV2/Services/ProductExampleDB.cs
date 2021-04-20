@@ -1,5 +1,4 @@
-﻿using PetShop.Models;
-using PetShopV2.Models;
+﻿using PetShopV2.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,7 +9,6 @@ namespace PetShopV2.Services
 {
     public class ProductExampleDB : IDataStore<Product>
     {
-
         private List<Product> products;
 
         public ProductExampleDB()
@@ -67,8 +65,6 @@ namespace PetShopV2.Services
                             ItemBrand = "Whiskas",
                             FoodWeight = 5,
                             IsGrainFree = true,
-
-
                         },
                         new Toys
                         {
@@ -86,8 +82,6 @@ namespace PetShopV2.Services
                             MakesSound = true,
                         }
                 };
-
         }
-
     }
 }

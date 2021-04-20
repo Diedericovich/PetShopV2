@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PetShop.Models
+namespace PetShopV2.Models
 {
-    class Food : Product
+    public class Food : Product
     {
         public double FoodWeight { get; set; }
         public bool IsGrainFree { get; set; }
