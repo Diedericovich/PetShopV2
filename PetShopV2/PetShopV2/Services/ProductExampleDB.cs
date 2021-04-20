@@ -131,6 +131,7 @@ namespace PetShopV2.Services
                             InStock = true,
                             Animal = AnimalType.Dog,
                             ProductBrand = "Roughware",
+
                             ContainsLatex = true,
                             IsTough = true,
                             IsInteractive = true,
