@@ -1,4 +1,5 @@
-﻿using PetShopV2.Models;
+﻿using PetShop.Models;
+using PetShopV2.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,7 +25,7 @@ namespace PetShopV2.ViewModels
             Products = new ObservableCollection<Product>();
             LoadProductsCommand = new Command(async () => await ExecuteLoadProductsCommand());
 
-            ProductTapped = new Command<Item>(OnProductSelected);
+            ProductTapped = new Command<Product>(OnProductSelected);
 
             AddProductCommand = new Command(OnAddProduct);
         }
@@ -68,18 +69,26 @@ namespace PetShopV2.ViewModels
             }
         }
 
+        //deze methode gbruiken om product aan shoppingcart toe te voegen.
+        // "Newfoodpage" nog vervangen
+
         private async void OnAddProduct(object obj)
         {
-            await Shell.Current.GoToAsync(nameof(NewFoodPage));
+          //  await Shell.Current.GoToAsync(nameof(NewFoodPage));
         }
+
+
+
+        //deze methode gbruiken om door te klikken naar de detailview van het product
+        // "FoodDetailPage" nog vervangen
 
         async void OnProductSelected(Product product)
         {
-            if (product == null)
-                return;
+            //if (product == null)
+            //    return;
 
-            // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(FoodDetailPage)}?{nameof(FoodDetailViewModel.ProductID)}={product.ID}");
+            //// This will push the ItemDetailPage onto the navigation stack
+           // await Shell.Current.GoToAsync($"{nameof(FoodDetailPage)}?{nameof(FoodDetailViewModel.ProductID)}={product.ID}");
         }
     }
 }

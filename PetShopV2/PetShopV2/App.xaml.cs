@@ -13,7 +13,7 @@ namespace PetShopV2
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            DependencyService.Register<ProductExampleDB>();
             MainPage = new AppShell();
         }
 

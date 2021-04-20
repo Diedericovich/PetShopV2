@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PetShopV2.Models
 {
@@ -24,6 +22,5 @@ namespace PetShopV2.Models
             DateOfCreation = DateTime.Today;
             LastEdited = DateTime.Now;
         }
-
     }
 }

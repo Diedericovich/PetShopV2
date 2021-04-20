@@ -10,16 +10,18 @@ namespace PetShopV2.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public IDataStore<Product> DataStore => DependencyService.Get<IDataStore<Product>>();
 
-        bool isBusy = false;
+        private bool isBusy = false;
+
         public bool IsBusy
         {
             get { return isBusy; }
             set { SetProperty(ref isBusy, value); }
         }
 
-        string title = string.Empty;
+        private string title = string.Empty;
+
         public string Title
         {
             get { return title; }
@@ -40,7 +42,9 @@ namespace PetShopV2.ViewModels
         }
 
         #region INotifyPropertyChanged
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             var changed = PropertyChanged;
@@ -49,6 +53,7 @@ namespace PetShopV2.ViewModels
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        #endregion
+
+        #endregion INotifyPropertyChanged
     }
 }

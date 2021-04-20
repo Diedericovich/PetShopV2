@@ -1,11 +1,11 @@
-﻿using PetShopV2.Models;
-using System;
+﻿using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace PetShopV2.ViewModels
 {
+    // AFBLIJVEN
+
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
     public class ItemDetailViewModel : BaseViewModel
     {
@@ -43,10 +43,10 @@ namespace PetShopV2.ViewModels
         {
             try
             {
-                var item = await DataStore.GetItemAsync(itemId);
-                Id = item.Id;
-                Text = item.Text;
-                Description = item.Description;
+                //var item = await DataStore.GetItemAsync(itemId);
+                //Id = item.Id;
+                //Text = item.Text;
+                //Description = item.Description;
             }
             catch (Exception)
             {
