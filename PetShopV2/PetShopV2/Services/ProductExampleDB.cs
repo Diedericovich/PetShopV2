@@ -18,14 +18,19 @@ namespace PetShopV2.Services
             }
         }
 
-        public Task<bool> AddProductAsync(Product product)
+        public async Task<bool> AddProductAsync(Product product)
         {
-            throw new NotImplementedException();
+            products.Add(product);
+
+            return await Task.FromResult(true);
         }
 
-        public Task<bool> DeleteProductAsync(int id)
+        public async Task<bool> DeleteProductAsync(int id)
         {
-            throw new NotImplementedException();
+            var oldItem = products.Where((Product arg) => arg.ID == id).FirstOrDefault();
+            products.Remove(oldItem);
+
+            return await Task.FromResult(true);
         }
 
         public List<Product> GetAllProducts()
@@ -43,9 +48,13 @@ namespace PetShopV2.Services
             return await Task.FromResult(products);
         }
 
-        public Task<bool> UpdateProductAsync(Product product)
+        public async Task<bool> UpdateProductAsync(Product product)
         {
-            throw new NotImplementedException();
+            var oldItem = products.Where((Product arg) => arg.ID == product.ID).FirstOrDefault();
+            products.Remove(oldItem);
+            products.Add(product);
+
+            return await Task.FromResult(true);
         }
 
         private void AddDummyData()

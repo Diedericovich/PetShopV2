@@ -1,12 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:PetShopV2.ViewModels"
+             Title="{Binding Title}"
              x:Class="PetShopV2.Views.CartPage">
+    <ContentPage.BindingContext>
+        <local:CartViewModel/>
+    </ContentPage.BindingContext>
+
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand"
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <RefreshView Command="{Binding LoadProductsCommand}" 
+                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <StackLayout>
+                <CollectionView x:Name="CartListView"
+                ItemsSource="{Binding CartItems}"
+                SelectionMode="Single">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid   HeightRequest="100"  
+                                Margin="5" 
+                                BackgroundColor="White" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="125"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="60"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="{Binding Image }"
+                               HeightRequest="100"
+                               HorizontalOptions="Start" />
+
+                                <Label Grid.Column="1" 
+                                       VerticalOptions="Center" 
+                                         Text="{Binding Name}"
+                                         LineBreakMode="NoWrap"
+                                            Style="{DynamicResource ListItemTextStyle}"
+                                         FontSize="16" />
+                                <Label Grid.Column="2"
+                                    Text="{Binding Price}"
+                                    LineBreakMode="NoWrap"
+                                    Style="{DynamicResource ListItemTextStyle}"
+                                    FontSize="16" />
+                                <Label Text="{Binding InStock}"
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
+
+
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, 
+                                    Path=ProductTapped}"
+                                CommandParameter="{Binding .}"/>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </RefreshView>
+
+
+
+
     </ContentPage.Content>
 </ContentPage>
