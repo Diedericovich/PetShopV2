@@ -20,7 +20,7 @@
                     <DataTemplate>
                         <StackLayout Padding="10" >
 
-                            <Image Source="{Binding }"
+                            <Image Source="{Binding Image }"
                                HeightRequest="100"
                                HorizontalOptions="Start" />
                             <Label Text="{Binding Name}"

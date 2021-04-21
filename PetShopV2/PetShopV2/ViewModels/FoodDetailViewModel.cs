@@ -1,24 +1,41 @@
 ﻿using PetShopV2.Models;
 using System;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace PetShopV2.ViewModels
 {
-    [QueryProperty(nameof(ProductID), nameof(ProductID))]
+    [QueryProperty(nameof(FoodId), nameof(FoodId))]
     public class FoodDetailViewModel : BaseViewModel
     {
-        public Food SelectedProduct { get; }
-        public int ProductID { get; set; }
-        public async void LoadProductID(int productID)
+        private Food selectedFood;
+        private int foodId;
+
+        public int FoodId
+        {
+            get { return foodId; }
+            set
+            {
+                foodId = value;
+                LoadProduct(value);
+            }
+        }
+
+        public Food SelectedFood
+        {
+            get { return selectedFood; }
+            set
+            {
+                selectedFood = value;
+                OnPropertyChanged(nameof(SelectedFood));
+            }
+        }
+
+        public async void LoadProduct(int productId)
         {
             try
             {
-                //todo: 
-                //SelectedProduct = await DataStore.GetProductAsync(productID);
-                
-
+                SelectedFood = await DataStore.GetProductAsync(productId) as Food;
             }
             catch (Exception)
             {

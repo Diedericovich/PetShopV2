@@ -18,7 +18,8 @@ namespace PetShopV2.ViewModels
         public ObservableCollection<Food> FoodItems
         {
             get { return foodItems; }
-            set { foodItems = value;
+            set { 
+                foodItems = value;
                 OnPropertyChanged(nameof(FoodItems));
             }
 
@@ -33,7 +34,6 @@ namespace PetShopV2.ViewModels
             Title = "Food";
             FoodItems = new ObservableCollection<Food>();
             ExecuteLoadProductsCommand();
-            FoodItems = new ObservableCollection<Food>();
             //LoadProductsCommand = new Command(async () => await ExecuteLoadProductsCommand());
 
             //todo: fix erboven
@@ -80,7 +80,7 @@ namespace PetShopV2.ViewModels
         //public void OnAppearing()
         //{
         //    IsBusy = true;
-        //    SelectedProduct = null;
+        //    SelectedFood = null;
         //}
 
         public Food SelectedProduct
@@ -112,7 +112,7 @@ namespace PetShopV2.ViewModels
             }
 
             // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(FoodDetailPage)}?{nameof(FoodDetailViewModel.ProductID)}={food.ID}");
+            await Shell.Current.GoToAsync($"{nameof(FoodDetailPage)}?{nameof(FoodDetailViewModel.FoodId)}={food.ID}");
         }
     }
 }
