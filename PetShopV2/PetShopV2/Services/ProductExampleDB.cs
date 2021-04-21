@@ -1,14 +1,14 @@
-﻿using PetShopV2.Models;
-using System;
+﻿using Microsoft.EntityFrameworkCore;
+using PetShopV2.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace PetShopV2.Services
 {
-    public class ProductExampleDB : IDataStore<Product>
+    public class ProductExampleDB<T> : IProductExampleDB<T> where T : Model
     {
-        private List<Product> products;
+        private List<T> products;
 
         public ProductExampleDB()
         {
@@ -18,48 +18,56 @@ namespace PetShopV2.Services
             }
         }
 
-        public async Task<bool> AddProductAsync(Product product)
+        public async Task AddProductAsync(T model)
         {
-            products.Add(product);
-
-            return await Task.FromResult(true);
+            using (var dbContext = new PetShopContext())
+            {
+                dbContext.Add(model);
+                await dbContext.SaveChangesAsync();
+            }
         }
 
-        public async Task<bool> DeleteProductAsync(int id)
+        public async Task DeleteProductAsync(int id)
         {
-            var oldItem = products.Where((Product arg) => arg.ID == id).FirstOrDefault();
-            products.Remove(oldItem);
-
-            return await Task.FromResult(true);
+            using (var dbContext = new PetShopContext())
+            {
+                var oldItem = products.FirstOrDefault(x => x.ID == id);
+                dbContext.Remove(oldItem);
+                await dbContext.SaveChangesAsync();
+            }
         }
 
-        public List<Product> GetAllProducts()
+
+        public async Task<T> GetProductAsync(int id)
         {
-            return products;
+            using (var dbContext = new PetShopContext())
+            {
+                return await dbContext.FindAsync<T>(id);
+            }
         }
 
-        public async Task<Product> GetProductAsync(int id)
+        public async Task<IEnumerable<T>> GetAllProductsAsync(bool forceRefresh = false)
         {
-            return await Task.FromResult(products.FirstOrDefault(s => s.ID == id));
+            using (var dbContext = new PetShopContext())
+            {
+                var table = dbContext.Set<T>();
+
+                return await table.ToListAsync();
+            }
         }
 
-        public async Task<IEnumerable<Product>> GetAllProductsAsync(bool forceRefresh = false)
+        public async Task UpdateProductAsync(T product)
         {
-            return await Task.FromResult(products);
+            using (var dbContext = new PetShopContext())
+            {
+                dbContext.Update<T>(product);
+                await dbContext.SaveChangesAsync();
+            }
         }
 
-        public async Task<bool> UpdateProductAsync(Product product)
+        private List<Product> AddDummyData()
         {
-            var oldItem = products.Where((Product arg) => arg.ID == product.ID).FirstOrDefault();
-            products.Remove(oldItem);
-            products.Add(product);
-
-            return await Task.FromResult(true);
-        }
-
-        private void AddDummyData()
-        {
-            products = new List<Product>
+            return new List<Product>
                 {
                         new Food
                         {
