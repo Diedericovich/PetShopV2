@@ -1,4 +1,5 @@
 ﻿using PetShopV2.Models;
+using PetShopV2.Services;
 using PetShopV2.Views;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace PetShopV2.ViewModels
 {
     public class FoodViewModel : BaseViewModel
     {
+        private IProductExampleDB<Food> productExampleDB;
+
         private Food _selectedProduct;
 
         private ObservableCollection<Food> foodItems;
@@ -18,11 +21,11 @@ namespace PetShopV2.ViewModels
         public ObservableCollection<Food> FoodItems
         {
             get { return foodItems; }
-            set { 
+            set
+            {
                 foodItems = value;
                 OnPropertyChanged(nameof(FoodItems));
             }
-
         }
 
         public Command LoadProductsCommand { get; }
@@ -33,6 +36,8 @@ namespace PetShopV2.ViewModels
         {
             Title = "Food";
             FoodItems = new ObservableCollection<Food>();
+            productExampleDB = new ProductExampleDB<Food>();
+            // AddDummyDataAsync();
             ExecuteLoadProductsCommand();
             //LoadProductsCommand = new Command(async () => await ExecuteLoadProductsCommand());
 
@@ -51,21 +56,8 @@ namespace PetShopV2.ViewModels
             {
                 //todo: not all data has to be fetched, fix this later
                 FoodItems.Clear();
-                IEnumerable<Product> products = await DataStore.GetAllProductsAsync(true);
-
-                List<Food> newFoodList = new List<Food>();
-
-
-                foreach (var product in products)
-                {
-                    //Products.Add(product);
-
-                    if (product is Food food)
-                    {
-                        newFoodList.Add(food);
-                    }
-                }
-                FoodItems = new ObservableCollection<Food>(newFoodList);
+                IEnumerable<Food> products = await productExampleDB.GetAllProductsAsync();
+                FoodItems = new ObservableCollection<Food>(products);
             }
             catch (Exception ex)
             {
@@ -113,6 +105,24 @@ namespace PetShopV2.ViewModels
 
             // This will push the ItemDetailPage onto the navigation stack
             await Shell.Current.GoToAsync($"{nameof(FoodDetailPage)}?{nameof(FoodDetailViewModel.FoodId)}={food.ID}");
+        }
+
+        private async Task AddDummyDataAsync()
+        {
+            var product = new Food
+            {
+                ID = 1,
+                Name = "Delicious Chicken Terrine",
+                Description = "Contains alot of chicken and terrine",
+                Image = "Food.jpg",
+                Price = 0.50,
+                InStock = true,
+                Animal = AnimalType.Cat,
+                ProductBrand = "Whiskas",
+                FoodWeight = 5,
+                IsGrainFree = true,
+            };
+            await productExampleDB.AddProductAsync(product);
         }
     }
 }

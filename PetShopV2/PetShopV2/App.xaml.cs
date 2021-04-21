@@ -1,4 +1,5 @@
-﻿using PetShopV2.Services;
+﻿using PetShopV2.Models;
+using PetShopV2.Services;
 using Xamarin.Forms;
 
 namespace PetShopV2
@@ -9,7 +10,7 @@ namespace PetShopV2
         {
             InitializeComponent();
 
-            DependencyService.Register<ProductExampleDB>();
+            DependencyService.Register<ProductExampleDB<Product>>();
             MainPage = new AppShell();
         }
 

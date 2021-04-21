@@ -1,11 +1,10 @@
 ﻿using PetShopV2.Models;
+using PetShopV2.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
-using Xamarin.Forms;
 using System.Diagnostics;
-using PetShopV2.Views;
+using Xamarin.Forms;
 
 namespace PetShopV2.ViewModels
 {
@@ -23,7 +22,6 @@ namespace PetShopV2.ViewModels
                 cartItems = value;
                 OnPropertyChanged(nameof(CartItems));
             }
-
         }
 
         public Command LoadProductsCommand { get; }
@@ -55,7 +53,6 @@ namespace PetShopV2.ViewModels
                 IEnumerable<Product> products = await DataStore.GetAllProductsAsync(true);
 
                 List<Product> newProductList = new List<Product>();
-
 
                 foreach (var product in products)
                 {
@@ -115,7 +112,5 @@ namespace PetShopV2.ViewModels
             // This will push the ItemDetailPage onto the navigation stack
             await Shell.Current.GoToAsync($"{nameof(CartDetailPage)}?{nameof(CartDetailViewModel.ProductId)}={product.ID}");
         }
-
-
     }
 }
