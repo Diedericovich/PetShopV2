@@ -1,6 +1,7 @@
 ﻿using PetShopV2.Models;
 using PetShopV2.Views;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -10,41 +11,61 @@ namespace PetShopV2.ViewModels
 {
     public class FoodViewModel : BaseViewModel
     {
-        private Product _selectedProduct;
+        private Food _selectedProduct;
 
-        public ObservableCollection<Product> Products { get; }
+        private ObservableCollection<Food> foodItems;
+
+        public ObservableCollection<Food> FoodItems
+        {
+            get { return foodItems; }
+            set { foodItems = value;
+                OnPropertyChanged(nameof(FoodItems));
+            }
+
+        }
+
         public Command LoadProductsCommand { get; }
         public Command AddProductCommand { get; }
-        public Command<Product> ProductTapped { get; }
+        public Command<Food> ProductTapped { get; }
 
         public FoodViewModel()
         {
             Title = "Food";
-            Products = new ObservableCollection<Product>();
-            LoadProductsCommand = new Command(async () => await ExecuteLoadProductsCommand());
+            FoodItems = new ObservableCollection<Food>();
+            ExecuteLoadProductsCommand();
+            FoodItems = new ObservableCollection<Food>();
+            //LoadProductsCommand = new Command(async () => await ExecuteLoadProductsCommand());
 
-            ProductTapped = new Command<Product>(OnProductSelected);
+            //todo: fix erboven
+            LoadProductsCommand = new Command(ExecuteLoadProductsCommand);
+            ProductTapped = new Command<Food>(OnProductSelected);
 
             AddProductCommand = new Command(OnAddProduct);
         }
 
-        private async Task ExecuteLoadProductsCommand()
+        private async void ExecuteLoadProductsCommand()
         {
             IsBusy = true;
 
             try
             {
-                Products.Clear();
-                var products = await DataStore.GetAllProductsAsync(true);
+                //todo: not all data has to be fetched, fix this later
+                FoodItems.Clear();
+                IEnumerable<Product> products = await DataStore.GetAllProductsAsync(true);
+
+                List<Food> newFoodList = new List<Food>();
+
+
                 foreach (var product in products)
                 {
                     //Products.Add(product);
 
-                    if (product is Food)
+                    if (product is Food food)
                     {
-                        Products.Add(product);
+                        newFoodList.Add(food);
                     }
                 }
+                FoodItems = new ObservableCollection<Food>(newFoodList);
             }
             catch (Exception ex)
             {
@@ -56,13 +77,13 @@ namespace PetShopV2.ViewModels
             }
         }
 
-        public void OnAppearing()
-        {
-            IsBusy = true;
-            SelectedProduct = null;
-        }
+        //public void OnAppearing()
+        //{
+        //    IsBusy = true;
+        //    SelectedProduct = null;
+        //}
 
-        public Product SelectedProduct
+        public Food SelectedProduct
         {
             get => _selectedProduct;
             set
@@ -83,13 +104,15 @@ namespace PetShopV2.ViewModels
         //deze methode gbruiken om door te klikken naar de detailview van het product
         // "FoodDetailPage" nog vervangen
 
-        private async void OnProductSelected(Product product)
+        private async void OnProductSelected(Food food)
         {
-            if (product == null)
-                return;
+            if (food == null)
+            {
+                throw new ArgumentNullException(nameof(food));
+            }
 
             // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(FoodDetailPage)}?{nameof(FoodDetailViewModel.ProductID)}={product.ID}");
+            await Shell.Current.GoToAsync($"{nameof(FoodDetailPage)}?{nameof(FoodDetailViewModel.ProductID)}={food.ID}");
         }
     }
 }
