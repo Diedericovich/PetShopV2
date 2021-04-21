@@ -1,6 +1,6 @@
 ﻿namespace PetShopV2.Models
 {
-    internal class Toys : Product
+    public class Toys : Product
     {
         public bool ContainsLatex { get; set; }
         public bool IsTough { get; set; }

@@ -27,18 +27,15 @@
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemTextStyle}"
                             FontSize="16" />
-                            <Label Text="{Binding Description}"
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
                             <Label Text="{Binding Price}"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemTextStyle}"
                             FontSize="16" />
-                            <Label Text="{Binding ProductBrand}"
+                            <Label Text="{Binding InStock}"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
+
 
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer

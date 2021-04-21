@@ -1,6 +1,7 @@
 ﻿using PetShopV2.Models;
 using PetShopV2.Views;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -8,42 +9,61 @@ using Xamarin.Forms;
 
 namespace PetShopV2.ViewModels
 {
-    internal class ToysViewModel : BaseViewModel
+    public class ToysViewModel : BaseViewModel
     {
-        private Product _selectedProduct;
+        private Toys _selectedProduct;
 
-        public ObservableCollection<Product> Products { get; }
+        private ObservableCollection<Toys> toysItems;
+
+        public ObservableCollection<Toys> ToysItems
+        {
+            get { return toysItems; }
+            set
+            {
+                toysItems = value;
+                OnPropertyChanged(nameof(ToysItems));
+            }
+
+        }
+
+
         public Command LoadProductsCommand { get; }
         public Command AddProductCommand { get; }
-        public Command<Product> ProductTapped { get; }
+        public Command<Toys> ProductTapped { get; }
 
         public ToysViewModel()
         {
             Title = "Toys";
-            Products = new ObservableCollection<Product>();
-            LoadProductsCommand = new Command(async () => await ExecuteLoadProductsCommand());
+            ToysItems = new ObservableCollection<Toys>();
+            ExecuteLoadProductsCommand();
 
-            ProductTapped = new Command<Product>(OnProductSelected);
+            LoadProductsCommand = new Command(ExecuteLoadProductsCommand);
+
+            ProductTapped = new Command<Toys>(OnProductSelected);
 
             AddProductCommand = new Command(OnAddProduct);
         }
 
-        private async Task ExecuteLoadProductsCommand()
+        private async void ExecuteLoadProductsCommand()
         {
             IsBusy = true;
 
             try
             {
-                Products.Clear();
-                var products = await DataStore.GetAllProductsAsync(true);
+                ToysItems.Clear();
+                IEnumerable<Product> products = await DataStore.GetAllProductsAsync(true);
+
+                List<Toys> newToysList = new List<Toys>();
+                
                 foreach (var product in products)
                 {
                     //Products.Add(product);
-                    if (product is Toys)
+                    if (product is Toys toys)
                     {
-                        Products.Add(product);
+                        newToysList.Add(toys);
                     }
                 }
+                ToysItems = new ObservableCollection<Toys>(newToysList);
             }
             catch (Exception ex)
             {
@@ -55,13 +75,13 @@ namespace PetShopV2.ViewModels
             }
         }
 
-        public void OnAppearing()
-        {
-            IsBusy = true;
-            SelectedProduct = null;
-        }
+        //public void OnAppearing()
+        //{
+        //    IsBusy = true;
+        //    SelectedProduct = null;
+        //}
 
-        public Product SelectedProduct
+        public Toys SelectedProduct
         {
             get => _selectedProduct;
             set
@@ -82,13 +102,15 @@ namespace PetShopV2.ViewModels
         //deze methode gbruiken om door te klikken naar de detailview van het product
         // "FoodDetailPage" nog vervangen
 
-        private async void OnProductSelected(Product product)
+        private async void OnProductSelected(Toys toys)
         {
-            if (product == null)
-                return;
+            if (toys == null)
+            {
+                throw new ArgumentNullException(nameof(toys));
+            }
 
             // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(ToysDetailPage)}?{nameof(FoodDetailViewModel.FoodId)}={product.ID}");
+            await Shell.Current.GoToAsync($"{nameof(ToysDetailPage)}?{nameof(ToysDetailViewModel.ToysId)}={toys.ID}");
         }
     }
 }

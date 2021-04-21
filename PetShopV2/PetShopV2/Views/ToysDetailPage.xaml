@@ -1,9 +1,71 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:PetShopV2.ViewModels"
              x:Class="PetShopV2.Views.ToysDetailPage">
 
+    <ContentPage.BindingContext>
+        <local:ToysDetailViewModel/>
+    </ContentPage.BindingContext>
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add to cart" Command="{Binding AddProductCommand}" />
     </ContentPage.ToolbarItems>
+
+    <StackLayout Padding="10" >
+        <Image Source="{Binding SelectedToys.Image}"
+                               HeightRequest="100"
+                               HorizontalOptions="Start" />
+        <Label Text="{Binding SelectedToys.Name}"
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemTextStyle}"
+                            FontSize="16" />
+        <Label Text="{Binding SelectedToys.Description}"
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="13" />
+        <Label Text="{Binding SelectedToys.Price}"
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemTextStyle}"
+                            FontSize="16" />
+        <Label Text="{Binding SelectedToys.ProductBrand}"
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="13" />
+        <Label Text="{Binding SelectedToys.ContainsLatex}"
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemTextStyle}"
+                            FontSize="16" />
+        <Label Text="{Binding SelectedToys.InStock}"
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemTextStyle}"
+                            FontSize="16" />
+        <Label Text="{Binding SelectedToys.IsInteractive}"
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemTextStyle}"
+                            FontSize="16" />
+        <Label Text="{Binding SelectedToys.IsTough}"
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemTextStyle}"
+                            FontSize="16" />
+        <Label Text="{Binding SelectedToys.MakesSound}"
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemTextStyle}"
+                            FontSize="16" />
+
+
+
+
+        <StackLayout.GestureRecognizers>
+            <TapGestureRecognizer
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ToysDetailViewModel}}, 
+                                          Path=ProductTapped}"
+                                CommandParameter="{Binding .}">
+            </TapGestureRecognizer>
+        </StackLayout.GestureRecognizers>
+    </StackLayout>
+
+
+
 </ContentPage>
