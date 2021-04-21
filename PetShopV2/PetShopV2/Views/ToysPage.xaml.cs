@@ -16,10 +16,10 @@ namespace PetShopV2.Views
             BindingContext = _toysViewModel = new ToysViewModel();
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            _toysViewModel.OnAppearing();
-        }
+        //protected override void OnAppearing()
+        //{
+        //    base.OnAppearing();
+        //    _toysViewModel.OnAppearing();
+        //}
     }
 }
