@@ -4,13 +4,12 @@ using System.Threading.Tasks;
 
 namespace PetShopV2.Services
 {
-    public interface IProductExampleDB<T> where T : Product
+    public interface IProductExampleDB<T> where T : Model
     {
-        Task<bool> AddProductAsync(T product);
-        Task<bool> DeleteProductAsync(int id);
-        List<T> GetAllProducts();
+        Task AddProductAsync(T model);
+        Task DeleteProductAsync(int id);
         Task<IEnumerable<T>> GetAllProductsAsync(bool forceRefresh = false);
         Task<T> GetProductAsync(int id);
-        Task<bool> UpdateProductAsync(T product);
+        Task UpdateProductAsync(T product);
     }
 }
