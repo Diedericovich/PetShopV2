@@ -12,5 +12,13 @@ namespace PetShopV2.Views
             InitializeComponent();
             this.BindingContext = new LoginViewModel();
         }
+
+        //private void OnLoginClick(object sender, EventArgs e)
+        //{
+        //    if (!string.IsNullOrWhiteSpace(TxtMail.Text) && !string.IsNullOrWhiteSpace(TxtPass.Text))
+        //    {
+        //        Navigation.PushAsync(new LoginPage());
+        //    }
+        //}
     }
 }

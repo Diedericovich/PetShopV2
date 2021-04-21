@@ -17,7 +17,7 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="10"  x:DataType="model:Product">
+                    <StackLayout Padding="10"  x:DataType="model:Food">
 
                         <Image Source="{Binding Image}"
                                HeightRequest="100"
