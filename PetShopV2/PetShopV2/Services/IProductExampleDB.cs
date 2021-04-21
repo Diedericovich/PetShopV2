@@ -1,18 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using PetShopV2.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace PetShopV2.Services
 {
-    public interface IDataStore<T>
+    public interface IProductExampleDB<T> where T : Product
     {
         Task<bool> AddProductAsync(T product);
-
-        Task<bool> UpdateProductAsync(T product);
-
         Task<bool> DeleteProductAsync(int id);
-
-        Task<T> GetProductAsync(int id);
-
+        List<T> GetAllProducts();
         Task<IEnumerable<T>> GetAllProductsAsync(bool forceRefresh = false);
+        Task<T> GetProductAsync(int id);
+        Task<bool> UpdateProductAsync(T product);
     }
 }

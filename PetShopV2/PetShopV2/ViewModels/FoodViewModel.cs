@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace PetShopV2.ViewModels
@@ -18,11 +17,11 @@ namespace PetShopV2.ViewModels
         public ObservableCollection<Food> FoodItems
         {
             get { return foodItems; }
-            set { 
+            set
+            {
                 foodItems = value;
                 OnPropertyChanged(nameof(FoodItems));
             }
-
         }
 
         public Command LoadProductsCommand { get; }
@@ -51,10 +50,10 @@ namespace PetShopV2.ViewModels
             {
                 //todo: not all data has to be fetched, fix this later
                 FoodItems.Clear();
-                IEnumerable<Product> products = await DataStore.GetAllProductsAsync(true);
+                IEnumerable<Food> products = new List<Food>();
+                //await DataStore.GetAllProductsAsync(true);
 
                 List<Food> newFoodList = new List<Food>();
-
 
                 foreach (var product in products)
                 {

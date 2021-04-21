@@ -10,7 +10,7 @@ namespace PetShopV2.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Product> DataStore => DependencyService.Get<IDataStore<Product>>();
+        public IProductExampleDB<Product> DataStore => DependencyService.Get<IProductExampleDB<Product>>();
 
         private bool isBusy = false;
 
