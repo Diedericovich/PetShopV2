@@ -1,9 +1,4 @@
 ﻿using PetShopV2.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,5 +12,13 @@ namespace PetShopV2.Views
             InitializeComponent();
             this.BindingContext = new LoginViewModel();
         }
+
+        //private void OnLoginClick(object sender, EventArgs e)
+        //{
+        //    if (!string.IsNullOrWhiteSpace(TxtMail.Text) && !string.IsNullOrWhiteSpace(TxtPass.Text))
+        //    {
+        //        Navigation.PushAsync(new LoginPage());
+        //    }
+        //}
     }
 }

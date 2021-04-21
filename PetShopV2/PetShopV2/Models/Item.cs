@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PetShopV2.Models
+﻿namespace PetShopV2.Models
 {
     public class Item
     {

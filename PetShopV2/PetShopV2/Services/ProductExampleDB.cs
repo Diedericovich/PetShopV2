@@ -1,7 +1,6 @@
 ﻿using PetShopV2.Models;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -62,7 +61,7 @@ namespace PetShopV2.Services
                             Price = 0.50,
                             InStock = true,
                             Animal = AnimalType.Cat,
-                            ItemBrand = "Whiskas",
+                            ProductBrand = "Whiskas",
                             FoodWeight = 5,
                             IsGrainFree = true,
                         },
@@ -75,7 +74,7 @@ namespace PetShopV2.Services
                             Price = 9.50,
                             InStock = true,
                             Animal = AnimalType.Dog,
-                            ItemBrand = "Purina",
+                            ProductBrand = "Purina",
                             FoodWeight = 7,
                             IsGrainFree = true,
                         },
@@ -88,7 +87,7 @@ namespace PetShopV2.Services
                             Price = 6.50,
                             InStock = true,
                             Animal = AnimalType.Cat,
-                            ItemBrand = "Royal Canin",
+                            ProductBrand = "Royal Canin",
                             FoodWeight = 7,
                             IsGrainFree = true,
                         },
@@ -98,10 +97,41 @@ namespace PetShopV2.Services
                             Name = "Dog Ball",
                             Description = "a colourful rubber ball which makes lot of sound and noise",
                             Image = "Toys.jpg",
-                            Price = 0,
+                            Price = .75,
                             InStock = true,
                             Animal = AnimalType.Dog,
-                            ItemBrand = "Roughware",
+                            ProductBrand = "Roughware",
+                            ContainsLatex = true,
+                            IsTough = true,
+                            IsInteractive = true,
+                            MakesSound = true,
+                        },
+                        new Toys
+                        {
+                            ID = 5,
+                            Name = "Second Dog Ball",
+                            Description = "also a colourful rubber ball",
+                            Image = "Toys.jpg",
+                            Price = 1,
+                            InStock = true,
+                            Animal = AnimalType.Dog,
+                            ProductBrand = "Roughware",
+                            ContainsLatex = true,
+                            IsTough = true,
+                            IsInteractive = true,
+                            MakesSound = true,
+                        },
+                        new Toys
+                        {
+                            ID = 6,
+                            Name = "Third Dog Ball",
+                            Description = "is it the same or not, who knows",
+                            Image = "Toys.jpg",
+                            Price = 9000,
+                            InStock = true,
+                            Animal = AnimalType.Dog,
+                            ProductBrand = "Roughware",
+
                             ContainsLatex = true,
                             IsTough = true,
                             IsInteractive = true,

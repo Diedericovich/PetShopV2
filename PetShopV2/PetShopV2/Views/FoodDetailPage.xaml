@@ -3,22 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:PetShopV2.Models"
              xmlns:local="clr-namespace:PetShopV2.ViewModels"
-             Title="{Binding Title}"
-             x:Class="PetShopV2.Views.FoodPage">
+             x:Class="PetShopV2.Views.FoodDetailPage">
 
-    <ContentPage.BindingContext>
-        <local:FoodViewModel />
-    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add to cart" Command="{Binding AddProductCommand}" />
+    </ContentPage.ToolbarItems>
 
-    <RefreshView x:DataType="local:FoodViewModel" Command="{Binding LoadProductsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView x:Name="FoodListView"
-                ItemsSource="{Binding Products}"
+
+    <RefreshView x:DataType="local:FoodDetailViewModel" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView x:Name="ProductListView"
+
+                ItemsSource="{Binding SelectedProduct}"
+
                 SelectionMode="Single">
-
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="10"  x:DataType="model:Food">
-
+                    <StackLayout Padding="10" x:DataType="model:Food">
                         <Image Source="{Binding Image}"
                                HeightRequest="100"
                                HorizontalOptions="Start" />
@@ -34,7 +34,9 @@
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemTextStyle}"
                             FontSize="16" />
+
                         <Label Text="{Binding ProductBrand}"
+
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
@@ -42,7 +44,9 @@
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer
                                 NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:FoodViewModel}}, Path=ProductTapped}"
+
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:FoodDetailViewModel}}, Path=ProductTapped}"
+
                                 CommandParameter="{Binding .}">
                             </TapGestureRecognizer>
                         </StackLayout.GestureRecognizers>

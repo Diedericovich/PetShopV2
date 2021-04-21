@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:PetShopV2.ViewModels"
              xmlns:model="clr-namespace:PetShopV2.Models"
+             xmlns:local="clr-namespace:PetShopV2.ViewModels"
              Title="{Binding Title}"
              x:Class="PetShopV2.Views.ToysPage">
 
@@ -10,20 +10,17 @@
         <local:ToysViewModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add to cart" Command="{Binding AddProductCommand}" />
-    </ContentPage.ToolbarItems>
-
     <RefreshView x:DataType="local:ToysViewModel" Command="{Binding LoadProductsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView x:Name="ProductListView"
+        <CollectionView x:Name="ToysListView"
 
                 ItemsSource="{Binding Products}"
-                SelectionMode="None">
+                SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="10" x:DataType="model:Toys">
                         <Image Source="{Binding Image}"
-                               HeightRequest="100"                                 />
+                               HeightRequest="100"
+                               HorizontalOptions="Start" />
                         <Label Text="{Binding Name}"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemTextStyle}"
@@ -32,6 +29,15 @@
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
+                        <Label Text="{Binding Price}"
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemTextStyle}"
+                            FontSize="16" />
+                        <Label Text="{Binding ProductBrand}"
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="13" />
+
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer
                                 NumberOfTapsRequired="1"

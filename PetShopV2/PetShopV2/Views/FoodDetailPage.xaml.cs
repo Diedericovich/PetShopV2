@@ -4,9 +4,9 @@ using Xamarin.Forms.Xaml;
 namespace PetShopV2.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CartPage : ContentPage
+    public partial class FoodDetailPage : ContentPage
     {
-        public CartPage()
+        public FoodDetailPage()
         {
             InitializeComponent();
         }
