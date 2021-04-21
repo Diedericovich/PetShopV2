@@ -88,7 +88,7 @@ namespace PetShopV2.ViewModels
                 return;
 
             // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(ToysDetailPage)}?{nameof(FoodDetailViewModel.ProductID)}={product.ID}");
+            await Shell.Current.GoToAsync($"{nameof(ToysDetailPage)}?{nameof(FoodDetailViewModel.FoodId)}={product.ID}");
         }
     }
 }

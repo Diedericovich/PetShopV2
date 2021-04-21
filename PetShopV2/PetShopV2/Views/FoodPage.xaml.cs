@@ -17,10 +17,10 @@ namespace PetShopV2.Views
             BindingContext = _foodViewModel = new FoodViewModel();
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            _foodViewModel.OnAppearing();
-        }
+        //protected override void OnAppearing()
+        //{
+        //    base.OnAppearing();
+        //    _foodViewModel.OnAppearing();
+        //}
     }
 }

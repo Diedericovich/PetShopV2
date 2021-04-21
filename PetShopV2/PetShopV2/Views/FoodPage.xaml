@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:model="clr-namespace:PetShopV2.Models"
              xmlns:local="clr-namespace:PetShopV2.ViewModels"
              Title="{Binding Title}"
              x:Class="PetShopV2.Views.FoodPage">
@@ -10,45 +9,49 @@
         <local:FoodViewModel />
     </ContentPage.BindingContext>
 
-    <RefreshView x:DataType="local:FoodViewModel" Command="{Binding LoadProductsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView x:Name="FoodListView"
-                ItemsSource="{Binding Products}"
+    <RefreshView Command="{Binding LoadProductsCommand}" 
+                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <StackLayout>
+            <CollectionView x:Name="FoodListView"
+                ItemsSource="{Binding FoodItems}"
                 SelectionMode="Single">
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Padding="10"  x:DataType="model:Food">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10" >
 
-                        <Image Source="{Binding Image}"
+                            <Image Source="{Binding Image }"
                                HeightRequest="100"
                                HorizontalOptions="Start" />
-                        <Label Text="{Binding Name}"
+                            <Label Text="{Binding Name}"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemTextStyle}"
                             FontSize="16" />
-                        <Label Text="{Binding Description}"
+                            <Label Text="{Binding Description}"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
-                        <Label Text="{Binding Price}"
+                            <Label Text="{Binding Price}"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemTextStyle}"
                             FontSize="16" />
-                        <Label Text="{Binding ProductBrand}"
+                            <Label Text="{Binding ProductBrand}"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
 
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
                                 NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:FoodViewModel}}, Path=ProductTapped}"
-                                CommandParameter="{Binding .}">
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:FoodViewModel}}, 
+                                    Path=ProductTapped}"
+                                CommandParameter="{Binding .}"/>
+
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
     </RefreshView>
 </ContentPage>
