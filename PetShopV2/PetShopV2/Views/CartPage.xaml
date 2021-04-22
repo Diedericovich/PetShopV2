@@ -12,16 +12,16 @@
     <ContentPage.Content>
         <RefreshView Command="{Binding LoadProductsCommand}" 
                  IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-            <StackLayout>
+            <StackLayout BackgroundColor="Blue">
                 <CollectionView x:Name="CartListView"
-                ItemsSource="{Binding CartItems}"
+                ItemsSource="{Binding CartSingleton.ShoppingCart.ItemsInCart}"
                 SelectionMode="Single">
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid   HeightRequest="100"  
                                 Margin="5" 
-                                BackgroundColor="White" >
+                                BackgroundColor="Blue" >
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
@@ -32,22 +32,22 @@
                                     <ColumnDefinition Width="60"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Image Source="{Binding Image }"
+                                <Image Source="{Binding Product.Image }"
                                HeightRequest="100"
                                HorizontalOptions="Start" />
 
                                 <Label Grid.Column="1" 
                                        VerticalOptions="Center" 
-                                         Text="{Binding Name}"
+                                         Text="{Binding Product.Name}"
                                          LineBreakMode="NoWrap"
                                             Style="{DynamicResource ListItemTextStyle}"
                                          FontSize="16" />
                                 <Label Grid.Column="2"
-                                    Text="{Binding Price}"
+                                    Text="{Binding Product.Price}"
                                     LineBreakMode="NoWrap"
                                     Style="{DynamicResource ListItemTextStyle}"
                                     FontSize="16" />
-                                <Label Text="{Binding InStock}"
+                                <Label Text="{Binding Product.InStock}"
                                 LineBreakMode="NoWrap"
                                 Style="{DynamicResource ListItemDetailTextStyle}"
                                 FontSize="13" />

@@ -1,4 +1,5 @@
 ﻿using PetShopV2.Models;
+using PetShopV2.Services;
 using PetShopV2.Views;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,7 @@ namespace PetShopV2.ViewModels
             CartItems = new ObservableCollection<Product>();
             ExecuteLoadProductsCommand();
             //LoadProductsCommand = new Command(async () => await ExecuteLoadProductsCommand());
+            CartSingleton cartSingleton = CartSingleton.GetSingleton();
 
             //todo: fix erboven
             LoadProductsCommand = new Command(ExecuteLoadProductsCommand);

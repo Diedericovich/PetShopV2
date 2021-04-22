@@ -1,14 +1,24 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace PetShopV2.Models
 {
     public class ShoppingCart : Model
     {
-        public List<CartItem> ItemsInCart { get; set; }
+        private ObservableCollection<CartItem> itemsInCart;
+
+        public ObservableCollection<CartItem> ItemsInCart
+        {
+            get { return itemsInCart; }
+            set { itemsInCart = value;
+                OnPropertyChanged(nameof(ItemsInCart));
+            }
+        }
+
 
         public ShoppingCart()
         {
-            ItemsInCart = new List<CartItem>();
+            ItemsInCart = new ObservableCollection<CartItem>();
         }
     }
 }

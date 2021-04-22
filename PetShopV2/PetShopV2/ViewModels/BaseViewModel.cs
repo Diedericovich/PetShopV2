@@ -15,6 +15,13 @@ namespace PetShopV2.ViewModels
 
         private bool isBusy = false;
 
+        public CartSingleton CartSingleton { get; set; }
+       
+        public BaseViewModel()
+        {
+            CartSingleton = CartSingleton.GetSingleton();
+        }
+
         public bool IsBusy
         {
             get { return isBusy; }

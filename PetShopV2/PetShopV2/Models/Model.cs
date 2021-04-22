@@ -1,10 +1,12 @@
-﻿using System;
+﻿using PetShopV2.Services;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace PetShopV2.Models
 {
-    public abstract class Model
+    public abstract class Model : ObservableObject
     {
         public int ID { get; set; }
 
