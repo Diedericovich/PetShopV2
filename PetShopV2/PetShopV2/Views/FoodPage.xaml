@@ -9,6 +9,7 @@
         <local:FoodViewModel />
     </ContentPage.BindingContext>
 
+    
     <RefreshView Command="{Binding LoadProductsCommand}" 
                  IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <StackLayout>

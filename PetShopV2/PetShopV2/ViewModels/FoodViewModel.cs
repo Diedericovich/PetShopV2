@@ -29,14 +29,22 @@ namespace PetShopV2.ViewModels
         }
 
         public Command LoadProductsCommand { get; }
-        public Command AddProductCommand { get; }
+
+       
         public Command<Food> ProductTapped { get; }
+
+        //public Command<string> SkillDeletedCommand => new Command<string>(SkillDeleted);
+
+        
 
         public FoodViewModel()
         {
             Title = "Food";
             FoodItems = new ObservableCollection<Food>();
             productExampleDB = new ProductExampleDB<Product>();
+
+            //CartItems = new ObservableCollection<Product>();
+
             //AddDummyDataAsync();
             ExecuteLoadProductsCommand();
             //LoadProductsCommand = new Command(async () => await ExecuteLoadProductsCommand());
@@ -45,7 +53,7 @@ namespace PetShopV2.ViewModels
             LoadProductsCommand = new Command(ExecuteLoadProductsCommand);
             ProductTapped = new Command<Food>(OnProductSelected);
 
-            AddProductCommand = new Command(OnAddProduct);
+            //AddProductCommand = new Command(OnAddProduct);
         }
 
         private async void ExecuteLoadProductsCommand()
@@ -92,16 +100,8 @@ namespace PetShopV2.ViewModels
             }
         }
 
-        //deze methode gbruiken om product aan shoppingcart toe te voegen.
-        // "Newfoodpage" nog vervangen
 
-        private async void OnAddProduct(object obj)
-        {
-            //  await Shell.Current.GoToAsync(nameof(NewFoodPage));
-        }
-
-        //deze methode gbruiken om door te klikken naar de detailview van het product
-        // "FoodDetailPage" nog vervangen
+  
 
         private async void OnProductSelected(Food food)
         {
