@@ -3,53 +3,66 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:PetShopV2.ViewModels"
              Title="{Binding Title}"
-             x:Class="PetShopV2.Views.FoodPage">
+             x:Class="PetShopV2.Views.FoodPage"
+              BackgroundColor="White">
 
     <ContentPage.BindingContext>
         <local:FoodViewModel />
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Green" />
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Margin" Value="1" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-    
-    <RefreshView Command="{Binding LoadProductsCommand}" 
+    <RefreshView Command="{Binding LoadProductsCommand}"
                  IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <StackLayout>
-            <CollectionView x:Name="FoodListView"
+        <ScrollView>
+            <StackLayout>
+
+                <Image x:Name="Header" Source="logoBanner.jpg" Aspect="Fill" HeightRequest="{OnPlatform iOS='*', Android=150, UWP=250}" />
+
+                <CollectionView x:Name="FoodListView"
                 ItemsSource="{Binding FoodItems}"
                 SelectionMode="Single">
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Padding="10" >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="10">
 
-                            <Image Source="{Binding Image }"
+                                <Image Source="{Binding Image }"
                                HeightRequest="100"
                                HorizontalOptions="Start" />
-                            <Label Text="{Binding Name}"
+                                <Label Text="{Binding Name}"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemTextStyle}"
                             FontSize="16" />
-                            <Label Text="{Binding Price}"
+                                <Label Text="{Binding Price}"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemTextStyle}"
                             FontSize="16" />
-                            <Label Text="{Binding InStock}"
+                                <Label Text="{Binding InStock}"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
 
-
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
                                 NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:FoodViewModel}}, 
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:FoodViewModel}},
                                     Path=ProductTapped}"
-                                CommandParameter="{Binding .}"/>
-
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </StackLayout>
+                                CommandParameter="{Binding .}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
     </RefreshView>
 </ContentPage>
