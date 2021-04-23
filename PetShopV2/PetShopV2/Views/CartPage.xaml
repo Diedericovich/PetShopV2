@@ -9,16 +9,14 @@
     <ContentPage.BindingContext>
         <local:CartViewModel />
     </ContentPage.BindingContext>
-    <ContentPage.Resources>
-        <ResourceDictionary>
+    <!--<ContentPage.Resources>
+        --><!--<ResourceDictionary>
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="Green" />
-                <Setter Property="FontSize" Value="24" />
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="Margin" Value="1" />
-            </Style>
+                <Setter Property="FontSize" Value="10" />
+            </Style>--><!--
         </ResourceDictionary>
-    </ContentPage.Resources>
+    </ContentPage.Resources>-->
 
     <ContentPage.Content>
         <RefreshView Command="{Binding LoadProductsCommand}"
@@ -86,7 +84,7 @@
                                         Grid.Row="1"
                                         FontSize="Medium"
                                         Margin="8"
-                                        BackgroundColor="LightSalmon"
+                                        BackgroundColor="green"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=AddProductCommand}"
                                         CommandParameter="{Binding .}" />
                                     <Button Text="-"
@@ -94,7 +92,7 @@
                                         Grid.Row="1"
                                         FontSize="Medium"
                                         Margin="8"
-                                        BackgroundColor="LightSalmon"
+                                        BackgroundColor="green"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=DeductProductCommand}"
                                         CommandParameter="{Binding .}" />
                                 </Grid>
@@ -126,7 +124,7 @@
                                 <Button Grid.Column="4"
                                         Grid.Row="1"
                                         Text="Delete All"
-                                        BackgroundColor="IndianRed"
+                                        BackgroundColor="Gray"
                                         Margin="8"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=DeleteProductCommand}"
                                         CommandParameter="{Binding .}" />

@@ -60,13 +60,6 @@
                                                    Aspect="AspectFit"
                                                    HorizontalOptions="EndAndExpand"
                                                    Margin="0,-5,0,0" />
-                                                <Label Text="{Binding Name}"
-                                                   TextColor="White"
-                                                   BackgroundColor="#388E3C"
-                                                   FontSize="24"
-                                                   FontAttributes="Bold"
-                                                   Margin="15, 0"
-                                                   VerticalOptions="EndAndExpand" />
                                             </StackLayout>
                                         </Grid>
                                     </Frame>
