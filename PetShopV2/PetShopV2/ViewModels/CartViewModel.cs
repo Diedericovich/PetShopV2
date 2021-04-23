@@ -36,6 +36,9 @@ namespace PetShopV2.ViewModels
             //LoadProductsCommand = new Command(ExecuteLoadProductsCommand);
             ProductTapped = new Command<Product>(OnProductSelected);
             DeleteProductCommand = new Command<CartItem>(OnDeleteProduct);
+
+            //AddProductCommand = new Command<CartItem>(OnAddProduct);
+            //DeductProductCommand = new Command<CartItem>(OnDeductProduct);
         }
 
         //public void OnAppearing()
@@ -68,6 +71,8 @@ namespace PetShopV2.ViewModels
         private void OnAddProduct(CartItem cartItem)
         {
             CartSingleton.ShoppingCart.ItemsInCart.FirstOrDefault(x => x == cartItem).CartItemQuantity += 1;
+
+            //CartSingleton.ShoppingCart.ItemsInCart.(cartItem).
         }
 
         private void OnDeductProduct(CartItem cartItem)
@@ -75,10 +80,12 @@ namespace PetShopV2.ViewModels
             if (cartItem.CartItemQuantity > 1)
             {
                 //cartItem.CartItemQuantity -= 1;
-                CartSingleton.ShoppingCart.ItemsInCart.FirstOrDefault(x => x == cartItem).CartItemQuantity -= 1;
+                
+                //CartSingleton.ShoppingCart.ItemsInCart.FirstOrDefault(x => x == cartItem).CartItemQuantity -= 1;
+
+
             }
         }
-
 
         private void OnDeleteProduct(CartItem cartItem)
         {
