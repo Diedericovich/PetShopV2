@@ -42,27 +42,92 @@
                                     <ColumnDefinition Width="60" />
                                 </Grid.ColumnDefinitions>
 
-                                <Image Grid.Column="1" Source="{Binding Product.Image }"
+                                <Image Grid.Column="0"
+                                       Grid.RowSpan="2"
+                                       Source="{Binding Product.Image }"
                                HeightRequest="100"
                                HorizontalOptions="Start" />
 
-                                <Label Grid.Column="2"
+                                <Label Grid.Column="1"
+                                       Grid.RowSpan="2"
                                        VerticalOptions="Center"
                                          Text="{Binding Product.Name}"
                                          LineBreakMode="NoWrap"
                                             Style="{DynamicResource ListItemTextStyle}"
                                          FontSize="16" />
                                 <Label Grid.Column="2"
-                                    Text="{Binding Product.Price}"
-                                    LineBreakMode="NoWrap"
-                                    Style="{DynamicResource ListItemTextStyle}"
-                                    FontSize="16" />
-                                <Label Grid.Column="2"  Text="{Binding Product.InStock}"
+                                       Grid.Row="0"
+                                       TextDecorations="Underline"
+                                       HorizontalOptions="Center"
+                                       Text="In Stock?">
+                                </Label>
+                                <Label Grid.Column="2"
+                                       Grid.Row="1"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Text="{Binding Product.InStock}"
                                     LineBreakMode="NoWrap"
                                     Style="{DynamicResource ListItemDetailTextStyle}"
                                     FontSize="13" />
-                                <Button Grid.Column="3"
-                                        Text="Delete"
+                                <Grid Grid.Column="3"
+                                      Grid.RowSpan="2">
+                                    <Label
+                                        Grid.Column="0"
+                                        Grid.Row="0"
+                                        Text="Amount:"
+                                        HorizontalOptions="Center"
+                                        TextDecorations="Underline" />
+                                    <Label Text="{Binding CartItemQuantity}"
+                                       Grid.Column="1"
+                                       Grid.Row="0"
+                                       HorizontalOptions="Center" />
+                                    <Button Text="+"
+                                        Grid.Column="0"
+                                        Grid.Row="1"
+                                        FontSize="Medium"
+                                        Margin="8"
+                                        BackgroundColor="LightSalmon"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=AddProductCommand}"
+                                        CommandParameter="{Binding .}" />
+                                    <Button Text="-"
+                                        Grid.Column="1"
+                                        Grid.Row="1"
+                                        FontSize="Medium"
+                                        Margin="8"
+                                        BackgroundColor="LightSalmon"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=DeductProductCommand}"
+                                        CommandParameter="{Binding .}" />
+                                </Grid>
+                                <Grid Grid.Column="4"
+                                      Grid.Row="0">
+                                    <Label Grid.Column="0"
+                                           Grid.Row="0"
+                                           Text="   Price:"
+                                           FontSize="10" />
+                                    <Label Grid.Column="0"
+                                           Grid.Row="1"
+                                           Text="   Total:"
+                                           FontSize="10" />
+                                    <Label Grid.Column="1"
+                                           Grid.Row="0"
+                                       VerticalOptions="Center"
+                                            FontSize="10"
+                                    Text="{Binding Product.Price}"
+                                    LineBreakMode="NoWrap"
+                                    Style="{DynamicResource ListItemTextStyle}" />
+                                    <Label Grid.Column="1"
+                                           Grid.Row="1"
+                                       VerticalOptions="Center"
+                                            FontSize="10"
+                                    Text="{Binding Product.Price}"
+                                    LineBreakMode="NoWrap"
+                                    Style="{DynamicResource ListItemTextStyle}" />
+                                </Grid>
+                                <Button Grid.Column="4"
+                                        Grid.Row="1"
+                                        Text="Delete All"
+                                        BackgroundColor="IndianRed"
+                                        Margin="8"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=DeleteProductCommand}"
                                         CommandParameter="{Binding .}" />
 
