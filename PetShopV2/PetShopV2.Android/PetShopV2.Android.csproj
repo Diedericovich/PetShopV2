@@ -93,10 +93,53 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Toys.jpg" />
+    <AndroidResource Include="Resources\drawable\Catfood_MeowMix.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Food.jpg" />
+    <AndroidResource Include="Resources\drawable\Catfood_Whiskas_ChickenJelly_Bag.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Catfood9lives.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Catfood_Catfood_Mix_Can.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Catfood_Whiskas_MackerelFlavour_Bag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Basket.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ElectricFish.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\FluffyBalls.jfif" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Laptop.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Tunnel.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Dogfood_New.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Blue_WildernessWolf.jfif" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Horta_QualityDogFood.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Pedigree_SmallDog.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\drawable\Dog_Bowl_Egg.jpg" />
+    <AndroidResource Include="Resources\drawable\Jumping_Dog.jpg" />
+    <AndroidResource Include="Resources\drawable\Rubber_Chicken.jpg" />
+    <AndroidResource Include="Resources\drawable\Rubber_Dogbone.jpg" />
+    <AndroidResource Include="Resources\drawable\Stuffed_Yoda.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
