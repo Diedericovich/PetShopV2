@@ -23,7 +23,7 @@ namespace PetShopV2.Services
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "PetShop6.SQLite");
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "PetShop.SQLite");
             optionsBuilder.UseSqlite($"FileName={dbPath}");
         }
 
@@ -31,6 +31,33 @@ namespace PetShopV2.Services
         {
             SeedFood(modelBuilder);
             SeedToys(modelBuilder);
+            SeedCart(modelBuilder);
+
+        }
+
+        private void SeedCart(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CartItem>().HasData(
+                new CartItem
+                {
+                    ID = 1,
+                    ProductId = 1,
+                    CartItemQuantity = 1,
+                    
+                },
+                 new CartItem
+                 {
+                     ID = 2,
+                     ProductId = 2,
+                     CartItemQuantity = 43,
+                 },
+                  new CartItem
+                  {
+                      ID = 3,
+                      ProductId = 3,
+                      CartItemQuantity = 3,
+                  }
+                );
         }
 
         private void SeedToys(ModelBuilder modelBuilder)

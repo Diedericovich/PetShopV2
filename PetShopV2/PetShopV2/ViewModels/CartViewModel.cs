@@ -14,15 +14,27 @@ namespace PetShopV2.ViewModels
     {
         private Product _selectedProduct;
 
-        public Command LoadProductsCommand { get; }
+        private CartRepo _cartRepo;
 
-        public Command<CartItem> AddProductCommand => new Command<CartItem>(OnAddProduct);
+        private ObservableCollection<CartItem> itemsInCart;
+        
 
-        public Command<CartItem> DeductProductCommand => new Command<CartItem>(OnDeductProduct);
+        public  ObservableCollection<CartItem> ItemsInCart
+        {
+            get { return itemsInCart; }
+            set { itemsInCart = value;
 
-        public Command<Product> ProductTapped { get; }
+                OnPropertyChanged(nameof(ItemsInCart));
+            }
+        }
 
-        //public Command DeleteProductCommand => new Command(OnDeleteProduct);
+        public Command LoadProductsCommand { get; set; }
+
+        public Command<CartItem> AddProductCommand { get; set; }
+
+        public Command<CartItem> DeductProductCommand { get; set; }
+
+        public Command<Product> ProductTapped { get; set; }
 
         public Command<CartItem> DeleteProductCommand { get; set; }
 
@@ -30,22 +42,24 @@ namespace PetShopV2.ViewModels
         {
             Title = "Cart";
             //LoadProductsCommand = new Command(async () => await ExecuteLoadProductsCommand());
-            CartSingleton cartSingleton = CartSingleton.GetSingleton();
 
             //todo: fix erboven
-            //LoadProductsCommand = new Command(ExecuteLoadProductsCommand);
+            LoadProductsCommand = new Command(OnLoaded);
             ProductTapped = new Command<Product>(OnProductSelected);
             DeleteProductCommand = new Command<CartItem>(OnDeleteProduct);
+            AddProductCommand = new Command<CartItem>(OnAddProduct);
+            DeductProductCommand = new Command<CartItem>(OnDeductProduct);
+            _cartRepo = new CartRepo();
 
-            //AddProductCommand = new Command<CartItem>(OnAddProduct);
-            //DeductProductCommand = new Command<CartItem>(OnDeductProduct);
+            OnLoaded();
         }
 
-        //public void OnAppearing()
-        //{
-        //    IsBusy = true;
-        //    SelectedFood = null;
-        //}
+        private async void OnLoaded( )
+        {
+            var result = await _cartRepo.GetItemsInCart();
+            ItemsInCart = new ObservableCollection<CartItem>(result);
+
+        }
 
         public Product SelectedProduct
         {
@@ -64,45 +78,24 @@ namespace PetShopV2.ViewModels
                 throw new ArgumentNullException(nameof(product));
             }
 
-            // This will push the ItemDetailPage onto the navigation stack
             await Shell.Current.GoToAsync($"{nameof(CartDetailPage)}?{nameof(CartDetailViewModel.ProductId)}={product.ID}");
         }
 
         private void OnAddProduct(CartItem cartItem)
         {
-            CartSingleton.ShoppingCart.ItemsInCart.FirstOrDefault(x => x == cartItem).CartItemQuantity += 1;
-
-            //CartSingleton.ShoppingCart.ItemsInCart.(cartItem).
         }
 
         private void OnDeductProduct(CartItem cartItem)
         {
             if (cartItem.CartItemQuantity > 1)
             {
-                //cartItem.CartItemQuantity -= 1;
-                
-                //CartSingleton.ShoppingCart.ItemsInCart.FirstOrDefault(x => x == cartItem).CartItemQuantity -= 1;
-
 
             }
         }
 
         private void OnDeleteProduct(CartItem cartItem)
         {
-            //var Cart2 = CartSingleton.GetSingleton();
-            //var Cart = Cart2.ShoppingCart.ItemsInCart;
-
-            ////product = _selectedProduct;
             
-
-            //cartItem = new CartItem()
-            //{
-            //    Product = _selectedProduct,
-            //    ProductId = _selectedProduct.ID,
-            //};
-
-            CartSingleton.ShoppingCart.ItemsInCart.Remove(cartItem);
-
         }
 
     }

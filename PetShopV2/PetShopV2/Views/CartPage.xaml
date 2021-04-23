@@ -23,7 +23,7 @@
                  IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
             <StackLayout>
                 <CollectionView x:Name="CartListView"
-                ItemsSource="{Binding CartSingleton.ShoppingCart.ItemsInCart}"
+                ItemsSource="{Binding ItemsInCart}"
                 SelectionMode="Single">
 
                     <CollectionView.ItemTemplate>
