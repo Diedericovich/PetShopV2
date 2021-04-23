@@ -6,7 +6,17 @@
 
         public Product Product { get; set; }
 
-        public int CartItemQuantity { get; set; }
+        private int cartItemQuantity;
+
+        public int CartItemQuantity
+        {
+            get { return cartItemQuantity; }
+            set { cartItemQuantity = value;
+
+                OnPropertyChanged(nameof(CartItemQuantity));
+            }
+        }
+
 
         //public int ShoppingCartId { get; set; }
 

@@ -10,7 +10,7 @@ namespace PetShopV2
         {
             InitializeComponent();
 
-            DependencyService.Register<ProductExampleDB<Product>>();
+            DependencyService.Register<GenericRepo<Product>>();
             MainPage = new AppShell();
         }
 
