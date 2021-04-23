@@ -1,9 +1,8 @@
 ﻿using PetShopV2.Models;
+using PetShopV2.Services;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
 using System.Diagnostics;
+using Xamarin.Forms;
 
 namespace PetShopV2.ViewModels
 {
@@ -12,6 +11,7 @@ namespace PetShopV2.ViewModels
     {
         private Toys selectedToys;
         private int toysId;
+        public Command AddProductCommand => new Command(OnAddProduct);
 
         public int ToysId
         {
@@ -45,8 +45,18 @@ namespace PetShopV2.ViewModels
             }
         }
 
+        private void OnAddProduct()
+        {
+            var Cart2 = CartSingleton.GetSingleton();
+            var Cart = Cart2.ShoppingCart.ItemsInCart;
 
+            CartItem cartItem = new CartItem()
+            {
+                Product = selectedToys,
+                ProductId = selectedToys.ID,
+            };
 
-
+            Cart.Add(cartItem);
+        }
     }
 }

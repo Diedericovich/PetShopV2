@@ -4,7 +4,6 @@
              xmlns:local="clr-namespace:PetShopV2.ViewModels"
              x:Class="PetShopV2.Views.FoodDetailPage">
 
-
     <ContentPage.BindingContext>
         <local:FoodDetailViewModel />
     </ContentPage.BindingContext>
@@ -13,24 +12,23 @@
         <ToolbarItem Text="Add to cart" Command="{Binding AddProductCommand}" />
     </ContentPage.ToolbarItems>
 
-
-        <StackLayout Padding="10" >
-            <Image Source="{Binding SelectedFood.Image}"
+    <StackLayout Padding="10">
+        <Image Source="{Binding SelectedFood.Image}"
                                HeightRequest="100"
                                HorizontalOptions="Start" />
-            <Label Text="{Binding SelectedFood.Name}"
+        <Label Text="{Binding SelectedFood.Name}"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemTextStyle}"
                             FontSize="16" />
-            <Label Text="{Binding SelectedFood.Description}"
+        <Label Text="{Binding SelectedFood.Description}"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
-            <Label Text="{Binding SelectedFood.Price}"
+        <Label Text="{Binding SelectedFood.Price}"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemTextStyle}"
                             FontSize="16" />
-            <Label Text="{Binding SelectedFood.ProductBrand}"
+        <Label Text="{Binding SelectedFood.ProductBrand}"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
@@ -46,17 +44,14 @@
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemTextStyle}"
                             FontSize="16" />
-            
-
-
 
         <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer
+            <TapGestureRecognizer
                                 NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:FoodDetailViewModel}}, 
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:FoodDetailViewModel}},
                                           Path=ProductTapped}"
                                 CommandParameter="{Binding .}">
-                </TapGestureRecognizer>
-            </StackLayout.GestureRecognizers>
-        </StackLayout>
+            </TapGestureRecognizer>
+        </StackLayout.GestureRecognizers>
+    </StackLayout>
 </ContentPage>

@@ -30,12 +30,9 @@ namespace PetShopV2.ViewModels
 
         public Command LoadProductsCommand { get; }
 
-       
         public Command<Food> ProductTapped { get; }
 
         //public Command<string> SkillDeletedCommand => new Command<string>(SkillDeleted);
-
-        
 
         public FoodViewModel()
         {
@@ -99,9 +96,6 @@ namespace PetShopV2.ViewModels
                 OnProductSelected(value);
             }
         }
-
-
-  
 
         private async void OnProductSelected(Food food)
         {
@@ -208,14 +202,12 @@ namespace PetShopV2.ViewModels
             {
                 if (item is Food)
                 {
-                await productExampleDB.AddProductAsync((Food)item);
-
+                    await productExampleDB.AddProductAsync((Food)item);
                 }
                 else if (item is Toys)
                 {
-                await productExampleDB.AddProductAsync((Toys)item);
+                    await productExampleDB.AddProductAsync((Toys)item);
                 }
-
             }
         }
     }
