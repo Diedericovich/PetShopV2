@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:PetShopV2.ViewModels"
              Title="{Binding Title}"
              x:Class="PetShopV2.Views.CartPage">
+
     <ContentPage.BindingContext>
         <local:CartViewModel/>
     </ContentPage.BindingContext>
@@ -12,7 +13,7 @@
     <ContentPage.Content>
         <RefreshView Command="{Binding LoadProductsCommand}" 
                  IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-            <StackLayout BackgroundColor="Blue">
+            <StackLayout>
                 <CollectionView x:Name="CartListView"
                 ItemsSource="{Binding CartSingleton.ShoppingCart.ItemsInCart}"
                 SelectionMode="Single">
@@ -20,8 +21,7 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid   HeightRequest="100"  
-                                Margin="5" 
-                                BackgroundColor="Blue" >
+                                Margin="5">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
@@ -32,11 +32,11 @@
                                     <ColumnDefinition Width="60"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Image Source="{Binding Product.Image }"
+                                <Image Grid.Column="1" Source="{Binding Product.Image }"
                                HeightRequest="100"
                                HorizontalOptions="Start" />
 
-                                <Label Grid.Column="1" 
+                                <Label Grid.Column="2" 
                                        VerticalOptions="Center" 
                                          Text="{Binding Product.Name}"
                                          LineBreakMode="NoWrap"
@@ -47,10 +47,15 @@
                                     LineBreakMode="NoWrap"
                                     Style="{DynamicResource ListItemTextStyle}"
                                     FontSize="16" />
-                                <Label Text="{Binding Product.InStock}"
-                                LineBreakMode="NoWrap"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="13" />
+                                <Label Grid.Column="2"  Text="{Binding Product.InStock}"
+                                    LineBreakMode="NoWrap"
+                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                    FontSize="13" />
+                                <Button Grid.Column="3" 
+                                        Text="Delete"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=DeleteProductCommand}"
+                                        CommandParameter="{Binding .}"
+                                />
 
 
                                 <Grid.GestureRecognizers>
