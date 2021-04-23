@@ -18,7 +18,10 @@ namespace PetShopV2.Models
 
         public ShoppingCart()
         {
-            ItemsInCart = new ObservableCollection<CartItem>();
+            ItemsInCart = new ObservableCollection<CartItem>
+            {
+                      
+            };
         }
     }
 }

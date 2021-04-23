@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace PetShopV2.ViewModels
@@ -14,7 +15,11 @@ namespace PetShopV2.ViewModels
         private Product _selectedProduct;
 
         public Command LoadProductsCommand { get; }
-        public Command AddProductCommand { get; }
+
+        public Command<CartItem> AddProductCommand => new Command<CartItem>(OnAddProduct);
+
+        public Command<CartItem> DeductProductCommand => new Command<CartItem>(OnDeductProduct);
+
         public Command<Product> ProductTapped { get; }
 
         //public Command DeleteProductCommand => new Command(OnDeleteProduct);
@@ -59,6 +64,21 @@ namespace PetShopV2.ViewModels
             // This will push the ItemDetailPage onto the navigation stack
             await Shell.Current.GoToAsync($"{nameof(CartDetailPage)}?{nameof(CartDetailViewModel.ProductId)}={product.ID}");
         }
+
+        private void OnAddProduct(CartItem cartItem)
+        {
+            CartSingleton.ShoppingCart.ItemsInCart.FirstOrDefault(x => x == cartItem).CartItemQuantity += 1;
+        }
+
+        private void OnDeductProduct(CartItem cartItem)
+        {
+            if (cartItem.CartItemQuantity > 1)
+            {
+                //cartItem.CartItemQuantity -= 1;
+                CartSingleton.ShoppingCart.ItemsInCart.FirstOrDefault(x => x == cartItem).CartItemQuantity -= 1;
+            }
+        }
+
 
         private void OnDeleteProduct(CartItem cartItem)
         {
