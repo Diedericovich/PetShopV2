@@ -2,11 +2,22 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:PetShopV2.ViewModels"
-             x:Class="PetShopV2.Views.ToysDetailPage">
+             x:Class="PetShopV2.Views.ToysDetailPage"
+                BackgroundColor="White">
 
     <ContentPage.BindingContext>
         <local:ToysDetailViewModel />
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Green" />
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Margin" Value="1" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add to cart" Command="{Binding AddProductCommand}" />

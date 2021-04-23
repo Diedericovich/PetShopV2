@@ -1,14 +1,81 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:PetShopV2.ViewModels"
+             xmlns:local="clr-namespace:PetShopV2.ViewModels"
              x:Class="PetShopV2.Views.AboutPage"
-             Title="{Binding Title}">
+             Title="Home"
+             BackgroundColor="White">
 
     <ContentPage.BindingContext>
-        <vm:AboutViewModel />
+        <local:FoodViewModel />
     </ContentPage.BindingContext>
 
- 
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Image x:Name="Header" Source="logoBanner.jpg" Aspect="Fill" HeightRequest="{OnPlatform iOS='*', Android=150, UWP=250}" />
+                <SearchBar Placeholder="Search items..."
+                            BackgroundColor="White"
+                            CancelButtonColor="Orange"
+                            PlaceholderColor="Orange"
+                            TextColor="Orange"
+                            TextTransform="Lowercase"
+                            HorizontalTextAlignment="Center"
+                            FontSize="Medium"
+                            FontAttributes="Italic" />
 
+                <StackLayout>
+                    <Label Text="Bestsellers"
+                           HorizontalOptions="Center"
+                           FontSize="Large"
+                           TextColor="Green"
+                           FontAttributes="Bold" />
+
+                    <CarouselView ItemsSource="{Binding FoodItems}"
+                              PeekAreaInsets="50"
+                              Loop="True"
+                              HeightRequest="200">
+
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+
+                                <StackLayout>
+                                    <Frame HeightRequest="200"
+                                       WidthRequest="180"
+                                       BackgroundColor="white"
+                                       HasShadow="True"
+                                       CornerRadius="10"
+                                       Padding="0"
+                                       Margin="10"
+                                       HorizontalOptions="CenterAndExpand">
+                                        <Grid>
+                                            <StackLayout BackgroundColor="white">
+                                                <Image Source="{Binding Image}"
+                                                   Aspect="AspectFit"
+                                                   Opacity="0.8" />
+                                            </StackLayout>
+                                            <StackLayout>
+                                                <Image Source="Food.png"
+                                                   HeightRequest="60"
+                                                   Aspect="AspectFit"
+                                                   HorizontalOptions="EndAndExpand"
+                                                   Margin="0,-5,0,0" />
+                                                <Label Text="{Binding Name}"
+                                                   TextColor="White"
+                                                   BackgroundColor="#388E3C"
+                                                   FontSize="24"
+                                                   FontAttributes="Bold"
+                                                   Margin="15, 0"
+                                                   VerticalOptions="EndAndExpand" />
+                                            </StackLayout>
+                                        </Grid>
+                                    </Frame>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

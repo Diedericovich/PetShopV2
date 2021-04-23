@@ -1,17 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:PetShopV2.ViewModels"
              Title="{Binding Title}"
-             x:Class="PetShopV2.Views.CartPage">
+             x:Class="PetShopV2.Views.CartPage"
+                BackgroundColor="White">
 
     <ContentPage.BindingContext>
-        <local:CartViewModel/>
+        <local:CartViewModel />
     </ContentPage.BindingContext>
-
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Green" />
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Margin" Value="1" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.Content>
-        <RefreshView Command="{Binding LoadProductsCommand}" 
+        <RefreshView Command="{Binding LoadProductsCommand}"
                  IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
             <StackLayout>
                 <CollectionView x:Name="CartListView"
@@ -20,24 +30,24 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid   HeightRequest="100"  
+                            <Grid   HeightRequest="100"
                                 Margin="5">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
 
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="125"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="125" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="60" />
                                 </Grid.ColumnDefinitions>
 
                                 <Image Grid.Column="1" Source="{Binding Product.Image }"
                                HeightRequest="100"
                                HorizontalOptions="Start" />
 
-                                <Label Grid.Column="2" 
-                                       VerticalOptions="Center" 
+                                <Label Grid.Column="2"
+                                       VerticalOptions="Center"
                                          Text="{Binding Product.Name}"
                                          LineBreakMode="NoWrap"
                                             Style="{DynamicResource ListItemTextStyle}"
@@ -51,19 +61,17 @@
                                     LineBreakMode="NoWrap"
                                     Style="{DynamicResource ListItemDetailTextStyle}"
                                     FontSize="13" />
-                                <Button Grid.Column="3" 
+                                <Button Grid.Column="3"
                                         Text="Delete"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=DeleteProductCommand}"
-                                        CommandParameter="{Binding .}"
-                                />
-
+                                        CommandParameter="{Binding .}" />
 
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer
                                 NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, 
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}},
                                     Path=ProductTapped}"
-                                CommandParameter="{Binding .}"/>
+                                CommandParameter="{Binding .}" />
                                 </Grid.GestureRecognizers>
                             </Grid>
                         </DataTemplate>
@@ -71,9 +79,5 @@
                 </CollectionView>
             </StackLayout>
         </RefreshView>
-
-
-
-
     </ContentPage.Content>
 </ContentPage>
