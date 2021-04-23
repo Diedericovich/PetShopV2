@@ -38,7 +38,7 @@ namespace PetShopV2.ViewModels
         {
             Title = "Food";
             FoodItems = new ObservableCollection<Food>();
-            productExampleDB = new ProductExampleDB<Product>();
+            productExampleDB = new GenericRepo<Product>();
 
             //CartItems = new ObservableCollection<Product>();
 

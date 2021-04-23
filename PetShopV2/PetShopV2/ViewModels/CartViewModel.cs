@@ -28,6 +28,7 @@ namespace PetShopV2.ViewModels
             }
         }
 
+        //todo: remove?
         public Command LoadProductsCommand { get; set; }
 
         public Command<CartItem> AddProductCommand { get; set; }
@@ -37,6 +38,8 @@ namespace PetShopV2.ViewModels
         public Command<Product> ProductTapped { get; set; }
 
         public Command<CartItem> DeleteProductCommand { get; set; }
+
+        public Command RefreshCommand { get; set; }
 
         public CartViewModel()
         {
@@ -49,6 +52,8 @@ namespace PetShopV2.ViewModels
             DeleteProductCommand = new Command<CartItem>(OnDeleteProduct);
             AddProductCommand = new Command<CartItem>(OnAddProduct);
             DeductProductCommand = new Command<CartItem>(OnDeductProduct);
+            RefreshCommand = new Command(OnLoaded);
+
             _cartRepo = new CartRepo();
 
             OnLoaded();
@@ -81,16 +86,19 @@ namespace PetShopV2.ViewModels
             await Shell.Current.GoToAsync($"{nameof(CartDetailPage)}?{nameof(CartDetailViewModel.ProductId)}={product.ID}");
         }
 
-        private void OnAddProduct(CartItem cartItem)
+        private async void OnAddProduct(CartItem cartItem)
         {
             cartItem.CartItemQuantity++;
+            //niet ideaal: beter: in memory opslaan en als klaar naar database, nu elke keer op knop duwen = refreshen database
+            await _cartRepo.UpdateProductAsync(cartItem);
         }
 
-        private void OnDeductProduct(CartItem cartItem)
+        private async void OnDeductProduct(CartItem cartItem)
         {
             if (cartItem.CartItemQuantity > 1)
             {
                 cartItem.CartItemQuantity--;
+                await _cartRepo.UpdateProductAsync(cartItem);
             }
         }
 

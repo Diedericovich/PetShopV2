@@ -2,7 +2,6 @@
 using PetShopV2.Services;
 using System;
 using System.Diagnostics;
-using System.Linq;
 using Xamarin.Forms;
 
 namespace PetShopV2.ViewModels
@@ -12,7 +11,16 @@ namespace PetShopV2.ViewModels
     {
         private Food selectedFood;
         private int foodId;
+
+        private CartRepo cartRepo;
+
+        //todo: use single style (extracten naar ctor)
         public Command AddProductCommand => new Command(OnAddProduct);
+
+        public FoodDetailViewModel()
+        {
+            cartRepo = new CartRepo();
+        }
 
         public int FoodId
         {
@@ -46,32 +54,25 @@ namespace PetShopV2.ViewModels
             }
         }
 
-        private void OnAddProduct()
+        private async void OnAddProduct()
         {
-            CartItem cartItem = new CartItem()
+            CartItem cartitem;
+            CartItem item = await cartRepo.GetProductAsync(selectedFood.ID);
+            if (item == null)
             {
-                Product = selectedFood,
-                ID = selectedFood.ID,
-            };
-
-            var lijstje = CartSingleton.ShoppingCart.ItemsInCart;
-
-            bool ziterin = false;
-
-            foreach (var item in lijstje)
-            {
-                if (item.Product == selectedFood)
+                cartitem = new CartItem()
                 {
-                    ziterin = true;
-                }
+                    CartItemQuantity = 1,
+                    ProductId = selectedFood.ID,
+                };
+                await cartRepo.AddProductAsync(cartitem);
             }
-
-            if (!ziterin)
+            else
             {
-            CartSingleton.ShoppingCart.ItemsInCart.Add(cartItem);
+                item.CartItemQuantity++;
+                await cartRepo.UpdateProductAsync(item);
             }
 
-            lijstje.FirstOrDefault(x => x.Product == selectedFood).CartItemQuantity += 1;
         }
     }
 }

@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace PetShopV2.Services
 {
-    public class ProductExampleDB<T> : IProductExampleDB<T> where T : Model
+    public class GenericRepo<T> : IProductExampleDB<T> where T : Model
     {
-        private List<T> products;
-
-       
         public async Task AddProductAsync(T model)
         {
             using (var dbContext = new PetShopContext())
@@ -24,7 +21,8 @@ namespace PetShopV2.Services
         {
             using (var dbContext = new PetShopContext())
             {
-                var oldItem = products.FirstOrDefault(x => x.ID == id);
+                var table = dbContext.Set<T>();
+                var oldItem = table.FirstOrDefault(x => x.ID == id);
                 dbContext.Remove(oldItem);
                 await dbContext.SaveChangesAsync();
             }

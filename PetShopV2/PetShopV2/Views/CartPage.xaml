@@ -18,6 +18,10 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Refresh" Command="{Binding RefreshCommand}" />
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <RefreshView Command="{Binding LoadProductsCommand}"
                  IsRefreshing="{Binding IsBusy, Mode=TwoWay}">

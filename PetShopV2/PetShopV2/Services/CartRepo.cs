@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PetShopV2.Services
 {
-    public class CartRepo : ProductExampleDB<CartItem>
+    public class CartRepo : GenericRepo<CartItem>
     {
         public async Task <ICollection<CartItem>> GetItemsInCart()
         {
