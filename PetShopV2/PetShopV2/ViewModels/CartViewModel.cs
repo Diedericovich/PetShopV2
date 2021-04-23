@@ -83,13 +83,14 @@ namespace PetShopV2.ViewModels
 
         private void OnAddProduct(CartItem cartItem)
         {
+            cartItem.CartItemQuantity++;
         }
 
         private void OnDeductProduct(CartItem cartItem)
         {
             if (cartItem.CartItemQuantity > 1)
             {
-
+                cartItem.CartItemQuantity--;
             }
         }
 
