@@ -112,9 +112,11 @@
     <Content Include="Catfood_Whiskas_ChickenJelly_Bag.jpg" />
     <Content Include="Catfood_Whiskas_MackerelFlavour_Bag.png" />
     <Content Include="Dogfood_New.png" />
+    <Content Include="Dog_Bowl_Egg.jpg" />
     <Content Include="ElectricFish.jpeg" />
     <Content Include="FluffyBalls.jfif" />
     <Content Include="Horta_QualityDogFood.png" />
+    <Content Include="Jumping_Dog.jpg" />
     <Content Include="Laptop.jpg" />
     <Content Include="Pedigree_SmallDog.jpg" />
     <Content Include="Properties\Default.rd.xml" />
@@ -145,6 +147,9 @@
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="Rubber_Chicken.jpg" />
+    <Content Include="Rubber_Dogbone.jpg" />
+    <Content Include="Stuffed_Yoda.jpg" />
     <Content Include="Tunnel.jpg" />
     <Content Include="xamarin_logo.png" />
     <Content Include="icon_about.png" />

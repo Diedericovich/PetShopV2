@@ -134,5 +134,12 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Pedigree_SmallDog.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\drawable\Dog_Bowl_Egg.jpg" />
+    <AndroidResource Include="Resources\drawable\Jumping_Dog.jpg" />
+    <AndroidResource Include="Resources\drawable\Rubber_Chicken.jpg" />
+    <AndroidResource Include="Resources\drawable\Rubber_Dogbone.jpg" />
+    <AndroidResource Include="Resources\drawable\Stuffed_Yoda.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
