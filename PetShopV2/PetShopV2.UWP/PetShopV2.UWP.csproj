@@ -118,6 +118,7 @@
     <Content Include="Horta_QualityDogFood.png" />
     <Content Include="Jumping_Dog.jpg" />
     <Content Include="Laptop.jpg" />
+    <Content Include="logoBanner.jpg" />
     <Content Include="Pedigree_SmallDog.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LargeTile.scale-100.png" />
