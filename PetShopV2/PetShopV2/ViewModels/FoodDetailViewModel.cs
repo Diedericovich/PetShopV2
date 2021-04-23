@@ -2,6 +2,7 @@
 using PetShopV2.Services;
 using System;
 using System.Diagnostics;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace PetShopV2.ViewModels
@@ -50,9 +51,27 @@ namespace PetShopV2.ViewModels
             CartItem cartItem = new CartItem()
             {
                 Product = selectedFood,
+                ID = selectedFood.ID,
             };
 
+            var lijstje = CartSingleton.ShoppingCart.ItemsInCart;
+
+            bool ziterin = false;
+
+            foreach (var item in lijstje)
+            {
+                if (item.Product == selectedFood)
+                {
+                    ziterin = true;
+                }
+            }
+
+            if (!ziterin)
+            {
             CartSingleton.ShoppingCart.ItemsInCart.Add(cartItem);
+            }
+
+            lijstje.FirstOrDefault(x => x.Product == selectedFood).CartItemQuantity += 1;
         }
     }
 }
