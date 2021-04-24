@@ -1,6 +1,7 @@
 ﻿using PetShopV2.Models;
 using PetShopV2.Services;
 using PetShopV2.Views;
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -91,7 +92,27 @@ namespace PetShopV2.ViewModels
             cartItem.CartItemQuantity++;
             //niet ideaal: beter: in memory opslaan en als klaar naar database, nu elke keer op knop duwen = refreshen database
             await _cartRepo.UpdateProductAsync(cartItem);
+            OnLoaded();
         }
+
+        private void OnAddProduct(Product product)
+        {
+            var cartItem = ItemsInCart.FirstOrDefault(x => x.Product.ID == product.ID);
+            if (cartItem == null)
+            {
+                CartItem newCartItem = new CartItem
+                {
+                    CartItemQuantity = 1,
+                    Product = product,
+                };
+                ItemsInCart.Add(newCartItem);
+            }
+            else
+            {
+                cartItem.CartItemQuantity++;
+            }
+        }
+
 
         private async void OnDeductProduct(CartItem cartItem)
         {
@@ -104,7 +125,7 @@ namespace PetShopV2.ViewModels
 
         private void OnDeleteProduct(CartItem cartItem)
         {
-            
+            ItemsInCart.Remove(cartItem);
         }
 
     }
