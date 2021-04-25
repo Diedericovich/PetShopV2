@@ -5,6 +5,7 @@ using System;
 using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System.Collections.ObjectModel;
 
 namespace PetShopV2.ViewModels
 {
@@ -14,16 +15,33 @@ namespace PetShopV2.ViewModels
         private Food selectedFood;
         private int foodId;
 
-        private CartRepo cartRepo;
+        private CartRepo _cartRepo;
 
-        //todo: use single style (extracten naar ctor)
-        public ICommand AddProductCommand;
+        private ObservableCollection<CartItem> itemsInCart;
+        public ObservableCollection<CartItem> ItemsInCart
+        {
+            get { return itemsInCart; }
+            set
+            {
+                itemsInCart = value;
+
+                OnPropertyChanged(nameof(ItemsInCart));
+            }
+        }
+
+
+        //waarom ICommand??
+        public Command AddProductCommand { get; set; }
+
 
         public FoodDetailViewModel()
         {
+            _cartRepo = new CartRepo();
+
             AddProductCommand = new Command(OnAddProduct);
-            cartRepo = new CartRepo();
+
         }
+
 
         public int FoodId
         {
@@ -59,8 +77,41 @@ namespace PetShopV2.ViewModels
 
         private async void OnAddProduct()
         {
-          // TO DO ???
-
+            CartItem cartitem;
+            CartItem item = await _cartRepo.GetProductAsync(selectedFood.ID);
+            if (item == null)
+            {
+                cartitem = new CartItem()
+                {
+                    CartItemQuantity = 1,
+                    ProductId = selectedFood.ID,
+                };
+                await _cartRepo.AddProductAsync(cartitem);
+            }
+            else
+            {
+                item.CartItemQuantity++;
+                await _cartRepo.UpdateProductAsync(item);
+            }
         }
+
+        //private async void OnAddProduct()
+        //{
+        //    var result = await _cartRepo.GetItemsInCart();
+        //    ItemsInCart = new ObservableCollection<CartItem>(result);
+
+        //    CartItem cartItem = new CartItem();
+        //    cartItem = await _cartRepo.GetProductAsync(selectedFood.ID);
+
+        //    //cartItem.ProductId = selectedFood.ID;
+
+        //    if (!ItemsInCart.Contains(cartItem))
+        //    {
+
+        //    await _cartRepo.AddProductAsync(cartItem);
+        //    }
+
+        //    ItemsInCart.Add(cartItem);
+        //}
     }
 }

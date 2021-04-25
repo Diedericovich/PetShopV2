@@ -10,7 +10,6 @@ namespace PetShopV2
             InitializeComponent();
             Routing.RegisterRoute(nameof(FoodDetailPage), typeof(FoodDetailPage));
             Routing.RegisterRoute(nameof(ToysDetailPage), typeof(ToysDetailPage));
-            Routing.RegisterRoute(nameof(CartDetailPage), typeof(CartDetailPage));
         }
     }
 }
