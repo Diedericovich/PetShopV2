@@ -18,7 +18,6 @@ namespace PetShopV2.ViewModels
         private CartRepo _cartRepo;
 
         private ObservableCollection<CartItem> itemsInCart;
-        
 
         public  ObservableCollection<CartItem> ItemsInCart
         {
@@ -56,8 +55,6 @@ namespace PetShopV2.ViewModels
             RefreshCommand = new Command(OnLoaded);
 
             _cartRepo = new CartRepo();
-
-            OnLoaded();
         }
 
         private async void OnLoaded( )
@@ -126,6 +123,7 @@ namespace PetShopV2.ViewModels
         private void OnDeleteProduct(CartItem cartItem)
         {
             ItemsInCart.Remove(cartItem);
+            
         }
 
     }

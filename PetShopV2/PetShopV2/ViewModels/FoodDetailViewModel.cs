@@ -5,23 +5,43 @@ using System;
 using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace PetShopV2.ViewModels
 {
     [QueryProperty(nameof(FoodId), nameof(FoodId))]
     public class FoodDetailViewModel : BaseViewModel
     {
+        private IProductExampleDB<Product> productExampleDB;
+
         private Food selectedFood;
         private int foodId;
 
         private CartRepo cartRepo;
+
+        private ObservableCollection<CartItem> itemsInCart;
+
+        public ObservableCollection<CartItem> ItemsInCart
+        {
+            get { return itemsInCart; }
+            set
+            {
+                itemsInCart = value;
+
+                OnPropertyChanged(nameof(ItemsInCart));
+            }
+        }
+
 
         //todo: use single style (extracten naar ctor)
         public ICommand AddProductCommand;
 
         public FoodDetailViewModel()
         {
-            AddProductCommand = new Command(OnAddProduct);
+            productExampleDB = new GenericRepo<Product>();
+            AddProductCommand = new Command<Food>(OnAddProduct);
             cartRepo = new CartRepo();
         }
 
@@ -49,7 +69,7 @@ namespace PetShopV2.ViewModels
         {
             try
             {
-                SelectedFood = await DataStore.GetProductAsync(productId) as Food;
+                SelectedFood = await productExampleDB.GetProductAsync(productId) as Food;
             }
             catch (Exception)
             {
@@ -57,9 +77,24 @@ namespace PetShopV2.ViewModels
             }
         }
 
-        private async void OnAddProduct()
+        private void OnAddProduct(Food food)
         {
-          // TO DO ???
+            var cartItem = ItemsInCart.FirstOrDefault(x => x.Product.ID == FoodId);
+
+            if (cartItem == null)
+            {
+                CartItem newCartItem = new CartItem
+                {
+                    CartItemQuantity = 1,
+                    Product = food,
+                };
+                ItemsInCart.Add(newCartItem);
+            }
+            else
+            {
+                cartItem.CartItemQuantity++;
+            }
+
 
         }
     }

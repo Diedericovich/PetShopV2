@@ -1,4 +1,5 @@
 ﻿using PetShopV2.Models;
+using PetShopV2.Services;
 using PetShopV2.Views;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace PetShopV2.ViewModels
 {
     public class ToysViewModel : BaseViewModel
     {
+        private IProductExampleDB<Product> productExampleDB;
+
         private Toys _selectedProduct;
 
         private ObservableCollection<Toys> toysItems;
@@ -23,25 +26,20 @@ namespace PetShopV2.ViewModels
                 toysItems = value;
                 OnPropertyChanged(nameof(ToysItems));
             }
-
         }
 
-
         public Command LoadProductsCommand { get; }
-        public Command AddProductCommand { get; }
         public Command<Toys> ProductTapped { get; }
 
         public ToysViewModel()
         {
             Title = "Toys";
             ToysItems = new ObservableCollection<Toys>();
+            productExampleDB = new GenericRepo<Product>();
             ExecuteLoadProductsCommand();
 
             LoadProductsCommand = new Command(ExecuteLoadProductsCommand);
-
             ProductTapped = new Command<Toys>(OnProductSelected);
-
-            AddProductCommand = new Command(OnAddProduct);
         }
 
         private async void ExecuteLoadProductsCommand()
@@ -51,19 +49,16 @@ namespace PetShopV2.ViewModels
             try
             {
                 ToysItems.Clear();
-                IEnumerable<Product> products = await DataStore.GetAllProductsAsync(true);
-
-                List<Toys> newToysList = new List<Toys>();
+                IEnumerable<Product> products = await productExampleDB.GetAllProductsAsync(true);
+                ToysItems = new ObservableCollection<Toys>();
                 
-                foreach (var product in products)
+                foreach (var item in products)
                 {
-                    //Products.Add(product);
-                    if (product is Toys toys)
+                    if (item is Toys)
                     {
-                        newToysList.Add(toys);
+                        ToysItems.Add((Toys)item);
                     }
                 }
-                ToysItems = new ObservableCollection<Toys>(newToysList);
             }
             catch (Exception ex)
             {
@@ -90,17 +85,6 @@ namespace PetShopV2.ViewModels
                 OnProductSelected(value);
             }
         }
-
-        //deze methode gbruiken om product aan shoppingcart toe te voegen.
-        // "Newfoodpage" nog vervangen
-
-        private async void OnAddProduct(object obj)
-        {
-            //  await Shell.Current.GoToAsync(nameof(NewFoodPage));
-        }
-
-        //deze methode gbruiken om door te klikken naar de detailview van het product
-        // "FoodDetailPage" nog vervangen
 
         private async void OnProductSelected(Toys toys)
         {

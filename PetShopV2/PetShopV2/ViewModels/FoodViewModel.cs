@@ -29,7 +29,6 @@ namespace PetShopV2.ViewModels
         }
 
         public Command LoadProductsCommand { get; }
-
         public Command<Food> ProductTapped { get; }
 
         //public Command<string> SkillDeletedCommand => new Command<string>(SkillDeleted);
@@ -39,17 +38,12 @@ namespace PetShopV2.ViewModels
             Title = "Food";
             FoodItems = new ObservableCollection<Food>();
             productExampleDB = new GenericRepo<Product>();
-
             //CartItems = new ObservableCollection<Product>();
-
             ExecuteLoadProductsCommand();
-            //LoadProductsCommand = new Command(async () => await ExecuteLoadProductsCommand());
 
             //todo: fix erboven
             LoadProductsCommand = new Command(ExecuteLoadProductsCommand);
             ProductTapped = new Command<Food>(OnProductSelected);
-
-            //AddProductCommand = new Command(OnAddProduct);
         }
 
         private async void ExecuteLoadProductsCommand()
@@ -62,6 +56,7 @@ namespace PetShopV2.ViewModels
                 FoodItems.Clear();
                 IEnumerable<Product> products = await productExampleDB.GetAllProductsAsync();
                 FoodItems = new ObservableCollection<Food>();
+                
                 foreach (var item in products)
                 {
                     if (item is Food)
