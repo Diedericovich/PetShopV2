@@ -65,6 +65,5 @@
                             Style="{DynamicResource ListItemTextStyle}"
                             FontSize="16" />
 
-       
     </StackLayout>
 </ContentPage>
