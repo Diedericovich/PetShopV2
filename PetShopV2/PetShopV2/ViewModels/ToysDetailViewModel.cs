@@ -15,7 +15,7 @@ namespace PetShopV2.ViewModels
         private int toysId;
 
         private CartRepo cartRepo;
-        public ICommand AddProductCommand { get; set; }
+        public Command AddProductCommand { get; set; }
 
         public ToysDetailViewModel()
         {
@@ -55,7 +55,7 @@ namespace PetShopV2.ViewModels
             }
         }
 
-        public async void OnAddProduct()
+        private async void OnAddProduct()
         {
             CartItem cartitem;
             CartItem item = await cartRepo.GetProductAsync(selectedToys.ID);

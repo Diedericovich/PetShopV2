@@ -18,12 +18,12 @@ namespace PetShopV2.ViewModels
         private CartRepo cartRepo;
 
         //waarom ICommand??
-        public Command<CartItem> AddProductCommand { get; set; }
+        public Command AddProductCommand { get; set; }
 
 
         public FoodDetailViewModel()
         {
-            AddProductCommand = new Command<CartItem>(OnAddProduct);
+            AddProductCommand = new Command(OnAddProduct);
             cartRepo = new CartRepo();
 
         }
@@ -61,17 +61,23 @@ namespace PetShopV2.ViewModels
             }
         }
 
-        private async void OnAddProduct(CartItem cartItem)
+        private async void OnAddProduct()
         {
-            cartItem = await cartRepo.GetProductAsync(selectedFood.ID);
-            if (cartItem == null)
+            CartItem cartitem;
+            CartItem item = await cartRepo.GetProductAsync(selectedFood.ID);
+            if (item == null)
             {
-                await cartRepo.AddProductAsync(cartItem);
+                cartitem = new CartItem()
+                {
+                    CartItemQuantity = 1,
+                    ProductId = selectedFood.ID,
+                };
+                await cartRepo.AddProductAsync(cartitem);
             }
             else
             {
-                cartItem.CartItemQuantity++;
-                await cartRepo.UpdateProductAsync(cartItem);
+                item.CartItemQuantity++;
+                await cartRepo.UpdateProductAsync(item);
             }
         }
     }
