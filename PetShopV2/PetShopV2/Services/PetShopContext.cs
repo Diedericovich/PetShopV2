@@ -38,20 +38,20 @@ namespace PetShopV2.Services
             modelBuilder.Entity<CartItem>().HasData(
                 new CartItem
                 {
-                    ID = 1000,
-                    ProductId = 1000,
+                    ID = 1,
+                    ProductId = 1,
                     CartItemQuantity = 1,
                 },
                  new CartItem
                  {
-                     ID = 1001,
-                     ProductId = 1001,
+                     ID = 2,
+                     ProductId = 2,
                      CartItemQuantity = 43,
                  },
                   new CartItem
                   {
-                      ID = 1002,
-                      ProductId = 1002,
+                      ID = 3,
+                      ProductId = 3,
                       CartItemQuantity = 3,
                   }
                 );
