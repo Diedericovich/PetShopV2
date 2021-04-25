@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace PetShopV2.ViewModels
 {
@@ -19,31 +20,15 @@ namespace PetShopV2.ViewModels
 
         private CartRepo _cartRepo;
 
-        private ObservableCollection<CartItem> itemsInCart;
-        public ObservableCollection<CartItem> ItemsInCart
-        {
-            get { return itemsInCart; }
-            set
-            {
-                itemsInCart = value;
-
-                OnPropertyChanged(nameof(ItemsInCart));
-            }
-        }
-
-
-        //waarom ICommand??
         public Command AddProductCommand { get; set; }
 
 
         public FoodDetailViewModel()
         {
+            Title = "Food Details";
             _cartRepo = new CartRepo();
-
             AddProductCommand = new Command(OnAddProduct);
-
         }
-
 
         public int FoodId
         {
@@ -80,40 +65,32 @@ namespace PetShopV2.ViewModels
         private async void OnAddProduct()
         {
             CartItem cartitem;
-            CartItem item = await _cartRepo.GetProductAsync(selectedFood.ID);
+            var CartList = await _cartRepo.GetItemsInCart();
+
+            var item = CartList.FirstOrDefault(x => x.ProductId == selectedFood.ID);
+            
             if (item == null)
             {
                 cartitem = new CartItem()
                 {
                     CartItemQuantity = 1,
                     ProductId = selectedFood.ID,
+                    CartItemTotalPrice = selectedFood.Price
                 };
                 await _cartRepo.AddProductAsync(cartitem);
             }
             else
             {
                 item.CartItemQuantity++;
+
+                int aantal = item.CartItemQuantity;
+                double prijs = item.Product.Price;
+
+                item.CartItemTotalPrice = aantal * prijs; 
+
                 await _cartRepo.UpdateProductAsync(item);
             }
         }
 
-        //private async void OnAddProduct()
-        //{
-        //    var result = await _cartRepo.GetItemsInCart();
-        //    ItemsInCart = new ObservableCollection<CartItem>(result);
-
-        //    CartItem cartItem = new CartItem();
-        //    cartItem = await _cartRepo.GetProductAsync(selectedFood.ID);
-
-        //    //cartItem.ProductId = selectedFood.ID;
-
-        //    if (!ItemsInCart.Contains(cartItem))
-        //    {
-
-        //    await _cartRepo.AddProductAsync(cartItem);
-        //    }
-
-        //    ItemsInCart.Add(cartItem);
-        //}
     }
 }

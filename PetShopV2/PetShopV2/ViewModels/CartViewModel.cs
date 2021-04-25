@@ -13,8 +13,6 @@ namespace PetShopV2.ViewModels
 {
     public class CartViewModel : BaseViewModel
     {
-        //private Product _selectedProduct;
-
         private CartRepo _cartRepo;
 
         private ObservableCollection<CartItem> itemsInCart;
@@ -27,7 +25,6 @@ namespace PetShopV2.ViewModels
             }
         }
 
-        //todo: remove?
         public Command LoadProductsCommand { get; set; }
 
         public Command<CartItem> AddProductCommand { get; set; }
@@ -50,7 +47,6 @@ namespace PetShopV2.ViewModels
             RefreshCommand = new Command(OnLoaded);
 
             OnLoaded();
-
         }
 
         private async void OnLoaded( )
@@ -63,11 +59,12 @@ namespace PetShopV2.ViewModels
         private async void OnAddProduct(CartItem cartItem)
         {
             cartItem.CartItemQuantity++;
+
+            int aantal = cartItem.CartItemQuantity;
+            cartItem.CartItemTotalPrice = aantal * cartItem.Product.Price;
+
             //niet ideaal: beter: in memory opslaan en als klaar naar database, nu elke keer op knop duwen = refreshen database
             await _cartRepo.UpdateProductAsync(cartItem);
-            
-            //mag dit niet gewoon weg?????????
-            //OnLoaded();
         }
        
         private async void OnDeductProduct(CartItem cartItem)
@@ -75,6 +72,10 @@ namespace PetShopV2.ViewModels
             if (cartItem.CartItemQuantity > 1)
             {
                 cartItem.CartItemQuantity--;
+
+                int aantal = cartItem.CartItemQuantity;
+                cartItem.CartItemTotalPrice = aantal * cartItem.Product.Price;
+
                 await _cartRepo.UpdateProductAsync(cartItem);
             }
         }
