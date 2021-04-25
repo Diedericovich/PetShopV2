@@ -22,7 +22,7 @@ namespace PetShopV2.Services
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "PetShop1002.SQLite");
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "PetShop1004.SQLite");
             optionsBuilder.UseSqlite($"FileName={dbPath}");
         }
 
@@ -41,22 +41,24 @@ namespace PetShopV2.Services
                     ID = 1,
                     ProductId = 1,
                     CartItemQuantity = 1,
+                    CartItemTotalPrice = 4.50,
                 },
                  new CartItem
                  {
                      ID = 2,
                      ProductId = 2,
                      CartItemQuantity = 43,
+                     CartItemTotalPrice = 0.50,
                  },
                   new CartItem
                   {
                       ID = 3,
                       ProductId = 3,
                       CartItemQuantity = 3,
+                      CartItemTotalPrice = 6.50,
                   }
                 );
         }
-
         private void SeedFood(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Food>().HasData(

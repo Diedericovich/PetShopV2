@@ -7,6 +7,7 @@
         public Product Product { get; set; }
 
         private int cartItemQuantity;
+        private double cartItemTotalPrice;
 
         public int CartItemQuantity
         {
@@ -17,6 +18,15 @@
             }
         }
 
+        public double CartItemTotalPrice
+        {
+            get { return cartItemTotalPrice; }
+            set
+            {
+                cartItemTotalPrice = value;
+                OnPropertyChanged(nameof(CartItemTotalPrice));
+            }
+        }
 
         //public int ShoppingCartId { get; set; }
 

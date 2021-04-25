@@ -47,7 +47,6 @@ namespace PetShopV2.ViewModels
             RefreshCommand = new Command(OnLoaded);
 
             OnLoaded();
-
         }
 
         private async void OnLoaded( )
@@ -60,6 +59,10 @@ namespace PetShopV2.ViewModels
         private async void OnAddProduct(CartItem cartItem)
         {
             cartItem.CartItemQuantity++;
+
+            int aantal = cartItem.CartItemQuantity;
+            cartItem.CartItemTotalPrice = aantal * cartItem.Product.Price;
+
             //niet ideaal: beter: in memory opslaan en als klaar naar database, nu elke keer op knop duwen = refreshen database
             await _cartRepo.UpdateProductAsync(cartItem);
         }
@@ -69,6 +72,10 @@ namespace PetShopV2.ViewModels
             if (cartItem.CartItemQuantity > 1)
             {
                 cartItem.CartItemQuantity--;
+
+                int aantal = cartItem.CartItemQuantity;
+                cartItem.CartItemTotalPrice = aantal * cartItem.Product.Price;
+
                 await _cartRepo.UpdateProductAsync(cartItem);
             }
         }
