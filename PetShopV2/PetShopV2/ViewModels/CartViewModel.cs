@@ -15,16 +15,6 @@ namespace PetShopV2.ViewModels
     {
         private CartRepo _cartRepo;
 
-        private ObservableCollection<CartItem> itemsInCart;
-        public  ObservableCollection<CartItem> ItemsInCart
-        {
-            get { return itemsInCart; }
-            set { itemsInCart = value;
-
-                OnPropertyChanged(nameof(ItemsInCart));
-            }
-        }
-
         public Command LoadProductsCommand { get; set; }
 
         public Command<CartItem> AddProductCommand { get; set; }
@@ -34,6 +24,29 @@ namespace PetShopV2.ViewModels
         public Command<CartItem> DeleteProductCommand { get; set; }
 
         public Command RefreshCommand { get; set; }
+
+        private ObservableCollection<CartItem> itemsInCart;
+        public ObservableCollection<CartItem> ItemsInCart
+        {
+            get { return itemsInCart; }
+            set
+            {
+                itemsInCart = value;
+
+                OnPropertyChanged(nameof(ItemsInCart));
+            }
+        }
+
+        private double totalPrice;
+        public double TotalPrice
+        {
+            get { return totalPrice; }
+            set
+            {
+                totalPrice = value;
+                OnPropertyChanged(nameof(TotalPrice));
+            }
+        }
 
         public CartViewModel()
         {
@@ -48,12 +61,19 @@ namespace PetShopV2.ViewModels
 
             OnLoaded();
         }
-
-        private async void OnLoaded( )
+        private async void OnLoaded()
         {
             var result = await _cartRepo.GetItemsInCart();
             ItemsInCart = new ObservableCollection<CartItem>(result);
-
+            CalcTotalPrice();
+        }
+        private void CalcTotalPrice()
+        {
+            TotalPrice = 0;
+            foreach (CartItem cartItem in ItemsInCart)
+            {
+                TotalPrice += cartItem.CartItemTotalPrice;
+            };
         }
 
         private async void OnAddProduct(CartItem cartItem)
@@ -65,8 +85,10 @@ namespace PetShopV2.ViewModels
 
             //niet ideaal: beter: in memory opslaan en als klaar naar database, nu elke keer op knop duwen = refreshen database
             await _cartRepo.UpdateProductAsync(cartItem);
+
+            TotalPrice += cartItem.Product.Price;
         }
-       
+
         private async void OnDeductProduct(CartItem cartItem)
         {
             if (cartItem.CartItemQuantity > 1)
@@ -77,6 +99,8 @@ namespace PetShopV2.ViewModels
                 cartItem.CartItemTotalPrice = aantal * cartItem.Product.Price;
 
                 await _cartRepo.UpdateProductAsync(cartItem);
+
+                TotalPrice -= cartItem.Product.Price;
             }
         }
 
@@ -84,7 +108,10 @@ namespace PetShopV2.ViewModels
         {
             ItemsInCart.Remove(cartItem);
             await _cartRepo.DeleteProductAsync(cartItem.ID);
+
+            TotalPrice -= cartItem.CartItemTotalPrice;
         }
 
+      
     }
 }
