@@ -17,17 +17,18 @@ namespace PetShopV2.ViewModels
 
         private CartRepo _cartRepo;
 
-        //private ObservableCollection<CartItem> itemsInCart;
-        //public ObservableCollection<CartItem> ItemsInCart
-        //{
-        //    get { return itemsInCart; }
-        //    set
-        //    {
-        //        itemsInCart = value;
+        private ObservableCollection<CartItem> itemsInCart;
+        public ObservableCollection<CartItem> ItemsInCart
+        {
+            get { return itemsInCart; }
+            set
+            {
+                itemsInCart = value;
 
-        //        OnPropertyChanged(nameof(ItemsInCart));
-        //    }
-        //}
+                OnPropertyChanged(nameof(ItemsInCart));
+            }
+        }
+
 
         //waarom ICommand??
         public Command AddProductCommand { get; set; }
@@ -39,7 +40,6 @@ namespace PetShopV2.ViewModels
 
             AddProductCommand = new Command(OnAddProduct);
 
-            //OnLoaded();
         }
 
 
@@ -79,7 +79,6 @@ namespace PetShopV2.ViewModels
         {
             CartItem cartitem;
             CartItem item = await _cartRepo.GetProductAsync(selectedFood.ID);
-            //OnLoaded();
             if (item == null)
             {
                 cartitem = new CartItem()
@@ -96,11 +95,23 @@ namespace PetShopV2.ViewModels
             }
         }
 
-        //private async void OnLoaded()
+        //private async void OnAddProduct()
         //{
-        //    var result = await cartRepo.GetItemsInCart();
+        //    var result = await _cartRepo.GetItemsInCart();
         //    ItemsInCart = new ObservableCollection<CartItem>(result);
 
+        //    CartItem cartItem = new CartItem();
+        //    cartItem = await _cartRepo.GetProductAsync(selectedFood.ID);
+
+        //    //cartItem.ProductId = selectedFood.ID;
+
+        //    if (!ItemsInCart.Contains(cartItem))
+        //    {
+
+        //    await _cartRepo.AddProductAsync(cartItem);
+        //    }
+
+        //    ItemsInCart.Add(cartItem);
         //}
     }
 }
