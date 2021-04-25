@@ -15,13 +15,20 @@ namespace PetShopV2.Models
             }
         }
 
+        private double totalPrice;
+        public double TotalPrice
+        {
+            get { return totalPrice; }
+            set
+            {
+                totalPrice = value;
+                OnPropertyChanged(nameof(TotalPrice));
+            }
 
+        }
         public ShoppingCart()
         {
-            ItemsInCart = new ObservableCollection<CartItem>
-            {
-                      
-            };
+            ItemsInCart = new ObservableCollection<CartItem>();
         }
     }
 }

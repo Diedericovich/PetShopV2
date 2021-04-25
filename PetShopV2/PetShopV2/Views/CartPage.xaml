@@ -141,6 +141,20 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+
+                <Label Text="Total Price:"
+                       TextDecorations="Underline"
+                       FontSize="20"
+                       Margin="8"
+                       HorizontalOptions="Start"
+                       Style="{DynamicResource ListItemTextStyle}"/>
+
+                <Label Text="{Binding TotalPrice}"
+                       FontSize="25"
+                       Margin="8"
+                       HorizontalOptions="Start"
+                       Style="{DynamicResource ListItemTextStyle}"/>
+
             </StackLayout>
         </RefreshView>
     </ContentPage.Content>

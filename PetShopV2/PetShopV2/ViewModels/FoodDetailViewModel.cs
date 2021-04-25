@@ -87,6 +87,7 @@ namespace PetShopV2.ViewModels
                 item.CartItemTotalPrice = aantal * prijs; 
 
                 await _cartRepo.UpdateProductAsync(item);
+
             }
         }
 
