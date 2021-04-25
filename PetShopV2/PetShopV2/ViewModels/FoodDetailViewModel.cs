@@ -17,6 +17,18 @@ namespace PetShopV2.ViewModels
 
         private CartRepo cartRepo;
 
+        //private ObservableCollection<CartItem> itemsInCart;
+        //public ObservableCollection<CartItem> ItemsInCart
+        //{
+        //    get { return itemsInCart; }
+        //    set
+        //    {
+        //        itemsInCart = value;
+
+        //        OnPropertyChanged(nameof(ItemsInCart));
+        //    }
+        //}
+
         //waarom ICommand??
         public Command AddProductCommand { get; set; }
 
@@ -26,6 +38,7 @@ namespace PetShopV2.ViewModels
             AddProductCommand = new Command(OnAddProduct);
             cartRepo = new CartRepo();
 
+            //OnLoaded();
         }
 
 
@@ -65,6 +78,7 @@ namespace PetShopV2.ViewModels
         {
             CartItem cartitem;
             CartItem item = await cartRepo.GetProductAsync(selectedFood.ID);
+            //OnLoaded();
             if (item == null)
             {
                 cartitem = new CartItem()
@@ -80,5 +94,12 @@ namespace PetShopV2.ViewModels
                 await cartRepo.UpdateProductAsync(item);
             }
         }
+
+        //private async void OnLoaded()
+        //{
+        //    var result = await cartRepo.GetItemsInCart();
+        //    ItemsInCart = new ObservableCollection<CartItem>(result);
+
+        //}
     }
 }

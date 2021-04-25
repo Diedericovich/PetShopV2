@@ -18,8 +18,6 @@ namespace PetShopV2.ViewModels
         private CartRepo _cartRepo;
 
         private ObservableCollection<CartItem> itemsInCart;
-        
-
         public  ObservableCollection<CartItem> ItemsInCart
         {
             get { return itemsInCart; }
