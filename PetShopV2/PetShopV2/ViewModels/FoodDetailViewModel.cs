@@ -15,7 +15,7 @@ namespace PetShopV2.ViewModels
         private Food selectedFood;
         private int foodId;
 
-        private CartRepo cartRepo;
+        private CartRepo _cartRepo;
 
         //private ObservableCollection<CartItem> itemsInCart;
         //public ObservableCollection<CartItem> ItemsInCart
@@ -35,7 +35,7 @@ namespace PetShopV2.ViewModels
 
         public FoodDetailViewModel()
         {
-            cartRepo = new CartRepo();
+            _cartRepo = new CartRepo();
 
             AddProductCommand = new Command(OnAddProduct);
 
@@ -78,7 +78,7 @@ namespace PetShopV2.ViewModels
         private async void OnAddProduct()
         {
             CartItem cartitem;
-            CartItem item = await cartRepo.GetProductAsync(selectedFood.ID);
+            CartItem item = await _cartRepo.GetProductAsync(selectedFood.ID);
             //OnLoaded();
             if (item == null)
             {
@@ -87,12 +87,12 @@ namespace PetShopV2.ViewModels
                     CartItemQuantity = 1,
                     ProductId = selectedFood.ID,
                 };
-                await cartRepo.AddProductAsync(cartitem);
+                await _cartRepo.AddProductAsync(cartitem);
             }
             else
             {
                 item.CartItemQuantity++;
-                await cartRepo.UpdateProductAsync(item);
+                await _cartRepo.UpdateProductAsync(item);
             }
         }
 

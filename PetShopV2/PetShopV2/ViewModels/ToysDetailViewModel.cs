@@ -14,12 +14,12 @@ namespace PetShopV2.ViewModels
         private Toys selectedToys;
         private int toysId;
 
-        private CartRepo cartRepo;
+        private CartRepo _cartRepo;
         public Command AddProductCommand { get; set; }
 
         public ToysDetailViewModel()
         {
-            cartRepo = new CartRepo();
+            _cartRepo = new CartRepo();
 
             AddProductCommand = new Command(OnAddProduct);
         }
@@ -59,7 +59,7 @@ namespace PetShopV2.ViewModels
         private async void OnAddProduct()
         {
             CartItem cartitem;
-            CartItem item = await cartRepo.GetProductAsync(selectedToys.ID);
+            CartItem item = await _cartRepo.GetProductAsync(selectedToys.ID);
             if (item == null)
             {
                 cartitem = new CartItem()
@@ -67,12 +67,12 @@ namespace PetShopV2.ViewModels
                     CartItemQuantity = 1,
                     ProductId = selectedToys.ID,
                 };
-                await cartRepo.AddProductAsync(cartitem);
+                await _cartRepo.AddProductAsync(cartitem);
             }
             else
             {
                 item.CartItemQuantity++;
-                await cartRepo.UpdateProductAsync(item);
+                await _cartRepo.UpdateProductAsync(item);
             }
         }
     }
