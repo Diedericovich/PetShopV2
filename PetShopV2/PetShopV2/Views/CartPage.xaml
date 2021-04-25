@@ -4,11 +4,12 @@
              xmlns:local="clr-namespace:PetShopV2.ViewModels"
              Title="{Binding Title}"
              x:Class="PetShopV2.Views.CartPage"
-                BackgroundColor="White">
+             BackgroundColor="LightGreen">
 
     <ContentPage.BindingContext>
         <local:CartViewModel />
     </ContentPage.BindingContext>
+    
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
@@ -16,6 +17,7 @@
                 <Setter Property="FontSize" Value="10" />
             </Style>
         </ResourceDictionary>
+        
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
@@ -88,7 +90,7 @@
                                         Grid.Row="1"
                                         FontSize="Medium"
                                         Margin="8"
-                                        BackgroundColor="green"
+                                        BackgroundColor="Green"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=AddProductCommand}"
                                         CommandParameter="{Binding .}" />
                                     <Button Text="-"
@@ -96,7 +98,7 @@
                                         Grid.Row="1"
                                         FontSize="Medium"
                                         Margin="8"
-                                        BackgroundColor="green"
+                                        BackgroundColor="Green"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=DeductProductCommand}"
                                         CommandParameter="{Binding .}" />
                                 </Grid>
@@ -123,7 +125,7 @@
                                            Grid.Row="1"
                                             VerticalOptions="Center"
                                             FontSize="10"
-                                    Text="{Binding Product.Price}"
+                                    Text="{Binding CartItemTotalPrice}"
                                     LineBreakMode="NoWrap"
                                     Style="{DynamicResource ListItemTextStyle}" />
                                 </Grid>

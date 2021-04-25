@@ -73,12 +73,19 @@ namespace PetShopV2.ViewModels
                 {
                     CartItemQuantity = 1,
                     ProductId = selectedFood.ID,
+                    CartItemTotalPrice = selectedFood.Price
                 };
                 await _cartRepo.AddProductAsync(cartitem);
             }
             else
             {
                 item.CartItemQuantity++;
+
+                int aantal = item.CartItemQuantity;
+                double prijs = item.Product.Price;
+
+                item.CartItemTotalPrice = aantal * prijs; 
+
                 await _cartRepo.UpdateProductAsync(item);
             }
         }
