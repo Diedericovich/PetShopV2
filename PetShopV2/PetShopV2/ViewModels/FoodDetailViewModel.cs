@@ -6,8 +6,6 @@ using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PetShopV2.ViewModels
 {
@@ -19,10 +17,9 @@ namespace PetShopV2.ViewModels
         private Food selectedFood;
         private int foodId;
 
-        private CartRepo cartRepo;
+        private CartRepo _cartRepo;
 
         private ObservableCollection<CartItem> itemsInCart;
-
         public ObservableCollection<CartItem> ItemsInCart
         {
             get { return itemsInCart; }
@@ -35,15 +32,18 @@ namespace PetShopV2.ViewModels
         }
 
 
-        //todo: use single style (extracten naar ctor)
-        public ICommand AddProductCommand;
+        //waarom ICommand??
+        public Command AddProductCommand { get; set; }
+
 
         public FoodDetailViewModel()
         {
-            productExampleDB = new GenericRepo<Product>();
-            AddProductCommand = new Command<Food>(OnAddProduct);
-            cartRepo = new CartRepo();
+            _cartRepo = new CartRepo();
+
+            AddProductCommand = new Command(OnAddProduct);
+
         }
+
 
         public int FoodId
         {
@@ -77,25 +77,43 @@ namespace PetShopV2.ViewModels
             }
         }
 
-        private void OnAddProduct(Food food)
+        private async void OnAddProduct()
         {
-            var cartItem = ItemsInCart.FirstOrDefault(x => x.Product.ID == FoodId);
-
-            if (cartItem == null)
+            CartItem cartitem;
+            CartItem item = await _cartRepo.GetProductAsync(selectedFood.ID);
+            if (item == null)
             {
-                CartItem newCartItem = new CartItem
+                cartitem = new CartItem()
                 {
                     CartItemQuantity = 1,
-                    Product = food,
+                    ProductId = selectedFood.ID,
                 };
-                ItemsInCart.Add(newCartItem);
+                await _cartRepo.AddProductAsync(cartitem);
             }
             else
             {
-                cartItem.CartItemQuantity++;
+                item.CartItemQuantity++;
+                await _cartRepo.UpdateProductAsync(item);
             }
-
-
         }
+
+        //private async void OnAddProduct()
+        //{
+        //    var result = await _cartRepo.GetItemsInCart();
+        //    ItemsInCart = new ObservableCollection<CartItem>(result);
+
+        //    CartItem cartItem = new CartItem();
+        //    cartItem = await _cartRepo.GetProductAsync(selectedFood.ID);
+
+        //    //cartItem.ProductId = selectedFood.ID;
+
+        //    if (!ItemsInCart.Contains(cartItem))
+        //    {
+
+        //    await _cartRepo.AddProductAsync(cartItem);
+        //    }
+
+        //    ItemsInCart.Add(cartItem);
+        //}
     }
 }
