@@ -19,6 +19,8 @@ namespace PetShopV2.ViewModels
 
         public ToysDetailViewModel()
         {
+            Title = "Food Details";
+
             _cartRepo = new CartRepo();
 
             AddProductCommand = new Command(OnAddProduct);

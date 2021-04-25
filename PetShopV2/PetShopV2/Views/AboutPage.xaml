@@ -14,16 +14,7 @@
         <ScrollView>
             <StackLayout>
                 <Image x:Name="Header" Source="logoBanner.jpg" Aspect="Fill" HeightRequest="{OnPlatform iOS='*', Android=150, UWP=250}" />
-                <SearchBar Placeholder="Search items..."
-                            BackgroundColor="White"
-                            CancelButtonColor="Orange"
-                            PlaceholderColor="Orange"
-                            TextColor="Orange"
-                            TextTransform="Lowercase"
-                            HorizontalTextAlignment="Center"
-                            FontSize="Medium"
-                            FontAttributes="Italic" />
-
+                
                 <StackLayout>
                     <Label Text="Bestsellers"
                            HorizontalOptions="Center"

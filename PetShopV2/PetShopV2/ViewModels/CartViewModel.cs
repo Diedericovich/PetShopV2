@@ -13,8 +13,6 @@ namespace PetShopV2.ViewModels
 {
     public class CartViewModel : BaseViewModel
     {
-        //private Product _selectedProduct;
-
         private CartRepo _cartRepo;
 
         private ObservableCollection<CartItem> itemsInCart;
@@ -27,7 +25,6 @@ namespace PetShopV2.ViewModels
             }
         }
 
-        //todo: remove?
         public Command LoadProductsCommand { get; set; }
 
         public Command<CartItem> AddProductCommand { get; set; }
