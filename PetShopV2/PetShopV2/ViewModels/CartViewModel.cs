@@ -62,9 +62,6 @@ namespace PetShopV2.ViewModels
             cartItem.CartItemQuantity++;
             //niet ideaal: beter: in memory opslaan en als klaar naar database, nu elke keer op knop duwen = refreshen database
             await _cartRepo.UpdateProductAsync(cartItem);
-            
-            //mag dit niet gewoon weg?????????
-            //OnLoaded();
         }
        
         private async void OnDeductProduct(CartItem cartItem)
