@@ -13,7 +13,7 @@ namespace PetShopV2.ViewModels
 {
     public class CartViewModel : BaseViewModel
     {
-        private Product _selectedProduct;
+        //private Product _selectedProduct;
 
         private CartRepo _cartRepo;
 

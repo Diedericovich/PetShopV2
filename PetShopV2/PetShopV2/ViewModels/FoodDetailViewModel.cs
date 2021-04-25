@@ -5,6 +5,7 @@ using System;
 using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System.Collections.ObjectModel;
 
 namespace PetShopV2.ViewModels
 {
@@ -16,14 +17,17 @@ namespace PetShopV2.ViewModels
 
         private CartRepo cartRepo;
 
-        //todo: use single style (extracten naar ctor)
-        public ICommand AddProductCommand;
+        //waarom ICommand??
+        public Command<CartItem> AddProductCommand { get; set; }
+
 
         public FoodDetailViewModel()
         {
-            AddProductCommand = new Command(OnAddProduct);
+            AddProductCommand = new Command<CartItem>(OnAddProduct);
             cartRepo = new CartRepo();
+
         }
+
 
         public int FoodId
         {
@@ -57,26 +61,18 @@ namespace PetShopV2.ViewModels
             }
         }
 
-        private async void OnAddProduct()
+        private async void OnAddProduct(CartItem cartItem)
         {
-            // TO DO ???
-            CartItem cartitem;
-            CartItem item = await cartRepo.GetProductAsync(selectedFood.ID);
-            if (item == null)
+            cartItem = await cartRepo.GetProductAsync(selectedFood.ID);
+            if (cartItem == null)
             {
-                cartitem = new CartItem()
-                {
-                    CartItemQuantity = 1,
-                    ProductId = selectedFood.ID,
-                };
-                await cartRepo.AddProductAsync(cartitem);
+                await cartRepo.AddProductAsync(cartItem);
             }
             else
             {
-                item.CartItemQuantity++;
-                await cartRepo.UpdateProductAsync(item);
+                cartItem.CartItemQuantity++;
+                await cartRepo.UpdateProductAsync(cartItem);
             }
-
         }
     }
 }

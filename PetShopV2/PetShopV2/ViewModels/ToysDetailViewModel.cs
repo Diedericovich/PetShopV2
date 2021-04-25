@@ -3,6 +3,7 @@ using PetShopV2.Services;
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace PetShopV2.ViewModels
@@ -14,7 +15,7 @@ namespace PetShopV2.ViewModels
         private int toysId;
 
         private CartRepo cartRepo;
-        public Command AddProductCommand;
+        public ICommand AddProductCommand { get; set; }
 
         public ToysDetailViewModel()
         {
@@ -54,7 +55,7 @@ namespace PetShopV2.ViewModels
             }
         }
 
-        private async void OnAddProduct()
+        public async void OnAddProduct()
         {
             CartItem cartitem;
             CartItem item = await cartRepo.GetProductAsync(selectedToys.ID);
