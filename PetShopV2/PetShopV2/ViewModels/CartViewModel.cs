@@ -123,9 +123,10 @@ namespace PetShopV2.ViewModels
             }
         }
 
-        private void OnDeleteProduct(CartItem cartItem)
+        private async void OnDeleteProduct(CartItem cartItem)
         {
             ItemsInCart.Remove(cartItem);
+            await _cartRepo.DeleteProductAsync(cartItem.ID);
         }
 
     }
