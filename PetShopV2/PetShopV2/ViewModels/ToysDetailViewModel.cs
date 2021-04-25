@@ -19,8 +19,8 @@ namespace PetShopV2.ViewModels
 
         public ToysDetailViewModel()
         {
+            Title = "Food Details";
             _cartRepo = new CartRepo();
-
             AddProductCommand = new Command(OnAddProduct);
         }
 
@@ -59,7 +59,8 @@ namespace PetShopV2.ViewModels
         private async void OnAddProduct()
         {
             CartItem cartitem;
-            CartItem item = await _cartRepo.GetProductAsync(selectedToys.ID);
+            var CartList = await _cartRepo.GetItemsInCart();
+            var item = CartList.FirstOrDefault(x => x.ProductId == selectedToys.ID);
             if (item == null)
             {
                 cartitem = new CartItem()
