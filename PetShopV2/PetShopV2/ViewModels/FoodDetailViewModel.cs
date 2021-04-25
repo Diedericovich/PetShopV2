@@ -35,8 +35,9 @@ namespace PetShopV2.ViewModels
 
         public FoodDetailViewModel()
         {
-            AddProductCommand = new Command(OnAddProduct);
             cartRepo = new CartRepo();
+
+            AddProductCommand = new Command(OnAddProduct);
 
             //OnLoaded();
         }

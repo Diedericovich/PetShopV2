@@ -22,7 +22,7 @@ namespace PetShopV2.Services
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "PetShop10.SQLite");
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "PetShop11.SQLite");
             optionsBuilder.UseSqlite($"FileName={dbPath}");
         }
 
@@ -38,25 +38,148 @@ namespace PetShopV2.Services
             modelBuilder.Entity<CartItem>().HasData(
                 new CartItem
                 {
-                    ID = 1,
-                    ProductId = 1,
+                    ID = 1000,
+                    ProductId = 1000,
                     CartItemQuantity = 1,
                 },
                  new CartItem
                  {
-                     ID = 2,
-                     ProductId = 2,
+                     ID = 1001,
+                     ProductId = 1001,
                      CartItemQuantity = 43,
                  },
                   new CartItem
                   {
-                      ID = 3,
-                      ProductId = 3,
+                      ID = 1002,
+                      ProductId = 1002,
                       CartItemQuantity = 3,
                   }
                 );
         }
 
+        private void SeedFood(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Food>().HasData(
+
+                new Food
+                {
+                    ID = 1,
+                    Name = "Meow Mix Original Choice",
+                    Description = "100% complete and balanced nutrition, all essential vitamines & minerals, high quality protein helps support strong, healthy muscles; Delicious flavours of: chicken, turkey, salmon and ocean fish",
+                    Image = "Catfood_MeowMix.jpg",
+                    Price = 4.50,
+                    InStock = true,
+                    Animal = AnimalType.Cat,
+                    ProductBrand = "Made in the USA",
+                    FoodWeight = 7.26,
+                    IsGrainFree = true,
+                },
+                new Food
+                {
+                    ID = 2,
+                    Name = "Whiskas Jelly bag with Chicken",
+                    Description = "Contains Chicken in jelly; with selected natural ingredients with vitamins & minerals",
+                    Image = "Catfood_Whiskas_ChickenJelly_Bag.jpg",
+                    Price = 0.50,
+                    InStock = true,
+                    Animal = AnimalType.Cat,
+                    ProductBrand = "Whiskas",
+                    FoodWeight = 0.10,
+                    IsGrainFree = true,
+                },
+                new Food
+                {
+                    ID = 3,
+                    Name = "9 Lives Indoor Complete",
+                    Description = "Targeted Nutrition for indoor adult cats; helps support a healthy immune system; helps support healthy weight & metabolism; easy litter box cleanup; 100% complete & balanced nutrition for adult cats; with flavors of chicken and salmon",
+                    Image = "Catfood9lives.jpeg",
+                    Price = 6.50,
+                    InStock = true,
+                    Animal = AnimalType.Cat,
+                    ProductBrand = "9 Lives",
+                    FoodWeight = 9.07,
+                    IsGrainFree = true,
+                },
+                new Food
+                {
+                    ID = 4,
+                    Name = "Cat Food NEW",
+                    Description = "contains natural ingredients, essential nutrients & antioxidants and extra calcium; mix of chicken and dog flavors",
+                    Image = "Catfood_Catfood_Mix_Can.png",
+                    Price = 4.20,
+                    InStock = true,
+                    Animal = AnimalType.Cat,
+                    ProductBrand = "Cat Food",
+                    FoodWeight = 2.50,
+                    IsGrainFree = false,
+                },
+                new Food
+                {
+                    ID = 5,
+                    Name = "Whiskas Adult 1+ Mackerel Flavour",
+                    Description = "Food for adult cats; supports the vital system: healthy and shiny coat, healthy eyesight, lively and energetic; mackerel flavour",
+                    Image = "Catfood_Whiskas_MackerelFlavour_Bag.png",
+                    Price = 5.50,
+                    InStock = false,
+                    Animal = AnimalType.Cat,
+                    ProductBrand = "Whiskas",
+                    FoodWeight = 7,
+                    IsGrainFree = true,
+                },
+                new Food
+                {
+                    ID = 6,
+                    Name = "Dog Food New",
+                    Description = "Contains natural ingredients, essential nutrients & antioxidants and extra calcium; crunchy bites;  mix of cat and chicken flavors,",
+                    Image = "Dogfood_New.png",
+                    Price = 4.20,
+                    InStock = true,
+                    Animal = AnimalType.Dog,
+                    ProductBrand = "Dog Food",
+                    FoodWeight = 2.50,
+                    IsGrainFree = false,
+                },
+                new Food
+                {
+                    ID = 7,
+                    Name = "Blue Wilderness - Nature's Evolutionary Diet",
+                    Description = "Natural food for adult dogs enhanced with vitamins and minerals; High Protein; Contains Chicken; 100% Grain free, ",
+                    Image = "Blue_WildernessWolf.jfif",
+                    Price = 6.50,
+                    InStock = true,
+                    Animal = AnimalType.Dog,
+                    ProductBrand = "Blue Wilderness",
+                    FoodWeight = 5,
+                    IsGrainFree = true,
+                },
+                new Food
+                {
+                    ID = 8,
+                    Name = "Quality Dog Food",
+                    Description = "Food for adult dogs; all breeds",
+                    Image = "Horta_QualityDogFood.png",
+                    Price = 8.50,
+                    InStock = true,
+                    Animal = AnimalType.Dog,
+                    ProductBrand = "Horta",
+                    FoodWeight = 15,
+                    IsGrainFree = true,
+                },
+                new Food
+                {
+                    ID = 9,
+                    Name = "Pedigree Small Dog",
+                    Description = "Food for small dogs including complete nutrition; Roasted Chicken, rice & vegetable flavor; 100% complete and balanced food for adult dogs, no high fructose corn syrup, no artifical flavors, no added sugar",
+                    Image = "Pedigree_SmallDog.jpg",
+                    Price = 7.20,
+                    InStock = true,
+                    Animal = AnimalType.Dog,
+                    ProductBrand = "Pedigree",
+                    FoodWeight = 7.20,
+                    IsGrainFree = true,
+                }
+             );
+        }
         private void SeedToys(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Toys>().HasData(
@@ -203,128 +326,5 @@ namespace PetShopV2.Services
              );
         }
 
-        private void SeedFood(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Food>().HasData(
-
-                new Food
-                {
-                    ID = 1,
-                    Name = "Meow Mix Original Choice",
-                    Description = "100% complete and balanced nutrition, all essential vitamines & minerals, high quality protein helps support strong, healthy muscles; Delicious flavours of: chicken, turkey, salmon and ocean fish",
-                    Image = "Catfood_MeowMix.jpg",
-                    Price = 4.50,
-                    InStock = true,
-                    Animal = AnimalType.Cat,
-                    ProductBrand = "Made in the USA",
-                    FoodWeight = 7.26,
-                    IsGrainFree = true,
-                },
-                new Food
-                {
-                    ID = 2,
-                    Name = "Whiskas Jelly bag with Chicken",
-                    Description = "Contains Chicken in jelly; with selected natural ingredients with vitamins & minerals",
-                    Image = "Catfood_Whiskas_ChickenJelly_Bag.jpg",
-                    Price = 0.50,
-                    InStock = true,
-                    Animal = AnimalType.Cat,
-                    ProductBrand = "Whiskas",
-                    FoodWeight = 0.10,
-                    IsGrainFree = true,
-                },
-                new Food
-                {
-                    ID = 3,
-                    Name = "9 Lives Indoor Complete",
-                    Description = "Targeted Nutrition for indoor adult cats; helps support a healthy immune system; helps support healthy weight & metabolism; easy litter box cleanup; 100% complete & balanced nutrition for adult cats; with flavors of chicken and salmon",
-                    Image = "Catfood9lives.jpeg",
-                    Price = 6.50,
-                    InStock = true,
-                    Animal = AnimalType.Cat,
-                    ProductBrand = "9 Lives",
-                    FoodWeight = 9.07,
-                    IsGrainFree = true,
-                },
-                new Food
-                {
-                    ID = 4,
-                    Name = "Cat Food NEW",
-                    Description = "contains natural ingredients, essential nutrients & antioxidants and extra calcium; mix of chicken and dog flavors",
-                    Image = "Catfood_Catfood_Mix_Can.png",
-                    Price = 4.20,
-                    InStock = true,
-                    Animal = AnimalType.Cat,
-                    ProductBrand = "Cat Food",
-                    FoodWeight = 2.50,
-                    IsGrainFree = false,
-                },
-                new Food
-                {
-                    ID = 5,
-                    Name = "Whiskas Adult 1+ Mackerel Flavour",
-                    Description = "Food for adult cats; supports the vital system: healthy and shiny coat, healthy eyesight, lively and energetic; mackerel flavour",
-                    Image = "Catfood_Whiskas_MackerelFlavour_Bag.png",
-                    Price = 5.50,
-                    InStock = false,
-                    Animal = AnimalType.Cat,
-                    ProductBrand = "Whiskas",
-                    FoodWeight = 7,
-                    IsGrainFree = true,
-                },
-                new Food
-                {
-                    ID = 6,
-                    Name = "Dog Food New",
-                    Description = "Contains natural ingredients, essential nutrients & antioxidants and extra calcium; crunchy bites;  mix of cat and chicken flavors,",
-                    Image = "Dogfood_New.png",
-                    Price = 4.20,
-                    InStock = true,
-                    Animal = AnimalType.Dog,
-                    ProductBrand = "Dog Food",
-                    FoodWeight = 2.50,
-                    IsGrainFree = false,
-                },
-                new Food
-                {
-                    ID = 7,
-                    Name = "Blue Wilderness - Nature's Evolutionary Diet",
-                    Description = "Natural food for adult dogs enhanced with vitamins and minerals; High Protein; Contains Chicken; 100% Grain free, ",
-                    Image = "Blue_WildernessWolf.jfif",
-                    Price = 6.50,
-                    InStock = true,
-                    Animal = AnimalType.Dog,
-                    ProductBrand = "Blue Wilderness",
-                    FoodWeight = 5,
-                    IsGrainFree = true,
-                },
-                new Food
-                {
-                    ID = 8,
-                    Name = "Quality Dog Food",
-                    Description = "Food for adult dogs; all breeds",
-                    Image = "Horta_QualityDogFood.png",
-                    Price = 8.50,
-                    InStock = true,
-                    Animal = AnimalType.Dog,
-                    ProductBrand = "Horta",
-                    FoodWeight = 15,
-                    IsGrainFree = true,
-                },
-                new Food
-                {
-                    ID = 9,
-                    Name = "Pedigree Small Dog",
-                    Description = "Food for small dogs including complete nutrition; Roasted Chicken, rice & vegetable flavor; 100% complete and balanced food for adult dogs, no high fructose corn syrup, no artifical flavors, no added sugar",
-                    Image = "Pedigree_SmallDog.jpg",
-                    Price = 7.20,
-                    InStock = true,
-                    Animal = AnimalType.Dog,
-                    ProductBrand = "Pedigree",
-                    FoodWeight = 7.20,
-                    IsGrainFree = true,
-                }
-             );
-        }
     }
 }
