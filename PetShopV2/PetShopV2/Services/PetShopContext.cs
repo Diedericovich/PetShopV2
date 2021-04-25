@@ -22,7 +22,7 @@ namespace PetShopV2.Services
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "PetShop4.SQLite");
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "PetShop10.SQLite");
             optionsBuilder.UseSqlite($"FileName={dbPath}");
         }
 

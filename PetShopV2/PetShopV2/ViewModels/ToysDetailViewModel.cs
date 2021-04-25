@@ -12,7 +12,15 @@ namespace PetShopV2.ViewModels
     {
         private Toys selectedToys;
         private int toysId;
-        public Command AddProductCommand => new Command(OnAddProduct);
+
+        private CartRepo cartRepo;
+        public Command AddProductCommand;
+
+        public ToysDetailViewModel()
+        {
+            AddProductCommand = new Command(OnAddProduct);
+            cartRepo = new CartRepo();
+        }
 
         public int ToysId
         {
@@ -46,32 +54,24 @@ namespace PetShopV2.ViewModels
             }
         }
 
-        private void OnAddProduct()
+        private async void OnAddProduct()
         {
-            CartItem cartItem = new CartItem()
+            CartItem cartitem;
+            CartItem item = await cartRepo.GetProductAsync(selectedToys.ID);
+            if (item == null)
             {
-                Product = selectedToys,
-                ID = selectedToys.ID,
-            };
-
-            var lijstje = CartSingleton.ShoppingCart.ItemsInCart;
-
-            bool ziterin = false;
-
-            foreach (var item in lijstje)
-            {
-                if (item.Product == selectedToys)
+                cartitem = new CartItem()
                 {
-                    ziterin = true;
-                }
+                    CartItemQuantity = 1,
+                    ProductId = selectedToys.ID,
+                };
+                await cartRepo.AddProductAsync(cartitem);
             }
-
-            if (!ziterin)
+            else
             {
-                CartSingleton.ShoppingCart.ItemsInCart.Add(cartItem);
+                item.CartItemQuantity++;
+                await cartRepo.UpdateProductAsync(item);
             }
-
-            lijstje.FirstOrDefault(x => x.Product == selectedToys).CartItemQuantity += 1;
         }
     }
     
