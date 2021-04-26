@@ -33,12 +33,8 @@ namespace PetShopV2.ViewModels
             Title = "Toys";
             ToysItems = new ObservableCollection<Toys>();
             ExecuteLoadProductsCommand();
-
             LoadProductsCommand = new Command(ExecuteLoadProductsCommand);
-
             ProductTapped = new Command<Toys>(OnProductSelected);
-
-            AddProductCommand = new Command(OnAddProduct);
         }
 
         private async void ExecuteLoadProductsCommand()
@@ -72,12 +68,6 @@ namespace PetShopV2.ViewModels
             }
         }
 
-        //public void OnAppearing()
-        //{
-        //    IsBusy = true;
-        //    SelectedProduct = null;
-        //}
-
         public Toys SelectedProduct
         {
             get => _selectedProduct;
@@ -88,17 +78,6 @@ namespace PetShopV2.ViewModels
             }
         }
 
-        //deze methode gbruiken om product aan shoppingcart toe te voegen.
-        // "Newfoodpage" nog vervangen
-
-        private async void OnAddProduct(object obj)
-        {
-            //  await Shell.Current.GoToAsync(nameof(NewFoodPage));
-        }
-
-        //deze methode gbruiken om door te klikken naar de detailview van het product
-        // "FoodDetailPage" nog vervangen
-
         private async void OnProductSelected(Toys toys)
         {
             if (toys == null)
@@ -106,7 +85,6 @@ namespace PetShopV2.ViewModels
                 throw new ArgumentNullException(nameof(toys));
             }
 
-            // This will push the ItemDetailPage onto the navigation stack
             await Shell.Current.GoToAsync($"{nameof(ToysDetailPage)}?{nameof(ToysDetailViewModel.ToysId)}={toys.ID}");
         }
     }
