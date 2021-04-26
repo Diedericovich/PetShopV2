@@ -11,21 +11,4 @@
             <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}" />
         </StackLayout>
     </ContentPage.Content>
-
-
-    <!--<StackLayout VerticalOptions="Center" Margin="20">
-        <Entry x:Name="TxtMail"
-               Placeholder="Email" 
-               Keyboard="Email" 
-               />
-        <Entry x:Name="TxtPass" 
-            Placeholder="Password" 
-               IsPassword="True" 
-               />
-        <Button 
-                Text="Login" 
-                Clicked="OnLoginClick"
-               />
-
-    </StackLayout>-->
 </ContentPage>

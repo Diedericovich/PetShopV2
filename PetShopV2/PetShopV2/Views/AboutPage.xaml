@@ -28,7 +28,7 @@
                 <Image x:Name="Header" Source="logoBanner.jpg" Aspect="Fill" HeightRequest="{OnPlatform iOS='*', Android=150, UWP=250}" />
 
                 <StackLayout Margin="5">
-                    <Frame BorderColor="Black" BackgroundColor="LightGreen" Padding="20">
+                    <Frame BorderColor="Black" BackgroundColor="Green" Padding="20">
                         <StackLayout>
                             <Label Text="Welcome to:"
                            TextColor="White"
