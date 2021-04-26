@@ -31,33 +31,21 @@ namespace PetShopV2.ViewModels
 
         public Command<Food> ProductTapped { get; }
 
-        //public Command<string> SkillDeletedCommand => new Command<string>(SkillDeleted);
-
         public FoodViewModel()
         {
             Title = "Food";
             FoodItems = new ObservableCollection<Food>();
             productExampleDB = new GenericRepo<Product>();
-
-            //CartItems = new ObservableCollection<Product>();
-
             ExecuteLoadProductsCommand();
-            //LoadProductsCommand = new Command(async () => await ExecuteLoadProductsCommand());
-
-            //todo: fix erboven
             LoadProductsCommand = new Command(ExecuteLoadProductsCommand);
             ProductTapped = new Command<Food>(OnProductSelected);
-
-            //AddProductCommand = new Command(OnAddProduct);
         }
 
         private async void ExecuteLoadProductsCommand()
         {
             IsBusy = true;
-
             try
             {
-                //todo: not all data has to be fetched, fix this later
                 FoodItems.Clear();
                 IEnumerable<Product> products = await productExampleDB.GetAllProductsAsync();
                 FoodItems = new ObservableCollection<Food>();
@@ -79,12 +67,6 @@ namespace PetShopV2.ViewModels
             }
         }
 
-        //public void OnAppearing()
-        //{
-        //    IsBusy = true;
-        //    SelectedFood = null;
-        //}
-
         public Food SelectedProduct
         {
             get => _selectedProduct;
@@ -102,7 +84,6 @@ namespace PetShopV2.ViewModels
                 throw new ArgumentNullException(nameof(food));
             }
 
-            // This will push the ItemDetailPage onto the navigation stack
             await Shell.Current.GoToAsync($"{nameof(FoodDetailPage)}?{nameof(FoodDetailViewModel.FoodId)}={food.ID}");
         }
     }
