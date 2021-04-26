@@ -63,7 +63,9 @@ namespace PetShopV2.ViewModels
         }
         private async void OnLoaded()
         {
+            //var iets = new PetShopContext();
             var result = await _cartRepo.GetItemsInCart();
+            //var result = iets.CartItems;
             ItemsInCart = new ObservableCollection<CartItem>(result);
             CalcTotalPrice();
         }

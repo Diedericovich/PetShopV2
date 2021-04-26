@@ -22,7 +22,7 @@
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add to cart" Command="{Binding AddProductCommand}" />
+        <ToolbarItem Text="  Add to cart" Icon="add.png" Command="{Binding AddProductCommand}" />
     </ContentPage.ToolbarItems>
 
     <StackLayout Padding="10">

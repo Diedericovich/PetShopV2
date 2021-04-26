@@ -5,8 +5,12 @@
     <!--
         Define global resources and styles here, that apply to all pages in your app.
     -->
+
     <Application.Resources>
         <ResourceDictionary>
+            <Style TargetType="Label"                   x:Key="Fa-Label">                <Setter Property="FontFamily"                        Value="FontAwesome"></Setter>                <Setter Property="FontSize"                        Value="Large"></Setter>            </Style>
+
+
             <Color x:Key="Primary">#388E3C</Color>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="white"></Setter>
