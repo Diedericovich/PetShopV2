@@ -1,12 +1,6 @@
 ﻿using PetShopV2.Models;
 using PetShopV2.Services;
-using PetShopV2.Views;
-
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
 using Xamarin.Forms;
 
 namespace PetShopV2.ViewModels
@@ -26,6 +20,7 @@ namespace PetShopV2.ViewModels
         public Command RefreshCommand { get; set; }
 
         private ObservableCollection<CartItem> itemsInCart;
+
         public ObservableCollection<CartItem> ItemsInCart
         {
             get { return itemsInCart; }
@@ -38,6 +33,7 @@ namespace PetShopV2.ViewModels
         }
 
         private double totalPrice;
+
         public double TotalPrice
         {
             get { return totalPrice; }
@@ -61,12 +57,14 @@ namespace PetShopV2.ViewModels
 
             OnLoaded();
         }
+
         private async void OnLoaded()
         {
             var result = await _cartRepo.GetItemsInCart();
             ItemsInCart = new ObservableCollection<CartItem>(result);
             CalcTotalPrice();
         }
+
         private void CalcTotalPrice()
         {
             TotalPrice = 0;
@@ -104,7 +102,5 @@ namespace PetShopV2.ViewModels
             await _cartRepo.DeleteProductAsync(cartItem.ID);
             TotalPrice -= cartItem.CartItemTotalPrice;
         }
-
-      
     }
 }

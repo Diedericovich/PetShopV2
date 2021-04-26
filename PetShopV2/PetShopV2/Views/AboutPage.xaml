@@ -9,39 +9,39 @@
     <ContentPage.BindingContext>
         <local:FoodViewModel />
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="Green" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="Margin" Value="1" />
-                <Setter Property="HorizontalOptions" Value="Center"/>
-                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
                 <Image x:Name="Header" Source="logoBanner.jpg" Aspect="Fill" HeightRequest="{OnPlatform iOS='*', Android=150, UWP=250}" />
-                
+
                 <StackLayout Margin="5">
-                    <Frame BorderColor="Black" BackgroundColor="LightGreen" Padding="20" >
+                    <Frame BorderColor="Black" BackgroundColor="LightGreen" Padding="20">
                         <StackLayout>
-                    <Label Text="Welcome to:" 
+                            <Label Text="Welcome to:"
                            TextColor="White"
-                           FontSize="Large"/>
-                    <Label Text="Pets and Paws" 
+                           FontSize="Large" />
+                            <Label Text="Pets and Paws"
                            TextColor="White"
-                           FontSize="30"/>
+                           FontSize="30" />
                         </StackLayout>
                     </Frame>
-                    
+
                     <Label Text="Bestsellers"
-                           FontSize="Large"/>
-                   
+                           FontSize="Large" />
+
                     <CarouselView ItemsSource="{Binding FoodItems}"
                               PeekAreaInsets="50"
                               Loop="True"
@@ -59,11 +59,11 @@
                                        Padding="0"
                                        Margin="10"
                                        HorizontalOptions="CenterAndExpand">
-                                <StackLayout BackgroundColor="white">
-                                    <Image Source="{Binding Image}"
+                                        <StackLayout BackgroundColor="white">
+                                            <Image Source="{Binding Image}"
                                            Aspect="AspectFit"
                                            Opacity="0.8" />
-                                    </StackLayout>
+                                        </StackLayout>
                                     </Frame>
                                 </StackLayout>
                             </DataTemplate>

@@ -12,7 +12,9 @@
         public int CartItemQuantity
         {
             get { return cartItemQuantity; }
-            set { cartItemQuantity = value;
+            set
+            {
+                cartItemQuantity = value;
 
                 OnPropertyChanged(nameof(CartItemQuantity));
             }

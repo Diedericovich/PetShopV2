@@ -28,7 +28,6 @@ namespace PetShopV2.Services
             }
         }
 
-
         public async Task<T> GetProductAsync(int id)
         {
             using (var dbContext = new PetShopContext())
@@ -55,7 +54,5 @@ namespace PetShopV2.Services
                 await dbContext.SaveChangesAsync();
             }
         }
-
-        
     }
 }

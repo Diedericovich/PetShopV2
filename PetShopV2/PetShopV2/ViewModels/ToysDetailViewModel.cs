@@ -3,7 +3,6 @@ using PetShopV2.Services;
 using System;
 using System.Diagnostics;
 using System.Linq;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace PetShopV2.ViewModels
