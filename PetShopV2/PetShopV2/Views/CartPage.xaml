@@ -62,21 +62,7 @@
                                        VerticalOptions="Center"
                                        Text="{Binding Product.Name}"
                                        Style="{DynamicResource ListItemTextStyle}" />
-                                    <Label
-                                    Grid.Column="2"
-                                       Grid.Row="0"
-                                       TextDecorations="Underline"
-                                       Text="Stock:"
-                                       Style="{DynamicResource ListItemTextStyle}">
-                                    </Label>
-                                    <CheckBox Grid.Column="2"
-                                              Grid.Row="1"
-                                              IsChecked="{Binding Product.InStock}"
-                                              HorizontalOptions="Center"
-                                              VerticalOptions="Center"
-                                              IsEnabled="False"
-                                              Color="DarkGreen" />
-                                    <Grid Grid.Column="3"
+                                    <Grid Grid.Column="2"
                                       Grid.RowSpan="2">
                                         <Label
                                         Grid.Column="0"
@@ -89,27 +75,25 @@
                                        Grid.Row="0" />
 
                                         <Button
-                                        FontFamily="FontAwesome"
-                                        Text="&#xf067;"
                                         Grid.Column="0"
                                         Grid.Row="1"
-                                        FontSize="Small"
-                                        Margin="8"
+                                        FontFamily="FontAwesome"
+                                        Text="&#xf067;"
+                                        Margin="4"
                                         BackgroundColor="Green"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=AddProductCommand}"
                                         CommandParameter="{Binding .}" />
                                         <Button
-                                        FontFamily="FontAwesome"
-                                        Text="&#xf068;"
                                         Grid.Column="1"
                                         Grid.Row="1"
-                                        FontSize="Small"
-                                        Margin="8"
+                                        FontFamily="FontAwesome"
+                                        Text="&#xf068;"
+                                        Margin="4"
                                         BackgroundColor="Green"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=DeductProductCommand}"
                                         CommandParameter="{Binding .}" />
                                     </Grid>
-                                    <Grid Grid.Column="4"
+                                    <Grid Grid.Column="3"
                                       Grid.Row="0">
                                         <Label Grid.Column="0"
                                            Grid.Row="0"
@@ -130,11 +114,11 @@
                                     LineBreakMode="NoWrap"
                                     Style="{DynamicResource ListItemTextStyle}" />
                                     </Grid>
-                                    <Button Grid.Column="4"
+                                    <Button Grid.Column="3"
                                         Grid.Row="1"
                                         Text="Delete All"
                                         BackgroundColor="Gray"
-                                        Margin="8"
+                                        Margin="4"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=DeleteProductCommand}"
                                         CommandParameter="{Binding .}" />
                                 </Grid>
