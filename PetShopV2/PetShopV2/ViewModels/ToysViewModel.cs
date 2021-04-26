@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace PetShopV2.ViewModels
@@ -23,9 +22,7 @@ namespace PetShopV2.ViewModels
                 toysItems = value;
                 OnPropertyChanged(nameof(ToysItems));
             }
-
         }
-
 
         public Command LoadProductsCommand { get; }
         public Command AddProductCommand { get; }
@@ -54,7 +51,7 @@ namespace PetShopV2.ViewModels
                 IEnumerable<Product> products = await DataStore.GetAllProductsAsync(true);
 
                 List<Toys> newToysList = new List<Toys>();
-                
+
                 foreach (var product in products)
                 {
                     //Products.Add(product);

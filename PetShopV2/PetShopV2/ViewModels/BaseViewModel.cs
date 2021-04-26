@@ -15,7 +15,6 @@ namespace PetShopV2.ViewModels
 
         private bool isBusy = false;
 
-
         public bool IsBusy
         {
             get { return isBusy; }

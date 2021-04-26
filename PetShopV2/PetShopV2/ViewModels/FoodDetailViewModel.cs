@@ -1,12 +1,9 @@
 ﻿using PetShopV2.Models;
-using PetShopV2.ViewModels;
 using PetShopV2.Services;
 using System;
 using System.Diagnostics;
-using System.Windows.Input;
-using Xamarin.Forms;
-using System.Collections.ObjectModel;
 using System.Linq;
+using Xamarin.Forms;
 
 namespace PetShopV2.ViewModels
 {
@@ -19,7 +16,6 @@ namespace PetShopV2.ViewModels
         private CartRepo _cartRepo;
 
         public Command AddProductCommand { get; set; }
-
 
         public FoodDetailViewModel()
         {
@@ -66,7 +62,7 @@ namespace PetShopV2.ViewModels
             var CartList = await _cartRepo.GetItemsInCart();
 
             var item = CartList.FirstOrDefault(x => x.ProductId == selectedFood.ID);
-            
+
             if (item == null)
             {
                 cartitem = new CartItem()
@@ -84,12 +80,10 @@ namespace PetShopV2.ViewModels
                 int aantal = item.CartItemQuantity;
                 double prijs = item.Product.Price;
 
-                item.CartItemTotalPrice = aantal * prijs; 
+                item.CartItemTotalPrice = aantal * prijs;
 
                 await _cartRepo.UpdateProductAsync(item);
-
             }
         }
-
     }
 }

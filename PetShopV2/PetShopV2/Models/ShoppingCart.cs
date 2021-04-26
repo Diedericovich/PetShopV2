@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 namespace PetShopV2.Models
 {
@@ -10,12 +9,15 @@ namespace PetShopV2.Models
         public ObservableCollection<CartItem> ItemsInCart
         {
             get { return itemsInCart; }
-            set { itemsInCart = value;
+            set
+            {
+                itemsInCart = value;
                 OnPropertyChanged(nameof(ItemsInCart));
             }
         }
 
         private double totalPrice;
+
         public double TotalPrice
         {
             get { return totalPrice; }
@@ -24,8 +26,8 @@ namespace PetShopV2.Models
                 totalPrice = value;
                 OnPropertyChanged(nameof(TotalPrice));
             }
-
         }
+
         public ShoppingCart()
         {
             ItemsInCart = new ObservableCollection<CartItem>();

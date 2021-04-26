@@ -59,6 +59,7 @@ namespace PetShopV2.Services
                   }
                 );
         }
+
         private void SeedFood(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Food>().HasData(
@@ -182,6 +183,7 @@ namespace PetShopV2.Services
                 }
              );
         }
+
         private void SeedToys(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Toys>().HasData(
@@ -327,6 +329,5 @@ namespace PetShopV2.Services
                 }
              );
         }
-
     }
 }
