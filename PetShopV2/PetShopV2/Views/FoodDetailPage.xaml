@@ -13,7 +13,6 @@
         <ResourceDictionary>
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="Green" />
-                <Setter Property="FontSize" Value="24" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="Margin" Value="1" />
             </Style>
@@ -24,38 +23,43 @@
         <ToolbarItem Text="  Add to cart" Icon="add.png" Command="{Binding AddProductCommand}" />
     </ContentPage.ToolbarItems>
 
-    <StackLayout Padding="10">
+    <StackLayout Margin="30">
         <Image Source="{Binding SelectedFood.Image}"
-                               HeightRequest="100"
-                               HorizontalOptions="Start" />
+                               HeightRequest="200"
+                               HorizontalOptions="Center" />
         <Label Text="{Binding SelectedFood.Name}"
-                            LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemTextStyle}"
-                            FontSize="16" />
-        <Label Text="{Binding SelectedFood.Description}"
+                            HorizontalOptions="Center"
+                            FontSize="25"
+                            TextColor="DarkGreen" />
+        <Frame BorderColor="Green">
+            <Label Text="{Binding SelectedFood.Description}" />
+        </Frame>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Price:" />
+            <Label Text="{Binding SelectedFood.Price}"
+                            LineBreakMode="NoWrap" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Brand:" />
+            <Label Text="{Binding SelectedFood.ProductBrand}"
+                            LineBreakMode="NoWrap" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Weight:" />
+            <Label Text="{Binding SelectedFood.FoodWeight}"
+                            LineBreakMode="NoWrap" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding SelectedFood.InStock}" IsEnabled="False" Color="DarkGreen" />
+            <Label Text="is in stock"
+                            LineBreakMode="NoWrap" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding SelectedFood.IsGrainFree}" IsEnabled="False" Color="DarkGreen" />
+            <Label Text="is grain free"
                             LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
-        <Label Text="{Binding SelectedFood.Price}"
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemTextStyle}"
-                            FontSize="16" />
-        <Label Text="{Binding SelectedFood.ProductBrand}"
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
-        <Label Text="{Binding SelectedFood.FoodWeight}"
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemTextStyle}"
-                            FontSize="16" />
-        <Label Text="{Binding SelectedFood.InStock}"
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemTextStyle}"
-                            FontSize="16" />
-        <Label Text="{Binding SelectedFood.IsGrainFree}"
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemTextStyle}"
-                            FontSize="16" />
-
+                            Style="{DynamicResource ListItemTextStyle}" />
+        </StackLayout>
     </StackLayout>
 </ContentPage>

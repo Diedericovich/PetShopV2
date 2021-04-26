@@ -39,20 +39,11 @@
                                        Padding="0"
                                        Margin="10"
                                        HorizontalOptions="CenterAndExpand">
-                                        <Grid>
-                                            <StackLayout BackgroundColor="white">
-                                                <Image Source="{Binding Image}"
-                                                   Aspect="AspectFit"
-                                                   Opacity="0.8" />
-                                            </StackLayout>
-                                            <StackLayout>
-                                                <Image Source="Food.png"
-                                                   HeightRequest="60"
-                                                   Aspect="AspectFit"
-                                                   HorizontalOptions="EndAndExpand"
-                                                   Margin="0,-5,0,0" />
-                                            </StackLayout>
-                                        </Grid>
+                                <StackLayout BackgroundColor="white">
+                                    <Image Source="{Binding Image}"
+                                           Aspect="AspectFit"
+                                           Opacity="0.8" />
+                                    </StackLayout>
                                     </Frame>
                                 </StackLayout>
                             </DataTemplate>

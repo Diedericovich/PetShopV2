@@ -9,7 +9,7 @@
     <ContentPage.BindingContext>
         <local:CartViewModel />
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
@@ -19,13 +19,12 @@
                 <Setter Property="VerticalOptions" Value="Center" />
             </Style>
         </ResourceDictionary>
-        
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="refresh.png" Command="{Binding RefreshCommand}" />
     </ContentPage.ToolbarItems>
-    
+
     <ContentPage.Content>
         <RefreshView Command="{Binding LoadProductsCommand}"
                  IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
@@ -36,54 +35,60 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid   HeightRequest="100"
-                                Margin="5">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
+                            <Frame BorderColor="Black" BackgroundColor="LightGreen" Margin="0" Padding="4" VerticalOptions="Center" HorizontalOptions="Center">
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="125" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="60" />
-                                </Grid.ColumnDefinitions>
+                                <Grid
+                                HeightRequest="100">
 
-                                <Image Grid.Column="0"
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="125" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="60" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Grid.Column="0"
                                        Grid.RowSpan="2"
                                        Source="{Binding Product.Image }"
                                HeightRequest="100"
                                HorizontalOptions="Start" />
 
-                                <Label Grid.Column="1"
+                                    <Label Grid.Column="1"
                                        Grid.RowSpan="2"
                                        HorizontalOptions="Start"
                                        VerticalOptions="Center"
                                        Text="{Binding Product.Name}"
                                        Style="{DynamicResource ListItemTextStyle}" />
-                                <Label 
+                                    <Label
                                     Grid.Column="2"
                                        Grid.Row="0"
                                        TextDecorations="Underline"
                                        Text="Stock:"
                                        Style="{DynamicResource ListItemTextStyle}">
-                                </Label>
-                                <Label Grid.Column="2"
-                                       Grid.Row="1"
-                                       Text="{Binding Product.InStock}"/>
-                                <Grid Grid.Column="3"
+                                    </Label>
+                                    <CheckBox Grid.Column="2"
+                                              Grid.Row="1"
+                                              IsChecked="{Binding Product.InStock}"
+                                              HorizontalOptions="Center"
+                                              VerticalOptions="Center"
+                                              IsEnabled="False"
+                                              Color="DarkGreen" />
+                                    <Grid Grid.Column="3"
                                       Grid.RowSpan="2">
-                                    <Label
+                                        <Label
                                         Grid.Column="0"
                                         Grid.Row="0"
                                         Text="#:"
                                         TextDecorations="Underline"
                                         Style="{DynamicResource ListItemTextStyle}" />
-                                    <Label Text="{Binding CartItemQuantity}"
+                                        <Label Text="{Binding CartItemQuantity}"
                                        Grid.Column="1"
-                                       Grid.Row="0"/>
-                                    
-                                    
-                                    <Button 
+                                       Grid.Row="0" />
+
+                                        <Button
                                         FontFamily="FontAwesome"
                                         Text="&#xf067;"
                                         Grid.Column="0"
@@ -93,7 +98,7 @@
                                         BackgroundColor="Green"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=AddProductCommand}"
                                         CommandParameter="{Binding .}" />
-                                    <Button
+                                        <Button
                                         FontFamily="FontAwesome"
                                         Text="&#xf068;"
                                         Grid.Column="1"
@@ -103,37 +108,37 @@
                                         BackgroundColor="Green"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=DeductProductCommand}"
                                         CommandParameter="{Binding .}" />
-                                </Grid>
-                                <Grid Grid.Column="4"
+                                    </Grid>
+                                    <Grid Grid.Column="4"
                                       Grid.Row="0">
-                                    <Label Grid.Column="0"
+                                        <Label Grid.Column="0"
                                            Grid.Row="0"
                                            Text="   Price:"
                                            FontSize="10" />
-                                    <Label Grid.Column="0"
+                                        <Label Grid.Column="0"
                                            Grid.Row="1"
                                            Text="   Total:"
                                            FontSize="10" />
-                                    <Label  Grid.Column="1"
+                                        <Label  Grid.Column="1"
                                             Grid.Row="0"
                                             Text="{Binding Product.Price}"
                                             LineBreakMode="NoWrap"
                                     Style="{DynamicResource ListItemTextStyle}" />
-                                    <Label Grid.Column="1"
+                                        <Label Grid.Column="1"
                                            Grid.Row="1"
                                     Text="{Binding CartItemTotalPrice}"
                                     LineBreakMode="NoWrap"
                                     Style="{DynamicResource ListItemTextStyle}" />
-                                </Grid>
-                                <Button Grid.Column="4"
+                                    </Grid>
+                                    <Button Grid.Column="4"
                                         Grid.Row="1"
                                         Text="Delete All"
                                         BackgroundColor="Gray"
                                         Margin="8"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=DeleteProductCommand}"
                                         CommandParameter="{Binding .}" />
-
-                            </Grid>
+                                </Grid>
+                            </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
@@ -143,14 +148,13 @@
                        FontSize="20"
                        Margin="8"
                        HorizontalOptions="Start"
-                       Style="{DynamicResource ListItemTextStyle}"/>
+                       Style="{DynamicResource ListItemTextStyle}" />
 
                 <Label Text="{Binding TotalPrice}"
                        FontSize="25"
                        Margin="8"
                        HorizontalOptions="Start"
-                       Style="{DynamicResource ListItemTextStyle}"/>
-
+                       Style="{DynamicResource ListItemTextStyle}" />
             </StackLayout>
         </RefreshView>
     </ContentPage.Content>

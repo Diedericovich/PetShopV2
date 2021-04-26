@@ -9,12 +9,11 @@
     <ContentPage.BindingContext>
         <local:ToysDetailViewModel />
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="Green" />
-                <Setter Property="FontSize" Value="24" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="Margin" Value="1" />
             </Style>
@@ -25,46 +24,51 @@
         <ToolbarItem Text="  Add to cart" Icon="add.png" Command="{Binding AddProductCommand}" />
     </ContentPage.ToolbarItems>
 
-    <StackLayout Padding="10">
+    <StackLayout Margin="30">
         <Image Source="{Binding SelectedToys.Image}"
-                               HeightRequest="100"
-                               HorizontalOptions="Start" />
+                               HeightRequest="200"
+                               HorizontalOptions="Center" />
         <Label Text="{Binding SelectedToys.Name}"
-                            LineBreakMode="NoWrap"
+                            HorizontalOptions="Center"
                             Style="{DynamicResource ListItemTextStyle}"
-                            FontSize="16" />
-        <Label Text="{Binding SelectedToys.Description}"
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
-        <Label Text="{Binding SelectedToys.Price}"
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemTextStyle}"
-                            FontSize="16" />
-        <Label Text="{Binding SelectedToys.ProductBrand}"
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
-        <Label Text="{Binding SelectedToys.ContainsLatex}"
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemTextStyle}"
-                            FontSize="16" />
-        <Label Text="{Binding SelectedToys.InStock}"
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemTextStyle}"
-                            FontSize="16" />
-        <Label Text="{Binding SelectedToys.IsInteractive}"
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemTextStyle}"
-                            FontSize="16" />
-        <Label Text="{Binding SelectedToys.IsTough}"
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemTextStyle}"
-                            FontSize="16" />
-        <Label Text="{Binding SelectedToys.MakesSound}"
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemTextStyle}"
-                            FontSize="16" />
-
+                            FontSize="25" />
+        <Frame BorderColor="Green">
+            <Label Text="{Binding SelectedToys.Description}" />
+        </Frame>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Price:" />
+            <Label Text="{Binding SelectedToys.Price}"
+                            LineBreakMode="NoWrap" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Brand:" />
+            <Label Text="{Binding SelectedToys.ProductBrand}"
+                            LineBreakMode="NoWrap" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding SelectedToys.ContainsLatex}" IsEnabled="False" Color="DarkGreen" />
+            <Label Text="contains latex"
+                            LineBreakMode="NoWrap" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding SelectedToys.InStock}" IsEnabled="False" Color="DarkGreen" />
+            <Label Text="is in stock"
+                            LineBreakMode="NoWrap" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding SelectedToys.IsInteractive}" IsEnabled="False" Color="DarkGreen" />
+            <Label Text="is interactive"
+                            LineBreakMode="NoWrap" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding SelectedToys.IsTough}" IsEnabled="False" Color="DarkGreen" />
+            <Label Text="is tough"
+                            LineBreakMode="NoWrap" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding SelectedToys.MakesSound}" IsEnabled="False" Color="DarkGreen" />
+            <Label Text="makes sound"
+                            LineBreakMode="NoWrap" />
+        </StackLayout>
     </StackLayout>
 </ContentPage>

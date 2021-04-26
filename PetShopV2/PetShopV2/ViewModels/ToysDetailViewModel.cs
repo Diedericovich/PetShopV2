@@ -19,7 +19,7 @@ namespace PetShopV2.ViewModels
 
         public ToysDetailViewModel()
         {
-            Title = "Food Details";
+            Title = "Toy Details";
             _cartRepo = new CartRepo();
             AddProductCommand = new Command(OnAddProduct);
         }
@@ -83,5 +83,4 @@ namespace PetShopV2.ViewModels
             }
         }
     }
-    
 }
