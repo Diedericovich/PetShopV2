@@ -4,26 +4,27 @@
              xmlns:local="clr-namespace:PetShopV2.ViewModels"
              Title="{Binding Title}"
              x:Class="PetShopV2.Views.CartPage"
-             BackgroundColor="LightGreen">
+             BackgroundColor="White">
 
     <ContentPage.BindingContext>
         <local:CartViewModel />
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="Green" />
                 <Setter Property="FontSize" Value="10" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
             </Style>
         </ResourceDictionary>
-        
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Refresh" Command="{Binding RefreshCommand}" />
+        <ToolbarItem Icon="refresh.png" Command="{Binding RefreshCommand}" />
     </ContentPage.ToolbarItems>
-    
+
     <ContentPage.Content>
         <RefreshView Command="{Binding LoadProductsCommand}"
                  IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
@@ -34,110 +35,94 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid   HeightRequest="100"
-                                Margin="5">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
+                            <Frame BorderColor="Black" BackgroundColor="LightGreen" Margin="0" Padding="4" VerticalOptions="Center" HorizontalOptions="Center">
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="125" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="60" />
-                                </Grid.ColumnDefinitions>
+                                <Grid
+                                HeightRequest="100">
 
-                                <Image Grid.Column="0"
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="125" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="60" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Grid.Column="0"
                                        Grid.RowSpan="2"
                                        Source="{Binding Product.Image }"
                                HeightRequest="100"
                                HorizontalOptions="Start" />
 
-                                <Label Grid.Column="1"
+                                    <Label Grid.Column="1"
                                        Grid.RowSpan="2"
+                                       HorizontalOptions="Start"
                                        VerticalOptions="Center"
                                        Text="{Binding Product.Name}"
                                        Style="{DynamicResource ListItemTextStyle}" />
-                                <Label Grid.Column="2"
-                                       Grid.Row="0"
-                                       TextDecorations="Underline"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center"
-                                       Text="In Stock?">
-                                </Label>
-                                <Label Grid.Column="2"
-                                       Grid.Row="1"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center"
-                                       Text="{Binding Product.InStock}"
-                                    LineBreakMode="NoWrap"
-                                    Style="{DynamicResource ListItemDetailTextStyle}" />
-                                <Grid Grid.Column="3"
+                                    <Grid Grid.Column="2"
                                       Grid.RowSpan="2">
-                                    <Label
+                                        <Label
                                         Grid.Column="0"
                                         Grid.Row="0"
-                                        Text="Amount:"
-                                        VerticalOptions="Center"
-                                        HorizontalOptions="Center"
-                                        TextDecorations="Underline" />
-                                    <Label Text="{Binding CartItemQuantity}"
+                                        Text="#:"
+                                        TextDecorations="Underline"
+                                        Style="{DynamicResource ListItemTextStyle}" />
+                                        <Label Text="{Binding CartItemQuantity}"
                                        Grid.Column="1"
-                                       Grid.Row="0"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center" />
-                                    <Button Text="+"
+                                       Grid.Row="0" />
+
+                                        <Button
                                         Grid.Column="0"
                                         Grid.Row="1"
-                                        FontSize="Medium"
-                                        Margin="8"
+                                        FontFamily="FontAwesome"
+                                        Text="&#xf067;"
+                                        Margin="4"
                                         BackgroundColor="Green"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=AddProductCommand}"
                                         CommandParameter="{Binding .}" />
-                                    <Button Text="-"
+                                        <Button
                                         Grid.Column="1"
                                         Grid.Row="1"
-                                        FontSize="Medium"
-                                        Margin="8"
+                                        FontFamily="FontAwesome"
+                                        Text="&#xf068;"
+                                        Margin="4"
                                         BackgroundColor="Green"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=DeductProductCommand}"
                                         CommandParameter="{Binding .}" />
-                                </Grid>
-                                <Grid Grid.Column="4"
+                                    </Grid>
+                                    <Grid Grid.Column="3"
                                       Grid.Row="0">
-                                    <Label Grid.Column="0"
+                                        <Label Grid.Column="0"
                                            Grid.Row="0"
                                            Text="   Price:"
-                                           VerticalOptions="Center"
                                            FontSize="10" />
-                                    <Label Grid.Column="0"
+                                        <Label Grid.Column="0"
                                            Grid.Row="1"
-                                           VerticalOptions="Center"
                                            Text="   Total:"
                                            FontSize="10" />
-                                    <Label  Grid.Column="1"
+                                        <Label  Grid.Column="1"
                                             Grid.Row="0"
-                                            VerticalOptions="Center"
-                                            FontSize="10"
                                             Text="{Binding Product.Price}"
                                             LineBreakMode="NoWrap"
                                     Style="{DynamicResource ListItemTextStyle}" />
-                                    <Label Grid.Column="1"
+                                        <Label Grid.Column="1"
                                            Grid.Row="1"
-                                            VerticalOptions="Center"
-                                            FontSize="10"
                                     Text="{Binding CartItemTotalPrice}"
                                     LineBreakMode="NoWrap"
                                     Style="{DynamicResource ListItemTextStyle}" />
-                                </Grid>
-                                <Button Grid.Column="4"
+                                    </Grid>
+                                    <Button Grid.Column="3"
                                         Grid.Row="1"
                                         Text="Delete All"
                                         BackgroundColor="Gray"
-                                        Margin="8"
+                                        Margin="4"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=DeleteProductCommand}"
                                         CommandParameter="{Binding .}" />
-
-                            </Grid>
+                                </Grid>
+                            </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
@@ -147,14 +132,13 @@
                        FontSize="20"
                        Margin="8"
                        HorizontalOptions="Start"
-                       Style="{DynamicResource ListItemTextStyle}"/>
+                       Style="{DynamicResource ListItemTextStyle}" />
 
                 <Label Text="{Binding TotalPrice}"
                        FontSize="25"
                        Margin="8"
                        HorizontalOptions="Start"
-                       Style="{DynamicResource ListItemTextStyle}"/>
-
+                       Style="{DynamicResource ListItemTextStyle}" />
             </StackLayout>
         </RefreshView>
     </ContentPage.Content>

@@ -13,7 +13,6 @@
         <ResourceDictionary>
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="Green" />
-                <Setter Property="FontSize" Value="24" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="Margin" Value="1" />
             </Style>
@@ -33,32 +32,35 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout Padding="10">
-
-                                <Image Source="{Binding Image }"
+                            <Frame BorderColor="Black" BackgroundColor="White" Padding="20">
+                                <StackLayout Padding="10">
+                                    <Image Source="{Binding Image }"
                                HeightRequest="100"
                                HorizontalOptions="Start" />
-                                <Label Text="{Binding Name}"
+                                    <Label Text="{Binding Name}"
                             LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemTextStyle}"
-                            FontSize="16" />
-                                <Label Text="{Binding Price}"
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemTextStyle}"
-                            FontSize="16" />
-                                <Label Text="{Binding InStock}"
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
+                                       FontSize="20"
+                            Style="{DynamicResource ListItemTextStyle}" />
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Price:" />
+                                        <Label Text="{Binding Price}"
+                            LineBreakMode="NoWrap" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <CheckBox IsChecked="{Binding InStock}" IsEnabled="False" Color="DarkGreen" />
+                                        <Label Text="is in stock"
+                            LineBreakMode="NoWrap" />
+                                    </StackLayout>
 
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer
                                 NumberOfTapsRequired="1"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type local:FoodViewModel}},
                                     Path=ProductTapped}"
                                 CommandParameter="{Binding .}" />
-                                </StackLayout.GestureRecognizers>
-                            </StackLayout>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

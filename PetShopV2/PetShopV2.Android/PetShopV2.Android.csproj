@@ -135,11 +135,18 @@
     <AndroidResource Include="Resources\drawable\Pedigree_SmallDog.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\cart.png" />
+    <AndroidResource Include="Resources\drawable\add.png" />
     <Content Include="Resources\drawable\Dog_Bowl_Egg.jpg" />
     <AndroidResource Include="Resources\drawable\Jumping_Dog.jpg" />
     <AndroidResource Include="Resources\drawable\Rubber_Chicken.jpg" />
     <AndroidResource Include="Resources\drawable\Rubber_Dogbone.jpg" />
     <AndroidResource Include="Resources\drawable\Stuffed_Yoda.jpg" />
+    <AndroidResource Include="Resources\drawable\toys.png" />
+    <AndroidResource Include="Resources\drawable\food.png" />
+    <AndroidResource Include="Resources\drawable\home.png" />
+    <AndroidResource Include="Resources\drawable\toys2.png" />
+    <AndroidResource Include="Resources\drawable\refresh.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\logoBanner.jpg" />

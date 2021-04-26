@@ -79,13 +79,10 @@ namespace PetShopV2.ViewModels
         private async void OnAddProduct(CartItem cartItem)
         {
             cartItem.CartItemQuantity++;
-
             int aantal = cartItem.CartItemQuantity;
             cartItem.CartItemTotalPrice = aantal * cartItem.Product.Price;
-
             //niet ideaal: beter: in memory opslaan en als klaar naar database, nu elke keer op knop duwen = refreshen database
             await _cartRepo.UpdateProductAsync(cartItem);
-
             TotalPrice += cartItem.Product.Price;
         }
 
@@ -94,12 +91,9 @@ namespace PetShopV2.ViewModels
             if (cartItem.CartItemQuantity > 1)
             {
                 cartItem.CartItemQuantity--;
-
                 int aantal = cartItem.CartItemQuantity;
                 cartItem.CartItemTotalPrice = aantal * cartItem.Product.Price;
-
                 await _cartRepo.UpdateProductAsync(cartItem);
-
                 TotalPrice -= cartItem.Product.Price;
             }
         }
@@ -108,7 +102,6 @@ namespace PetShopV2.ViewModels
         {
             ItemsInCart.Remove(cartItem);
             await _cartRepo.DeleteProductAsync(cartItem.ID);
-
             TotalPrice -= cartItem.CartItemTotalPrice;
         }
 
