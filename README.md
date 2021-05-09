@@ -5,8 +5,8 @@ Project 4 in C# course: Module 4 Diederik, Kobe and Joyce
 Task create a mobile app in Xamarin for Android and UWP
 Chosen subject: webshop for food and toys for pets
 
-Minimum requirements:
 
+# Minimum requirements: OK
 
 - Model-View-ViewModel pattern
 - use deatabinding
@@ -23,9 +23,10 @@ Minimum requirements:
 - correct use of primary and foreign keys
 - Clean code
 
-Extra requirements:
 
-* Generic methods
+# Extra requirements: 
+
+* Generic methods     OK
 * Extension methods
 * Paralell programming
 * sending notificiations outside app
